@@ -114,9 +114,9 @@
 
 
 
-<div class="panel panel-primary">
+<div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">חשבוניות</div>
+  <div class="panel-heading panel-primary">חשבוניות</div>
   <div class="panel-body">
     <p>panel body...</p>
   </div>
@@ -133,19 +133,19 @@
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td><%= image_tag attachments['yes.png'].url, alt: 'Yes', class: 'sup_logo' %></td>
+            <td><%= l Time.now, format: :short %></td>
+            <td><%= number_to_currency 100 %></td>
             <td>@mdo</td>
           </tr>
           <tr>
-            <td>2</td>
+            <td><img id="bl_19" border="0" src="https://www.paykido.com/images/logo.png" width="128" height="128" style="display: inline-block; max-width: 128px; width: 128px; height: 128px;" class="" alt="1404092095_f..."></td>
             <td>Jacob</td>
             <td>Thornton</td>
             <td>@fat</td>
           </tr>
           <tr>
-            <td>3</td>
+            <td><img width="219" height="57" style="max-width: 219px; width: 219px; height: 57px; display: inline-block;" src="https://cdn-media.web-view.net/i/wwtfwcch2c/logo_1.png"></td>
             <td>Larry</td>
             <td>the Bird</td>
             <td>@twitter</td>

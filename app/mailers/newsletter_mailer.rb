@@ -7,7 +7,7 @@ class NewsletterMailer < ActionMailer::Base
   #   en.newsletter.weekly.subject
   #
   def weekly(email)
-#    attachments.inline['bezeq.png'] = File.read('images/bezeq.png')
+    attachments.inline['yes.png'] = File.read("#{Rails.root}/public/images/yes.png")
     @greeting = "Hi"
 
     mail to: email, subject:"Test subject"
