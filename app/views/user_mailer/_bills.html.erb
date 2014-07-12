@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading panel-primary">חשבוניות</div>
+  <div class="panel-body">
+    <p>panel body...</p>
+  </div>
+
+  <!-- Table -->
+  <table class="table">	
+        <thead>
+          <tr>
+            <th>חברהההה</th>
+            <th>תאריך</th>
+            <th>סכום</th>
+            <th>סטטוס</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= image_tag attachments['yes.png'].url, alt: 'Yes', class: 'sup_logo' %></td>
+            <td><%= l Time.now, format: :short %></td>
+            <td><%= number_to_currency 100 %></td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td><%= image_tag 'yes.png' %></td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+        </tbody>
+  </table>
+</div>
