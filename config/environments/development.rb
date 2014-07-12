@@ -41,4 +41,6 @@ Billbeez::Application.configure do
     user_name: 'welcome@paykido.com',
     password: 'dror160395'
   }
+  
+  config.assets.raise_production_errors = true
 end
