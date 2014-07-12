@@ -23,7 +23,7 @@ he:
     - נוב
     - דצמ
     day_names:
-    - ראשון
+    -   ראשון
     - שני
     - שלישי
     - רביעי
@@ -33,7 +33,7 @@ he:
     formats:
       default: ! '%d-%m-%Y'
       long: ! '%e ב%B, %Y'
-      short: ! '%e %b'
+      short: ! '%e %b %Y'
     month_names:
     -
     - ינואר
@@ -137,7 +137,7 @@ he:
     currency:
       format:
         delimiter: ! ','
-        format: ! '%u %n'
+        format: ! '%n %u'
         precision: 2
         separator: .
         significant: false

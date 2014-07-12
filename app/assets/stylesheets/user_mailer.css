@@ -1,0 +1,20 @@
+th, td {
+    text-align: center;
+}
+.panel-primary > .panel-heading {
+  color: #ffffff;
+  background-color: green;
+  border-color: green;
+}
+.sup_logo {
+    width: 5em;    
+}
+.status_logo {
+    width: 2em;
+}
+.data.table td {
+    vertical-align: middle;
+}
+#billbeez .highlight_img {
+    vertical-align: bottom;
+}
