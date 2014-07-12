@@ -77,4 +77,23 @@ Billbeez::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  config.assets.debug = false
+  config.action_controller.asset_host = "http://billbeez.herokuapp.com"
+  config.action_mailer.asset_host = config.action_controller.asset_host
+  config.asset_host = "http://billbeez.herokuapp.com"
+  
+  config.action_mailer.default_url_options = { host: "www.paykido.com" }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "paykido.com",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: 'welcome@paykido.com',
+    password: 'dror160395'
+  }
+
 end
