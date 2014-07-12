@@ -79,9 +79,7 @@ Billbeez::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
   
   config.assets.debug = false
-  config.action_controller.asset_host = "http://billbeez.herokuapp.com"
-  config.action_mailer.asset_host = config.action_controller.asset_host
-  config.asset_host = "http://billbeez.herokuapp.com"
+  config.action_controller.asset_host = config.action_mailer.asset_host = config.asset_host = "http://billbeez.herokuapp.com"
   
   config.action_mailer.default_url_options = { host: "www.paykido.com" }
   config.action_mailer.raise_delivery_errors = true
