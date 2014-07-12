@@ -21,7 +21,9 @@ module Billbeez
      config.i18n.enforce_available_locales = true
      config.i18n.default_locale = :he
      
+     config.assets.enabled = true
      config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
      config.assets.precompile += %w( .svg .eot .woff .ttf)
+     config.action_mailer.logger = nil
   end
 end
