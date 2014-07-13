@@ -6613,5 +6613,27 @@ th, td {
   border-color: green;
 }
 .sup_logo {
-    
+    width: 5em;    
+}
+.status_logo {
+    width: 2em;
+}
+.data.table td {
+    vertical-align: middle;
+}
+#billbeez .highlight_img {
+    vertical-align: bottom;
+}
+.findings {
+    width: 100%;
+}
+.findings td {
+    text-align: right;
+}
+#findings_sentence {
+    font-size: 1.1em;
+    text-align: right;
+}
+.finding p{
+    font-size: 0.9em;
 }
