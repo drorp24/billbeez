@@ -6604,6 +6604,14 @@ button.close {
     display: none !important;
   }
 }
+.bill_background {
+    background-color: #BBCE40;
+}
+
+#bills td {
+    border-top: none;
+}
+
 th, td {
     text-align: center;
 }
