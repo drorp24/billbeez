@@ -1,8 +1,8 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary"><a data-anchor="bills" name="bills" style="text-decoration: none; color: inherit;">חשבוניות</a></div>
+  <div class="panel-heading panel-primary"><a data-anchor="bills" name="bills" style="text-decoration: none; color: inherit;">לתשלום</a></div>
   <div class="panel-body">
-    <p>panel body...</p>
+    <p>מועד התשלום של החשבוניות הבאות  קרב. שלם חשבונית או סמן שהיא משולמת בלחיצה על הקישור המתאים.</p>
   </div>
 
   <!-- Table -->
@@ -17,27 +17,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="bill_background">
-            <td><%= image_tag 'bezeq.png', class: 'sup_logo' %></td>
-            <td><%= l Date.today, format: :short %></td>
-            <td><%= number_to_currency 100 %></td>
-            <td>21</td>
-            <td><%= image_tag 'ok.png', class: 'status_logo' %></td>
-          </tr>
-          <tr>
-          	<td><a href ="#">צפה</a></td>
-          	<td><a href ="#">שלם</a></td>
-          	<td><a href ="#">סמן כמשולם</a></td>
-          	<td></td>
-			<td></td>
-      	</tr>
-          <tr>
-            <td><%= image_tag 'yes.png', class: 'sup_logo' %></td>
-            <td><%= l Date.today, format: :short %></td>
-            <td><%= number_to_currency 100 %></td>
-            <td>2</td>
-            <td><%= image_tag 'ok.png', class: 'status_logo' %></td>
-          </tr>
+			<%= render 'bills_panel_bill', company: 'bezeq.png' %>
+			<%= render 'bills_panel_bill', company: 'yes.png' %>
         </tbody>
   </table>
 </div>
