@@ -6604,8 +6604,28 @@ button.close {
     display: none !important;
   }
 }
+#billbeez td{
+    font-size: 12px;
+}
+.amount {
+    font-weight: bold;
+}
+
+#billbeez .panel-heading {
+    font-size: 24px;
+    color: #888888;
+}
+
 .bill_background {
-    background-color: #BBCE40;
+    background-color: #FDE9C9;
+}
+
+.notification_background {
+    background-color: #FCF7C9;
+}
+
+.reminder_background {
+    background-color: #ECF6A8;
 }
 
 #bills td {
@@ -6617,7 +6637,7 @@ th, td {
 }
 .panel-primary > .panel-heading {
   color: #ffffff;
-  background-color: green;
+  background-color: pink;
   border-color: green;
 }
 .sup_logo {
