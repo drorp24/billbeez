@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  	<%= stylesheet_link_tag    "application", :media => "all" %>
 </head>
 
 <body id="billbeez">
@@ -20,7 +21,9 @@
 	<%= render 'notifications' %>
 	
 	<%= render 'reminders' %>
-			
+
+	<%= render 'recommendations' %>
+				
 		</td>	
 	</tr>
 	<tr>													

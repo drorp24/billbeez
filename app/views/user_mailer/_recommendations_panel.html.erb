@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading panel-primary"><a data-anchor="recommendations" name="recommendations" style="text-decoration: none; color: inherit;">בילביז ממליצה!</a></div>
+  <div class="panel-body">
+    <p>מערכת בילביז השוותה את חשבונך לחשבונות לקוחותינו ולמבצעים העדכניים. לפניך המלצותינו:</p>
+  </div>
+
+  <!-- Table -->
+  <table class=" data table">	
+        <thead>
+          <tr>
+            <th>ספק</th>
+            <th>תכנית נוכחית</th>
+            <th>תכנית מומלצת</th>
+          </tr>
+        </thead>
+        <tbody>
+			<%= render 'recommendations_panel_recommendation'  %>
+        </tbody>
+  </table>
+</div>

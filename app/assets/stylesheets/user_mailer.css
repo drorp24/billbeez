@@ -1,3 +1,11 @@
+#billbeez td.plan {
+    font-size: 18px;
+}
+
+#billbeez .notice {
+    font-weight: bold;
+}
+
 #billbeez td{
     font-size: 12px;
 }
@@ -22,17 +30,18 @@
     background-color: #ECF6A8;
 }
 
+.recommendation_background {
+    background-color: #F7B547;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
 #bills td {
     border-top: none;
 }
 
 th, td {
     text-align: center;
-}
-.panel-primary > .panel-heading {
-  color: #ffffff;
-  background-color: pink;
-  border-color: green;
 }
 .sup_logo {
      
