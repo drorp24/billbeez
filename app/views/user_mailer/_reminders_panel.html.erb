@@ -2,32 +2,21 @@
   <!-- Default panel contents -->
   <div class="panel-heading panel-primary"><a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">תזכורות</a></div>
   <div class="panel-body">
-    <p>panel body...</p>
+    <p>רצינו להזכיר לך ש...</p>
   </div>
 
   <!-- Table -->
   <table class=" data table">	
         <thead>
           <tr>
-            <th>חברה</th>
-            <th>תאריך</th>
-            <th>סכום</th>
-            <th>סטטוס</th>
+            <th>ספק</th>
+            <th>תאריך תזכורת</th>
+            <th>נושא התזכורת</th>
+            <th>המלצה</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><%= image_tag 'bezeq.png', class: 'sup_logo' %></td>
-            <td><%= l Date.today, format: :short %></td>
-            <td><%= number_to_currency 100 %></td>
-            <td><%= image_tag 'ok.png', class: 'status_logo' %></td>
-          </tr>
-          <tr>
-            <td><%= image_tag 'yes.png', class: 'sup_logo' %></td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td><%= image_tag 'x.png', class: 'status_logo' %></td>
-          </tr>
+			<%= render 'reminders_panel_reminder'  %>
         </tbody>
   </table>
 </div>

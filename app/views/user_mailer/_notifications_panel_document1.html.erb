@@ -1,0 +1,14 @@
+  <tr class="notification_background">
+    <td><%= image_tag 'bezeq.png', class: 'sup_logo' %></td>
+    <td><%= l Date.today, format: :short %></td>
+    <td class="amount"><%= number_to_currency 100 %></td>
+    <td>סכום חריג</td>
+    <td><%= image_tag 'x.png', class: 'status_logo' %></td>
+  </tr>
+  <tr>
+  	<td>סכום חשבונית קודמת:</td>
+  	<td><%= number_to_currency 23.78 %></td>
+  	<td></td>
+  	<td></td>
+  	<td></td>
+  </tr>

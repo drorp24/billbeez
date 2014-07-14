@@ -1,3 +1,6 @@
+#billbeez td{
+    font-size: 12px;
+}
 .amount {
     font-weight: bold;
 }
@@ -9,6 +12,14 @@
 
 .bill_background {
     background-color: #FDE9C9;
+}
+
+.notification_background {
+    background-color: #FCF7C9;
+}
+
+.reminder_background {
+    background-color: #ECF6A8;
 }
 
 #bills td {

@@ -1,8 +1,8 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary"><a data-anchor="notifications" name="notifications" style="text-decoration: none; color: inherit;">לטיפול</a></div>
+  <div class="panel-heading panel-primary"><a data-anchor="notifications" name="notifications" style="text-decoration: none; color: inherit;">הודעות</a></div>
   <div class="panel-body">
-    <p>panel body...</p>
+    <p>בילביז סרקה את חשבונך ומצאה דברים שדורשים את שימת לבך  </p>
   </div>
 
   <!-- Table -->
@@ -12,22 +12,14 @@
             <th>חברה</th>
             <th>תאריך</th>
             <th>סכום</th>
+            <th>סיבה</th>
             <th>סטטוס</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><%= image_tag 'bezeq.png', class: 'sup_logo' %></td>
-            <td><%= l Date.today, format: :short %></td>
-            <td><%= number_to_currency 100 %></td>
-            <td><%= image_tag 'ok.png', class: 'status_logo' %></td>
-          </tr>
-          <tr>
-            <td><%= image_tag 'yes.png', class: 'sup_logo' %></td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td><%= image_tag 'x.png', class: 'status_logo' %></td>
-          </tr>
+			<%= render 'notifications_panel_document1'  %>
+			<%= render 'notifications_panel_document2' %>
+			<%= render 'notifications_panel_document3' %>
         </tbody>
   </table>
 </div>
