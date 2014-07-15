@@ -40,6 +40,7 @@ gem 'premailer-rails'
 gem 'sprockets_better_errors'
 
 gem "chartkick"
+gem "devise"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

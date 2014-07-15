@@ -24,6 +24,7 @@ module Billbeez
      config.assets.enabled = true
      config.assets.paths << Rails.root.join('app', 'assets', 'fonts', 'icons')
      config.assets.precompile += %w( .svg .eot .woff .ttf)
+     config.assets.initialize_on_precompile = false
      config.action_mailer.logger = nil
   end
 end
