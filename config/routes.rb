@@ -1,4 +1,6 @@
 Billbeez::Application.routes.draw do
+  resources :campaigns
+
   devise_for :users
   root "home#index"
   get "user_mailer/weekly"
