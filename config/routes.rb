@@ -1,4 +1,6 @@
 Billbeez::Application.routes.draw do
+  resources :texts
+
   resources :campaigns
 
   devise_for :users
