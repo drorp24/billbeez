@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TextTest < ActiveSupport::TestCase
+class LocaleTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

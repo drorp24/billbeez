@@ -1,4 +1,6 @@
 Billbeez::Application.routes.draw do
+  resources :versions
+
   resources :texts
 
   resources :campaigns
