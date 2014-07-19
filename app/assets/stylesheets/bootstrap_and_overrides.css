@@ -21,18 +21,15 @@ body#backoffice .page-header h1  {
 .sidebar-nav {
     margin-top: 145px;
 }
-.sidebar-nav li {
-    font-family: verdana;
-    font-size: 18px;
-    line-height: 30px;
-    padding-top: 20px;
-}
+
 #backoffice .logo img {
-    width: 100px;
+    width: 120px;
     padding-bottom: 13px;
+    margin-bottom: 3px;
+    margin-left: -66px;
 }
 li {
-    line-height: 37px;
+    line-height: 45px;
 }
 .form-horizontal .controls {
     margin-left: 0;
@@ -51,5 +48,9 @@ input, select {
 }
 #backoffice .navbar-inner a {
     text-shadow: white -1px 1px;
-    font-size: 22px;
+    font-size: 18px;
+    margin-left: 40px;
+}
+#backoffice li a {
+    
 }

@@ -49,10 +49,10 @@
           <div class="container-fluid nav-collapse clearfix">
             <ul class="nav">
 				<li><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %></li>
-	            <li id="campaign_menu"><%= link_to "Campaign", new_campaign_path %></li>
-	            <li id="version_menu"><%= link_to "Version", versions_path  %></li>
-	            <li id="newsletter_menu"><%= link_to "Customers", "#"  %></li>
-	            <li id="newsletter_menu"><%= link_to "Data", "#"  %></li>
+	            <li id="campaigns_menu"><%= link_to "Campaigns", campaigns_path %></li>
+	            <li id="versions_menu"><%= link_to "Versions", versions_path  %></li>
+	            <li id="customers_menu"><%= link_to "Customers", customers_path  %></li>
+	            <li id="details_menu"><%= link_to "Details", "#"  %></li>
 				<li class="pull-right"><%= render 'devise/menu/login_items' %></li> 
 			</ul>
           </div><!--/.nav-collapse -->
@@ -79,3 +79,16 @@
 
   </body>
 </html>
+<script>
+$(document).ready(function() {
+	<% if params[:controller] == 'campaigns' %>
+		$("#backoffice li#campaigns_menu a").addClass('active')
+	<% elsif params[:controller] == 'versions' %>
+		$("#backoffice li#versions_menu a").addClass('active')
+	<% elsif params[:controller] == 'customers' %>
+		$("#backoffice li#customers_menu a").addClass('active')
+	<% elsif params[:controller] == 'details' %>
+		$("#backoffice li#details_menu a").addClass('active')	
+	<% end %>
+})
+</script>

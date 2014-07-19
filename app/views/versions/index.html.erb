@@ -12,11 +12,11 @@
     </tr>
   </thead>
   <tbody>
-    <% @versions.each do |version| %>
+    <% @versions.order(created_at: :desc).each do |version| %>
       <tr>
         <td><%= link_to version.id, version_path(version) %></td>
         <td><%= version.campaign_id %></td>
-         <td><%=l version.created_at %></td>
+         <td dir="rtl"><%=l version.created_at, format: :long %></td>
        <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_version_path(version), :class => 'btn btn-mini' %>

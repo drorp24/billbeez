@@ -1,9 +1,37 @@
 <%= simple_form_for @customer, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	<%= f.association :locale, value_method: :name, label_method: :description, include_blank: false %>
+	<%= f.input :first_name %>
+  	<%= f.input :last_name %>
+  	<%= f.input :email %>
+  	<div class="form-actions">
+    	<%= f.button :submit, :class => 'btn-primary' %>
+    	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 customers_path, :class => 'btn' %>
-  </div>
+  	</div>
 <% end %>
+<script>
+$(document).ready(function () {
+
+	function align(el) {
+		if (el.val() == 'he') {
+			$('form').attr('dir', 'rtl')
+			$('.form-horizontal .control-label').css('float', 'right')
+			$('.form-horizontal .control-label').css('text-align', 'right')
+		} else {		
+			$('form').attr('dir', 'ltr')
+			$('.form-horizontal .control-label').css('float', 'left')
+			$('.form-horizontal .control-label').css('text-align', 'left')
+		}
+		
+	}
+
+	align($('#customer_locale_id'));
+	
+	$('#customer_locale_id').change(function() {
+		align($(this))
+	})
+	
+
+})
+
+</script>
