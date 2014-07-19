@@ -3,10 +3,18 @@
   <%= f.input :subject %>
   <%= f.input :from_name %>
   <%= f.input :from_email %>
-  <%= f.association :locale %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 campaigns_path, :class => 'btn' %>
   </div>
 <% end %>
+<script>
+$(document).ready(function () {
+	
+$('form').attr('dir', 'ltr')
+$('.form-horizontal .control-label').css('float', 'left')
+	
+})
+
+</script>

@@ -1,3 +1,3 @@
 class Campaign < ActiveRecord::Base
-  belongs_to :locale
+  has_many :versions
 end

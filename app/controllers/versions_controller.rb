@@ -1,5 +1,6 @@
 class VersionsController < ApplicationController
   before_action :set_version, only: [:show, :edit, :update, :destroy]
+  before_action :set_campaign
 
   # GET /versions
   # GET /versions.json
@@ -14,7 +15,12 @@ class VersionsController < ApplicationController
 
   # GET /versions/new
   def new
-    @version = Version.new
+    last_version = Version.last
+    if last_version.present?
+      @version = @campaign.versions.build(last_version.attributes.except("id"))
+    else
+      @version = @campaign.versions.build
+    end
   end
 
   # GET /versions/1/edit
@@ -24,7 +30,7 @@ class VersionsController < ApplicationController
   # POST /versions
   # POST /versions.json
   def create
-    @version = Version.new(version_params)
+    @version = @campaign.versions.build(version_params)
 
     respond_to do |format|
       if @version.save
@@ -65,6 +71,10 @@ class VersionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_version
       @version = Version.find(params[:id])
+    end
+
+    def set_campaign
+      @campaign = Campaign.find(params[:campaign_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,7 +1,9 @@
 <%= simple_form_for @version, :html => { :class => 'form-horizontal' } do |f| %>
-	<%= f.association :locale %>
+	<%= f.input :campaign_id, as: :string, disabled: true %>
+	<%= f.input :id, as: :string, disabled: true %>
+	<%= f.association :locale, value_method: :name, label_method: :description, include_blank: false %>
   	<% @version.attributes.each do |name, value| %>
-  		<% next if name == 'updated_at' or name == 'created_at' or name == 'locale_id' %>
+  		<% next if name == 'campaign_id' or name == 'id' or name == 'updated_at' or name == 'created_at' or name == 'locale_id' %>
   		<%= f.input name, as: :string %>
   	<% end %>
   	<div class="form-actions">
@@ -14,11 +16,11 @@
 $(document).ready(function () {
 	
 	function align(el) {
-		if (el.val() == '1') {
-			$('html').attr('dir', 'rtl')
+		if (el.val() == 'he') {
+			$('form').attr('dir', 'rtl')
 			$('.form-horizontal .control-label').css('float', 'right')
 		} else {		
-			$('html').attr('dir', 'ltr')
+			$('form').attr('dir', 'ltr')
 			$('.form-horizontal .control-label').css('float', 'left')
 		}
 		

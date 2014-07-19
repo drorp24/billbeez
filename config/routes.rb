@@ -1,7 +1,11 @@
 Billbeez::Application.routes.draw do
+  resources :customers
+
   resources :versions
 
-  resources :campaigns
+  resources :campaigns do
+    resources :versions
+  end
 
   devise_for :users
   root "home#index"
