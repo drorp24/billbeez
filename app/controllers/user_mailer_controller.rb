@@ -1,7 +1,7 @@
 class UserMailerController < ApplicationController
 
   def weekly()
-    render :file => 'user_mailer/weekly.html.erb', :layout => 'user_mailer'
+    render layout: !request.xhr?
   end
 
 end

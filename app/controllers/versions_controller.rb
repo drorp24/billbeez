@@ -1,6 +1,8 @@
 class VersionsController < ApplicationController
   before_action :set_version, only: [:show, :edit, :update, :destroy]
-  before_action :set_campaign
+#  before_action :set_campaign, except: [:create, :show, :index, :edit]
+  before_action :set_campaign, only: [:new]
+
 
   # GET /versions
   # GET /versions.json
@@ -30,11 +32,11 @@ class VersionsController < ApplicationController
   # POST /versions
   # POST /versions.json
   def create
-    @version = @campaign.versions.build(version_params)
+    @version = Version.new(version_params)
 
     respond_to do |format|
       if @version.save
-        format.html { redirect_to @version, notice: 'Version was successfully created.' }
+        format.html { redirect_to user_mailer_weekly_path, notice: 'Version was successfully created.' }
         format.json { render action: 'show', status: :created, location: @version }
       else
         format.html { render action: 'new' }

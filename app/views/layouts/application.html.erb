@@ -36,7 +36,7 @@
 
     <%= javascript_include_tag "application" %>
   </head>
-  <body id="billbeez">
+  <body id="backoffice"\>
 
     <div class="navbar navbar-fluid-top">
       <div class="navbar-inner">
@@ -46,12 +46,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Billbeez</a>
-          <div class="container-fluid nav-collapse">
+          <div class="container-fluid nav-collapse clearfix">
             <ul class="nav">
-				<li><%= link_to "Home", root_path %></li>
-				<%= render 'devise/menu/registration_items' %>
-				<%= render 'devise/menu/login_items' %>           
+				<li><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %></li>
+	            <li id="campaign_menu"><%= link_to "Campaign", new_campaign_path %></li>
+	            <li id="version_menu"><%= link_to "Version", versions_path  %></li>
+	            <li id="newsletter_menu"><%= link_to "Customers", "#"  %></li>
+	            <li id="newsletter_menu"><%= link_to "Data", "#"  %></li>
+				<li class="pull-right"><%= render 'devise/menu/login_items' %></li> 
 			</ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -60,20 +62,13 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+        <div class="span6">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
+        <div id="sample" class="span6">
+        	
+        </div>	
       </div><!--/row-->
 
       <footer>

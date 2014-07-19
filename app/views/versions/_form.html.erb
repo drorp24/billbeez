@@ -15,13 +15,16 @@
 <script>
 $(document).ready(function () {
 	
+
 	function align(el) {
 		if (el.val() == 'he') {
 			$('form').attr('dir', 'rtl')
 			$('.form-horizontal .control-label').css('float', 'right')
+			$('.form-horizontal .control-label').css('text-align', 'right')
 		} else {		
 			$('form').attr('dir', 'ltr')
 			$('.form-horizontal .control-label').css('float', 'left')
+			$('.form-horizontal .control-label').css('text-align', 'left')
 		}
 		
 	}
@@ -32,6 +35,15 @@ $(document).ready(function () {
 		align($(this))
 	})
 	
+
+	$("#backoffice li#version_menu a").addClass('active')
+	
+	$.ajax({
+  		url: "<%= user_mailer_weekly_url %>",
+  		success: function(result) {
+  			$('#sample').html(result);
+  		}});
+
 })
 
 </script>
