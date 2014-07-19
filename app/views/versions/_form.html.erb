@@ -1,13 +1,13 @@
 <%= simple_form_for @version, :html => { :class => 'form-horizontal version_form' } do |f| %>
 	<%= f.input :campaign_id, as: :string, disabled: true %>
 	<%= f.input :id, as: :string, disabled: true %>
-	<%= f.association :locale, value_method: :name, label_method: :description, include_blank: false %>
+	<%= f.association :locale, value_method: :id, label_method: :description, include_blank: false %>
   	<% @version.attributes.each do |name, value| %>
-  		<% next if ['campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>
+  		<% next if ['approved_at', 'user_id','campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>
   		<%= f.input name, as: :string %>
   	<% end %>
   	<div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to 'Approve version', version_path(@version, user_id: current_user, approved_at: Time.now), method: 'PATCH', class: 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 versions_path, :class => 'btn' %>
   </div>
@@ -15,20 +15,6 @@
 <script>
 $(document).ready(function () {
 	
-
-	function align(el) {
-		if (el.val() == 'he') {
-			$('form').attr('dir', 'rtl')
-			$('.form-horizontal .control-label').css('float', 'right')
-			$('.form-horizontal .control-label').css('text-align', 'right')
-		} else {		
-			$('form').attr('dir', 'ltr')
-			$('.form-horizontal .control-label').css('float', 'left')
-			$('.form-horizontal .control-label').css('text-align', 'left')
-		}
-		
-	}
-
 	align($('#version_locale_id'));
 	
 	$('#version_locale_id').change(function() {

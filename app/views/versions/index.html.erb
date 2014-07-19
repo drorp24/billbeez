@@ -8,15 +8,17 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:campaign_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Approved by </th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% @versions.order(created_at: :desc).each do |version| %>
+    <% @versions.order(id: :desc).each do |version| %>
       <tr>
         <td><%= link_to version.id, version_path(version) %></td>
         <td><%= version.campaign_id %></td>
          <td dir="rtl"><%=l version.created_at, format: :long %></td>
+		 <td><%= version.user.email if version.user_id %> </td>
        <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_version_path(version), :class => 'btn btn-mini' %>

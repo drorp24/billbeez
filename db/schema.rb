@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140719131421) do
+ActiveRecord::Schema.define(version: 20140719182844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20140719131421) do
   create_table "locales", force: true do |t|
     t.string   "name"
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsletters", force: true do |t|
+    t.integer  "customer_id"
+    t.integer  "version_id"
+    t.datetime "sent_at"
+    t.string   "finding_1"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,6 +85,8 @@ ActiveRecord::Schema.define(version: 20140719131421) do
     t.integer  "locale_id"
     t.integer  "campaign_id"
     t.text     "header_title"
+    t.datetime "approved_at"
+    t.integer  "user_id"
   end
 
 end

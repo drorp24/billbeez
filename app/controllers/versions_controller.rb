@@ -51,7 +51,13 @@ class VersionsController < ApplicationController
   def update
     respond_to do |format|
       if @version.update(version_params)
-        format.html { render nothing: true }
+        format.html { 
+          if request.xhr? 
+            render nothing: true
+          else
+            redirect_to versions_path
+          end 
+          }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -82,6 +88,6 @@ class VersionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def version_params
-      params.permit!.except(:action, :controller)
+      params.permit!.except(:action, :controller, :_method, :authenticity_token)
     end
 end

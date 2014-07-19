@@ -52,7 +52,7 @@
 	            <li id="campaigns_menu"><%= link_to "Campaigns", campaigns_path %></li>
 	            <li id="versions_menu"><%= link_to "Versions", versions_path  %></li>
 	            <li id="customers_menu"><%= link_to "Customers", customers_path  %></li>
-	            <li id="details_menu"><%= link_to "Details", "#"  %></li>
+	            <li id="newsletters_menu"><%= link_to "Newsletters", newsletters_path  %></li>
 				<li class="pull-right"><%= render 'devise/menu/login_items' %></li> 
 			</ul>
           </div><!--/.nav-collapse -->
@@ -87,8 +87,8 @@ $(document).ready(function() {
 		$("#backoffice li#versions_menu a").addClass('active')
 	<% elsif params[:controller] == 'customers' %>
 		$("#backoffice li#customers_menu a").addClass('active')
-	<% elsif params[:controller] == 'details' %>
-		$("#backoffice li#details_menu a").addClass('active')	
+	<% elsif params[:controller] == 'newsletters' %>
+		$("#backoffice li#newsletters_menu a").addClass('active')	
 	<% end %>
 })
 </script>

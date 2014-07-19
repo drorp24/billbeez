@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_id: 1
+  version_id: 1
+  sent_at: 2014-07-19 20:09:30
+  finding_1: MyString
+
+two:
+  customer_id: 1
+  version_id: 1
+  sent_at: 2014-07-19 20:09:30
+  finding_1: MyString

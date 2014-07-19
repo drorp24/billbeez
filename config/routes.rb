@@ -1,8 +1,14 @@
 Billbeez::Application.routes.draw do
-  resources :customers
+  resources :newsletters
 
-  resources :versions
+  resources :customers do
+    resources :newsletters
+  end
 
+  resources :versions do
+    resources :newsletters
+  end
+  
   resources :campaigns do
     resources :versions
   end

@@ -1,0 +1,54 @@
+<%- model_class = Newsletter -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:customer_id) %></th>
+      <th><%= model_class.human_attribute_name(:version_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%= model_class.human_attribute_name(:sent_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% if @newsletters %>
+	    <% @newsletters.each do |newsletter| %>
+	      <% customer = newsletter.customer if newsletter and newsletter.customer_id %>
+	      <% version = newsletter.version if newsletter and newsletter.version_id %>
+	      <% sent_at = newsletter.sent_at ? (l newsletter.sent_at, forat: :long) :  nil %>
+	      <tr>
+	        <td><%= link_to newsletter.id, newsletter_path(newsletter) %></td>
+	        <td><%= link_to (customer.first_name + ' ' + customer.last_name), customer_path(customer) if customer %></td>
+	        <td><%= link_to newsletter.version_id if version %></td>
+	        <td dir="rtl"><%=l newsletter.created_at, format: :long %></td>
+	        <td dir="rtl"><%= sent_at %></td>
+	        <td>
+	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	                      edit_newsletter_path(newsletter), :class => 'btn btn-mini' %>
+	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+	                      newsletter_path(newsletter),
+	                      :method => :delete,
+	                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+	                      :class => 'btn btn-mini btn-danger' %>
+	        </td>
+	      </tr>
+    	<% end %>
+    <% else %>
+	    <tr>
+	    	<td>No newsletters found</td>
+	    	<td></td>
+			<td></td>
+	    	<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	<% end %>		
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_newsletter_path,
+            :class => 'btn btn-primary' %>
