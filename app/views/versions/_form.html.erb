@@ -1,9 +1,9 @@
-<%= simple_form_for @version, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @version, :html => { :class => 'form-horizontal version_form' } do |f| %>
 	<%= f.input :campaign_id, as: :string, disabled: true %>
 	<%= f.input :id, as: :string, disabled: true %>
 	<%= f.association :locale, value_method: :name, label_method: :description, include_blank: false %>
   	<% @version.attributes.each do |name, value| %>
-  		<% next if name == 'campaign_id' or name == 'id' or name == 'updated_at' or name == 'created_at' or name == 'locale_id' %>
+  		<% next if ['campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>
   		<%= f.input name, as: :string %>
   	<% end %>
   	<div class="form-actions">
@@ -38,11 +38,26 @@ $(document).ready(function () {
 
 	$("#backoffice li#version_menu a").addClass('active')
 	
-	$.ajax({
-  		url: "<%= user_mailer_weekly_url %>",
-  		success: function(result) {
-  			$('#sample').html(result);
-  		}});
+	function refresh_sample() {
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
+	}
+	
+	refresh_sample();
+
+	$('.version_form input').blur(function() {
+		var field = $(this).attr('name').split('[')[1].split(']')[0]
+		var value = $(this).val()
+		$.ajax({
+	  		type: 'PUT',
+	  		url: "<%= version_path(@version)  %>",
+	  		data: field + '=' + value,
+	  		success: refresh_sample()
+	  		});
+	})
 
 })
 

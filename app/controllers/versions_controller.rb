@@ -23,6 +23,7 @@ class VersionsController < ApplicationController
     else
       @version = @campaign.versions.build
     end
+    @version.save
   end
 
   # GET /versions/1/edit
@@ -50,7 +51,7 @@ class VersionsController < ApplicationController
   def update
     respond_to do |format|
       if @version.update(version_params)
-        format.html { redirect_to @version, notice: 'Version was successfully updated.' }
+        format.html { render nothing: true }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -81,6 +82,6 @@ class VersionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def version_params
-      params.require(:version).permit(:header_external, :header_external_link)
+      params.permit!.except(:action, :controller)
     end
 end
