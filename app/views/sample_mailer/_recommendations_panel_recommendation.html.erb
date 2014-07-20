@@ -1,0 +1,35 @@
+  <tr >
+    <td><%= image_tag 'bezeq.png', class: 'sup_logo' %></td>
+    <td class="plan">Unlimited</td>
+    <td class="plan recommendation_background">מבצע קיץ</td>
+  </tr>
+  <tr>
+  	<td>מחיר:</td>
+  	<td><%= number_to_currency 99 %></td>
+  	<td class="recommendation_background"><%= number_to_currency 59 %></td>
+  </tr>
+  <tr>
+  	<td>נפח גלישה:</td>
+  	<td>2GB</td>
+  	<td class="recommendation_background">2GB</td>
+  </tr>
+  <tr>
+  	<td>דקות שיחה:</td>
+  	<td>ללא הגבלה</td>
+  	<td class="recommendation_background">ללא הגבלה</td>
+  </tr>
+  <tr>
+  	<td>הודעות:</td>
+  	<td>ללא הגבלה</td>
+  	<td class="recommendation_background">ללא הגבלה</td>
+  </tr>
+  <tr>
+  	<td>תאריך סיום:</td>
+  	<td><%= l Date.today, format: :short %></td>
+  	<td class="recommendation_background">חצי שנה</td>
+  </tr>
+  <tr>
+  	<td>לתשומת לבכם:</td>
+  	<td class="notice">המבצע מסתיים ב- 18.6.14</td>
+  	<td class="recommendation_background"></td>
+  </tr>

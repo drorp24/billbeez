@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading panel-primary"><a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">תזכורות</a></div>
+  <div class="panel-body">
+    <p>רצינו להזכיר לך ש...</p>
+  </div>
+
+  <!-- Table -->
+  <table class=" data table">	
+        <thead>
+          <tr>
+            <th>ספק</th>
+            <th>תאריך תזכורת</th>
+            <th>נושא התזכורת</th>
+            <th>המלצה</th>
+          </tr>
+        </thead>
+        <tbody>
+			<%= render 'reminders_panel_reminder'  %>
+        </tbody>
+  </table>
+</div>

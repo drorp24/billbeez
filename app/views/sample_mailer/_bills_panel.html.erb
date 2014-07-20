@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading panel-primary"><a data-anchor="bills" name="bills" style="text-decoration: none; color: inherit;">חשבוניות</a></div>
+  <div class="panel-body">
+    <p>מועד התשלום של החשבוניות הבאות  קרב. לחץ על הקישור המתאים ושלם ישירות מהאימייל .</p>
+  </div>
+
+  <!-- Table -->
+  <table id="bills" class="data table">	
+        <thead>
+          <tr>
+            <th>חברה</th>
+            <th>תאריך</th>
+            <th>סכום</th>
+            <th>ימים לתשלום</th>
+          </tr>
+        </thead>
+        <tbody>
+			<%= render 'bills_panel_bill', company: 'bezeq.png' %>
+			<%= render 'bills_panel_bill', company: 'yes.png' %>
+        </tbody>
+  </table>
+</div>

@@ -1,7 +1,8 @@
 class UserMailerController < ApplicationController
 
   def weekly()
-    @version = params[:version_id] ? Version.find(params[:version_id]) : Version.last  
+    @version = Version.find(params[:version_id])
+    @newsletter = Newsletter.find(params[:newsletter_id])  
     render layout: !request.xhr?
   end
 
