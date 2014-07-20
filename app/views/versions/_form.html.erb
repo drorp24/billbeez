@@ -1,6 +1,6 @@
 <%= simple_form_for @version, :html => { :class => 'form-horizontal version_form' } do |f| %>
 	<%= f.input :campaign_id, as: :string, disabled: true %>
-	<%= f.input :id, as: :string, disabled: true %>
+	<%= f.input :id, label: "Version", as: :string, disabled: true %>
 	<%= f.association :locale, value_method: :id, label_method: :description, include_blank: false %>
   	<% @version.attributes.each do |name, value| %>
   		<% next if ['approved_at', 'user_id','campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>

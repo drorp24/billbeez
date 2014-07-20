@@ -20,7 +20,12 @@ class NewslettersController < ApplicationController
 
   # GET /newsletters/new
   def new
-    @newsletter = Newsletter.new
+    if session[:newsletter_id]
+      @newsletter = Newsletter.find(session[:newsletter_id])
+    else
+      @newsletter = Newsletter.create
+      session[:newsletter_id] = @newsletter.id
+    end
   end
 
   # GET /newsletters/1/edit

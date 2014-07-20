@@ -17,6 +17,12 @@ class VersionsController < ApplicationController
 
   # GET /versions/new
   def new
+
+    if session[:version_id]
+      @version = Version.find(session[:version_id])
+      return
+    end
+
     last_version = Version.last
     if last_version.present?
       @version = @campaign.versions.build(last_version.attributes.except("id"))
@@ -24,6 +30,8 @@ class VersionsController < ApplicationController
       @version = @campaign.versions.build
     end
     @version.save
+    session[:version_id] = @version.id
+
   end
 
   # GET /versions/1/edit
