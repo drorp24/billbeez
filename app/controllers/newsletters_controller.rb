@@ -53,7 +53,13 @@ class NewslettersController < ApplicationController
   def update
     respond_to do |format|
       if @newsletter.update(newsletter_params)
-        format.html { redirect_to newsletters_path, notice: 'Newsletter was successfully updated.' }
+        format.html { 
+          if request.xhr? 
+            render nothing: true
+          else
+            redirect_to newsletters_path
+          end 
+          }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -80,6 +86,6 @@ class NewslettersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def newsletter_params
-      params.require(:newsletter).permit(:customer_id, :version_id, :sent_at, :finding_1)
+      params.permit!.except(:action, :controller, :_method, :authenticity_token)
     end
 end

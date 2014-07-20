@@ -1,8 +1,8 @@
-<%= simple_form_for @newsletter, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @newsletter, :html => { :class => 'form-horizontal newsletter_form' } do |f| %>
   <% name = params[:customer_id] ? Customer.find(params[:customer_id]).first_name + ' ' + Customer.find(params[:customer_id]).last_name : ' ' %>
   <%= f.input :customer_id, as: :string, disabled: true, input_html: { value: name, title: params[:customer_id] } %>
-  <%= f.input :id, as: :string, label: "Newsletter" %>
   <%= f.association :version, collection: Version.approved_and_matches_customer_locale(params[:customer_id]).order(id: :desc), value_method: :id, label_method: :id, include_blank: false %>
+  <%= f.input :id, as: :string, label: "Newsletter" %>
   	<% @newsletter.attributes.each do |name, value| %>
   		<% next if ['customer_id', 'version_id','sent_at', 'id', 'created_at', 'updated_at'].include? name %>
   		<%= f.input name, as: :string %>
@@ -21,9 +21,10 @@ $(document).ready(function() {
 
 	function refresh_sample() {
 		var version_id = 	$('#newsletter_version_id').val()
+		var newsletter_id = $('#newsletter_id').val()
 		$.ajax({
 	  		url: "<%= user_mailer_weekly_url %>",
-	  		data: "version_id=" + version_id,
+	  		data: "version_id=" + version_id + "&newsletter_id=" + newsletter_id,
 	  		success: function(result) {
 	  			$('#sample').html(result);
 	  	}});		
