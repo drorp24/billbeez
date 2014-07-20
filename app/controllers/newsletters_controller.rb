@@ -5,9 +5,9 @@ class NewslettersController < ApplicationController
   # GET /newsletters.json
   def index
     if params[:customer_id]
-      @newsletters = Newsletter.where(customer_id: params[:customer_id]).take
+      @newsletters = Newsletter.where(customer_id: params[:customer_id])
     elsif params[:version_id]
-      @newsletters = Newsletter.where(version_id: params[:version_id]).take
+      @newsletters = Newsletter.where(version_id: params[:version_id])
     else
       @newsletters = Newsletter.all
     end
@@ -20,12 +20,16 @@ class NewslettersController < ApplicationController
 
   # GET /newsletters/new
   def new
-    if session[:newsletter_id]
+
+    if session[:customer_id] and session[:customer_id] == params[:customer_id]
       @newsletter = Newsletter.find(session[:newsletter_id])
     else
-      @newsletter = Newsletter.create
+      @customer = Customer.find(params[:customer_id])
+      @newsletter = @customer.newsletters.create
       session[:newsletter_id] = @newsletter.id
+      session[:customer_id] = @newsletter.customer.id
     end
+    flash.now[:notice] = "First create and approve a version that matches this customer locale (#{@newsletter.customer.locale.description})" unless @newsletter.customer.available_versions.any?
   end
 
   # GET /newsletters/1/edit
