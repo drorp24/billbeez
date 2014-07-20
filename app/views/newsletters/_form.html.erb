@@ -1,7 +1,7 @@
 <%= simple_form_for @newsletter, :html => { :class => 'form-horizontal newsletter_form' } do |f| %>
-  <% name = params[:customer_id] ? Customer.find(params[:customer_id]).first_name + ' ' + Customer.find(params[:customer_id]).last_name : ' ' %>
-  <%= f.input :customer_id, as: :string, disabled: true, input_html: { value: name, title: params[:customer_id] } %>
-  <%= f.association :version, collection: Version.approved_and_matches_customer_locale(params[:customer_id]).order(id: :desc), value_method: :id, label_method: :id, include_blank: false %>
+  <% name = params[:customer_id] ? @newsletter.customer.first_name + ' ' + @newsletter.customer.last_name : ' ' %>
+  <%= f.input :customer_id, as: :string, disabled: true, input_html: { value: name, title: @newsletter.customer.id } %>
+  <%= f.association :version, collection: Version.approved_and_matches_customer_locale(@newsletter.customer.id).order(id: :desc), value_method: :id, label_method: :id, include_blank: false %>
   <%= f.input :id, as: :string, label: "Newsletter" %>
   	<% @newsletter.attributes.each do |name, value| %>
   		<% next if ['customer_id', 'version_id','sent_at', 'id', 'created_at', 'updated_at'].include? name %>
@@ -17,7 +17,7 @@
 	
 $(document).ready(function() {
 	
-	align_val(<%= Customer.find(params[:customer_id]).locale_id %>)
+	align_val(<%= @newsletter.customer.locale_id %>)
 
 	function refresh_sample() {
 		var version_id = 	$('#newsletter_version_id').val()
