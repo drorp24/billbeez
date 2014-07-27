@@ -4,7 +4,7 @@ class NewslettersController < ApplicationController
   def deliver
     UserMailer.delay.weekly(@newsletter)
     @newsletter.customer.update(last_newsletter: Time.now)
-    redirect_to customers_path(campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id]), notice: 'Newsletter send successfully!'
+    redirect_to customers_path(campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id]), notice: 'Newsletter sent successfully!'
   end
 
 

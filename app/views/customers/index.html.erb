@@ -16,7 +16,7 @@
       <tr>
         <td><%= link_to customer.id, customer_path(customer) %></td>
         <td><%= customer.first_name + ' ' + customer.last_name %></td>
-        <td><%= l customer.last_newsletter if customer.last_newsletter  %></td>
+        <td dir="rtl"><%= l customer.last_newsletter, format: :long if customer.last_newsletter  %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_customer_path(customer), :class => 'btn btn-mini' %>
