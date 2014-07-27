@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:campaign_id) %></th>
+      <th>Locale</th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th>Approved by </th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -16,19 +16,24 @@
     <% @versions.order(id: :desc).each do |version| %>
       <tr>
         <td><%= link_to version.id, version_path(version) %></td>
-        <td><%= version.campaign_id %></td>
+		<td><%= version.locale.description if version.locale_id%></td>
          <td dir="rtl"><%=l version.created_at, format: :long %></td>
 		 <td><%= version.user.email if version.user_id %> </td>
        <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_version_path(version), :class => 'btn btn-mini' %>
+                      edit_campaign_version_path(@campaign, version), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       version_path(version),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+          <%= link_to "Customers", customers_path(campaign_id: @campaign.id, version_id: version.id, locale_id: version.locale_id), :class => 'btn btn-mini' %>
+
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_campaign_version_path(@campaign),
+            :class => 'btn btn-primary' %>

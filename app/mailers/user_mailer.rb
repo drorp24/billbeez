@@ -6,10 +6,12 @@ class UserMailer < ActionMailer::Base
   #
   #   en.newsletter.weekly.subject
   #
-  def weekly(email)
-    attachments.inline['yes.png'] = File.read("#{Rails.root}/public/images/yes.png")
-    @greeting = "Hi"
+  def weekly(newsletter)
+#    attachments.inline['yes.png'] = File.read("#{Rails.root}/public/images/yes.png")
+    @newsletter = newsletter
+    @version =    @newsletter.version
+    @email =      @newsletter.customer.email
 
-    mail to: email, subject:"Test subject"
+    mail to: @email, subject:"Billbeez Weekly Newsletter"
   end
 end

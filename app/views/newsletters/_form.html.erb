@@ -1,14 +1,15 @@
 <%= simple_form_for @newsletter, :html => { :class => 'form-horizontal newsletter_form' } do |f| %>
   <% name = params[:customer_id] ? @newsletter.customer.first_name + ' ' + @newsletter.customer.last_name : ' ' %>
   <%= f.input :customer_id, as: :string, disabled: true, input_html: { value: name, title: @newsletter.customer.id } %>
-  <%= f.association :version, collection: Version.approved_and_matches_customer_locale(@newsletter.customer.id).order(id: :desc), value_method: :id, label_method: :id, include_blank: false %>
+  <%= f.association :version, as: :string, value_method: :id, label_method: :id, disabled: true %>
+  <%= f.input :locale, disabled: true %>
   <%= f.input :id, as: :string, label: "Newsletter" %>
   	<% @newsletter.attributes.each do |name, value| %>
   		<% next if ['customer_id', 'version_id','sent_at', 'id', 'created_at', 'updated_at'].include? name %>
   		<%= f.input name, as: :string %>
   	<% end %>
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter.id, campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id]), :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 newsletters_path, :class => 'btn' %>
   </div>

@@ -1,5 +1,9 @@
 Billbeez::Application.routes.draw do
-  resources :newsletters
+  resources :newsletters do
+    member do
+      get 'deliver'
+    end
+  end
 
   resources :customers do
     resources :newsletters
@@ -10,7 +14,11 @@ Billbeez::Application.routes.draw do
   end
   
   resources :campaigns do
-    resources :versions
+    resources :versions do
+      member do
+        post 'approve'
+      end
+    end
   end
 
   devise_for :users, :controllers => { :sessions => "sessions" }

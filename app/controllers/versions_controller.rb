@@ -1,13 +1,18 @@
 class VersionsController < ApplicationController
-  before_action :set_version, only: [:show, :edit, :update, :destroy]
+  before_action :set_version, only: [:approve, :show, :edit, :update, :destroy]
 #  before_action :set_campaign, except: [:create, :show, :index, :edit]
-  before_action :set_campaign, only: [:new]
+  before_action :set_campaign, only: [:approve, :new, :index, :show, :edit]
 
+  def approve
+    @version.update(user_id: current_user.id, approved_at: Time.now)
+    session[:campaign_id] = @campaign.id
+    redirect_to campaign_versions_path(@campaign)
+  end
 
   # GET /versions
   # GET /versions.json
   def index
-    @versions = Version.all
+    @versions = @campaign.versions
   end
 
   # GET /versions/1
@@ -23,7 +28,7 @@ class VersionsController < ApplicationController
       return
     end
 
-    last_version = Version.last
+    last_version = @campaign.versions.last || Version.last
     if last_version.present?
       @version = @campaign.versions.build(last_version.attributes.except("id"))
     else

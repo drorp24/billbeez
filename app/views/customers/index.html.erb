@@ -5,19 +5,17 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:first_name) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
-       <th><%= model_class.human_attribute_name(:last_newsletter) %></th>
-     <th><%=t '.actions', :default => t("helpers.actions") %></th>
+		<th>id</th>
+      	<th>Name</th>
+		<th>Last newsletter</th>
+    	<th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @customers.order(:id).each do |customer| %>
       <tr>
         <td><%= link_to customer.id, customer_path(customer) %></td>
-        <td><%= customer.first_name %></td>
-        <td><%= customer.last_name %></td>
+        <td><%= customer.first_name + ' ' + customer.last_name %></td>
         <td><%= l customer.last_newsletter if customer.last_newsletter  %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
@@ -30,7 +28,7 @@
            <%= link_to 'newsletters',
                       customer_newsletters_path(customer), :class => 'btn btn-mini' %>
            <%= link_to 'create',
-                      new_customer_newsletter_path(customer), :class => 'btn btn-mini' %>
+                      new_customer_newsletter_path(customer, campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id]), :class => 'btn btn-mini' %>
        </td>
       </tr>
     <% end %>

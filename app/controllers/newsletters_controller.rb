@@ -1,5 +1,12 @@
 class NewslettersController < ApplicationController
-  before_action :set_newsletter, only: [:show, :edit, :update, :destroy]
+  before_action :set_newsletter, only: [:deliver, :show, :edit, :update, :destroy]
+
+  def deliver
+    UserMailer.weekly(@newsletter).deliver
+    @newsletter.customer.update(last_newsletter: Time.now)
+    redirect_to customers_path(campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id])
+  end
+
 
   # GET /newsletters
   # GET /newsletters.json
@@ -21,15 +28,10 @@ class NewslettersController < ApplicationController
   # GET /newsletters/new
   def new
 
-    if session[:customer_id] and session[:customer_id] == params[:customer_id]
-      @newsletter = Newsletter.find(session[:newsletter_id])
-    else
-      @customer = Customer.find(params[:customer_id])
-      @newsletter = @customer.newsletters.create
-      session[:newsletter_id] = @newsletter.id
-      session[:customer_id] = @newsletter.customer.id
-    end
-    flash.now[:notice] = "First create and approve a version that matches this customer locale (#{@newsletter.customer.locale.description})" unless @newsletter.customer.available_versions.any?
+    # session to avoid creating another newsletter with every refresh
+    @customer = Customer.find(params[:customer_id])
+    @newsletter = @customer.newsletters.create(version_id: params[:version_id])
+
   end
 
   # GET /newsletters/1/edit

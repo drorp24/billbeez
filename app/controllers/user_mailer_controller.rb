@@ -5,5 +5,5 @@ class UserMailerController < ApplicationController
     @newsletter = Newsletter.find(params[:newsletter_id])  
     render layout: !request.xhr?
   end
-
+  
 end
