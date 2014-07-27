@@ -2,7 +2,7 @@
   <% name = params[:customer_id] ? @newsletter.customer.first_name + ' ' + @newsletter.customer.last_name : ' ' %>
   <%= f.input :customer_id, as: :string, disabled: true, input_html: { value: name, title: @newsletter.customer.id } %>
   <%= f.association :version, as: :string, value_method: :id, label_method: :id, disabled: true %>
-  <%= f.input :locale, disabled: true %>
+  <%= f.input :locale_description, label: "Locale", disabled: true %>
   <%= f.input :id, as: :string, label: "Newsletter" %>
   	<% @newsletter.attributes.each do |name, value| %>
   		<% next if ['customer_id', 'version_id','sent_at', 'id', 'created_at', 'updated_at'].include? name %>

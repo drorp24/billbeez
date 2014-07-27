@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @versions.order(id: :desc).each do |version| %>
+    <% @versions.order(created_at: :desc).each do |version| %>
       <tr>
         <td><%= link_to version.id, version_path(version) %></td>
 		<td><%= version.locale.description if version.locale_id%></td>

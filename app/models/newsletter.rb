@@ -1,6 +1,7 @@
 class Newsletter < ActiveRecord::Base
   belongs_to :version
   belongs_to :customer
+  has_one :locale, through: :customer
   
 =begin
   def matching_version(campaign_id)
@@ -14,8 +15,8 @@ class Newsletter < ActiveRecord::Base
   end
 =end
 
-  def locale
-    self.version.locale.description
+  def locale_description
+    self.locale.description
   end
   
   def locale=

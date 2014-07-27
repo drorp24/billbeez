@@ -9,7 +9,7 @@
   	<div class="form-actions">
     <%= link_to 'Approve version', approve_campaign_version_path(@campaign, @version), method: 'POST', class: 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                versions_path, :class => 'btn' %>
+                campaign_versions_path(@campaign.id), :class => 'btn' %>
   </div>
 <% end %>
 <script>

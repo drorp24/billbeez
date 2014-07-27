@@ -22,7 +22,7 @@ Billbeez::Application.routes.draw do
   end
 
   devise_for :users, :controllers => { :sessions => "sessions" }
-  root "home#index"
+  root "campaigns#index"
   get "user_mailer/weekly"
   get "sample_mailer/weekly"
   # The priority is based upon order of creation: first created -> highest priority.

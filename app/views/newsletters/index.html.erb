@@ -15,7 +15,7 @@
   </thead>
   <tbody>
   	<% if @newsletters %>
-	    <% @newsletters.each do |newsletter| %>
+	    <% @newsletters.order(created_at: :desc).each do |newsletter| %>
 	      <% customer = newsletter.customer if newsletter and newsletter.customer_id %>
 	      <% version = newsletter.version if newsletter and newsletter.version_id %>
 	      <% campaign = version.campaign if version and version.campaign_id %>
@@ -27,7 +27,7 @@
 	        <td dir="rtl"><%=l newsletter.created_at, format: :long %></td>
 	        <td dir="rtl"><%= sent_at %></td>
 	        <td>
-	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	          <%= link_to t('.show', :default => t("helpers.links.show")),
 	                      edit_newsletter_path(newsletter), :class => 'btn btn-mini' %>
 	          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
 	                      newsletter_path(newsletter),
@@ -49,7 +49,3 @@
 	<% end %>		
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_newsletter_path,
-            :class => 'btn btn-primary' %>
