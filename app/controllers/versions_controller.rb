@@ -28,7 +28,7 @@ class VersionsController < ApplicationController
     else
       @version = @campaign.versions.build
     end
-    @version.locale_id = 1 unless @version.local_id
+    @version.locale_id = 1 unless @version.locale_id
     @version.save
     session[:version_id] = @version.id
     @customer = @customer_id = session[:customer_id] = nil
