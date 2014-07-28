@@ -1,11 +1,11 @@
-<%= simple_form_for @newsletter, :html => { :class => 'form-horizontal newsletter_form' } do |f| %>
+<%= simple_form_for @newsletter, :html => { :class => 'form-horizontal newsletter_form' }, defaults: {disabled: disabled} do |f| %>
   <% name = params[:customer_id] ? @newsletter.customer.first_name + ' ' + @newsletter.customer.last_name : ' ' %>
   <%= f.input :customer_id, as: :string, disabled: true, input_html: { value: name, title: @newsletter.customer.id } %>
-  <%= f.association :version, as: :string, value_method: :id, label_method: :id, disabled: true %>
+  <%= f.input :version_id, as: :string, value_method: :id, label_method: :id, disabled: true %>
   <%= f.input :locale_description, label: "Locale", disabled: true %>
   <%= f.input :id, as: :string, label: "Newsletter" %>
   	<% @newsletter.attributes.each do |name, value| %>
-  		<% next if ['customer_id', 'version_id','sent_at', 'id', 'created_at', 'updated_at'].include? name %>
+  		<% next if ['customer_id', 'version_id','id', 'created_at', 'updated_at'].include? name %>
   		<%= f.input name, as: :string %>
   	<% end %>
   <div class="form-actions">

@@ -88,6 +88,7 @@ class NewslettersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_newsletter
       @newsletter = Newsletter.find(params[:id])
+      session[:newsletter_id] = @newsletter.id if @newsletter
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

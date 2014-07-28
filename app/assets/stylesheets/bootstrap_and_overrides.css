@@ -5,6 +5,53 @@
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
   =require twitter-bootstrap-static/fontawesome
   */
+
+.breadcrumb li:first-of-type {
+    width: 275px;
+    color: #FFB74E;
+}
+
+.breadcrumb {
+    margin-top: -26px;
+}
+
+.breadcrumb li {
+    font-size: 16px;
+    color: #FFB74E;
+     line-height: 20px;
+     font-family: monospace;
+}
+
+.breadcrumb > li + li:before  {
+    content: none;
+}
+.navbar .nav > li.pull-right {
+    float: right;
+}
+.navbar .nav {
+    float: unset;
+}
+
+#backoffice #campaign_button, #backoffice #customer_button {
+    margin-top: 8px;
+    background-color: #BDCD40;
+    background-image: none;
+    font-weight: bold;
+}
+
+h1#campaigns, h1#customers {
+    display: inline;
+}
+#backoffice .btn-primary {
+     color: white;
+}
+#backoffice .btn-danger {
+     color: white;
+}
+#backoffice .btn-success {
+     color: white;
+}
+
 .form-horizontal .control-label {
     float: left;
     text-align: left;

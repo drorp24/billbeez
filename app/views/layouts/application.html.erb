@@ -48,17 +48,29 @@
           </a>
           <div class="container-fluid nav-collapse clearfix">
             <ul class="nav">
-				<li><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %></li>
-	            <li id="campaigns_menu"><%= link_to "Campaigns", campaigns_path %></li>
-	            <li id="versions_menu"><%= link_to "Versions", versions_path  %></li>
-	            <li id="customers_menu"><%= link_to "Customers", customers_path  %></li>
-	            <li id="newsletters_menu"><%= link_to "Newsletters", newsletters_path  %></li>
+				<li class="span2"><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %></li>
+	            <li class="pull-left span2" id="campaigns_menu"><%= link_to "Campaign", campaigns_path %></li>
+	            <li class="pull-left span2" id="versions_menu"><%= link_to "Version", @campaign ? campaign_versions_path(@campaign) : "#" %></li>
+	            <li class="pull-left span2" id="customers_menu"><%= link_to "Customer", customers_path  %></li>
+	            <li class="pull-left span2" id="newsletters_menu"><%= link_to "Newsletter", @customer ? customer_newsletters_path(@customer) : "#"  %></li>
 				<li class="pull-right"><%= render 'devise/menu/login_items' %></li> 
 			</ul>
           </div><!--/.nav-collapse -->
+ 
         </div>
       </div>
     </div>
+			<ol class="breadcrumb clearfix">
+			  <li class="span2"></li>
+			  <li class="pull-left span2"><%= @campaign.id if @campaign %></li>
+			  <li class="pull-left span2">
+			  	<% if @version %>
+			  		<%= @version.id.to_s + '(' + @version.locale.description + ')' %>
+		  		<% end %>
+	  		  </li>
+			  <li class=" pull-left span2"><%= @customer.id if @customer %></li>
+			  <li class=" pull-left span2"><%= @newsletter.id if @newsletter %></li>
+			</ol>
 
     <div class="container-fluid">
       <div class="row-fluid">

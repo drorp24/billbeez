@@ -1,7 +1,6 @@
 class VersionsController < ApplicationController
   before_action :set_version, only: [:approve, :show, :edit, :update, :destroy]
 #  before_action :set_campaign, except: [:create, :show, :index, :edit]
-  before_action :set_campaign, only: [:approve, :new, :index, :show, :edit]
 
   def approve
     @version.update(user_id: current_user.id, approved_at: Time.now)
@@ -23,11 +22,6 @@ class VersionsController < ApplicationController
   # GET /versions/new
   def new
 
-    if session[:version_id]
-      @version = Version.find(session[:version_id])
-      return
-    end
-
     last_version = @campaign.versions.last || Version.last
     if last_version.present?
       @version = @campaign.versions.build(last_version.attributes.except("id"))
@@ -36,6 +30,8 @@ class VersionsController < ApplicationController
     end
     @version.save
     session[:version_id] = @version.id
+    @customer = @customer_id = session[:customer_id] = nil
+    @newsletter = @newsletter_id = session[:newsletter_id] = nil
 
   end
 
@@ -93,10 +89,7 @@ class VersionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_version
       @version = Version.find(params[:id])
-    end
-
-    def set_campaign
-      @campaign = Campaign.find(params[:campaign_id])
+      session[:version_id] = @version.id if @version
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

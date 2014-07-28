@@ -15,6 +15,9 @@ class CampaignsController < ApplicationController
   # GET /campaigns/new
   def new
     @campaign = Campaign.new
+    @version = @bersion_id = session[:version_id] = nil
+    @customer = @customer_id = session[:customer_id] = nil
+    @newsletter = @newsletter_id = session[:newsletter_id] = nil
   end
 
   # GET /campaigns/1/edit
@@ -65,6 +68,7 @@ class CampaignsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_campaign
       @campaign = Campaign.find(params[:id])
+      session[:campaign_id] = @campaign.id if @campaign
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
