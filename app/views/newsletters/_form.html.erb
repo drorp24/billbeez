@@ -4,8 +4,9 @@
   <%= f.input :version_id, as: :string, value_method: :id, label_method: :id, disabled: true %>
   <%= f.input :locale_description, label: "Locale", disabled: true %>
   <%= f.input :id, as: :string, label: "Newsletter" %>
+  <%= f.input :sent_at, as: :string, disabled: true %>
   	<% @newsletter.attributes.each do |name, value| %>
-  		<% next if ['customer_id', 'version_id','id', 'created_at', 'updated_at'].include? name %>
+  		<% next if ['customer_id', 'version_id','id', 'sent_at', 'created_at', 'updated_at'].include? name %>
   		<%= f.input name, as: :string %>
   	<% end %>
   <div class="form-actions">

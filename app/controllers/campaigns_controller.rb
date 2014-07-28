@@ -58,6 +58,10 @@ class CampaignsController < ApplicationController
   # DELETE /campaigns/1.json
   def destroy
     @campaign.destroy
+    @campaign = @campaign_id = session[:campaign_id] = nil
+    @version = @version_id = session[:version_id] = nil
+    @newsletter = @newsletter_id = session[:newsletter_id] = nil
+    @customer = @customer_id = session[:customer_id] = nil
     respond_to do |format|
       format.html { redirect_to campaigns_url }
       format.json { head :no_content }
