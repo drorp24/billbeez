@@ -1,6 +1,7 @@
 class Customer < ActiveRecord::Base
-  belongs_to :locale
-  has_many :newsletters
+  belongs_to  :locale
+  has_many    :newsletters
+  has_many    :bills
   
   def matching_version(campaign)
     return nil unless campaign

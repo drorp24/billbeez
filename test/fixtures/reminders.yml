@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  newsletter_id: 1
+  date: 2014-08-22
+  title: MyString
+  text: MyText
+
+two:
+  newsletter_id: 1
+  date: 2014-08-22
+  title: MyString
+  text: MyText

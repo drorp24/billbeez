@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  newsletter_id: 1
+  supplier_id: 1
+  curr_plan_name: MyString
+  recc_plan_name: MyString
+
+two:
+  newsletter_id: 1
+  supplier_id: 1
+  curr_plan_name: MyString
+  recc_plan_name: MyString

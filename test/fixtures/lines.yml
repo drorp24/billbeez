@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  section_id: 1
+  section_type: MyString
+  part1: MyString
+  part2: MyString
+  part3: MyString
+  part4: MyString
+  part5: MyString
+
+two:
+  section_id: 1
+  section_type: MyString
+  part1: MyString
+  part2: MyString
+  part3: MyString
+  part4: MyString
+  part5: MyString

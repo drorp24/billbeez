@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727102553) do
+ActiveRecord::Schema.define(version: 20140822114623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: true do |t|
+    t.integer  "customer_id"
+    t.integer  "supplier_id"
+    t.date     "issue_date"
+    t.date     "due_date"
+    t.decimal  "amount",      precision: 8, scale: 2
+    t.boolean  "paid"
+    t.string   "contract"
+    t.string   "last_digits"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -52,6 +65,45 @@ ActiveRecord::Schema.define(version: 20140727102553) do
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
+  create_table "dues", force: true do |t|
+    t.integer  "newsletter_id"
+    t.integer  "bill_id"
+    t.string   "payment_url"
+    t.string   "paid_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "excepsions", force: true do |t|
+    t.integer  "section_id"
+    t.string   "section_type"
+    t.string   "service"
+    t.decimal  "amount",       precision: 8, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "features", force: true do |t|
+    t.integer  "plan_id"
+    t.string   "name"
+    t.string   "current"
+    t.string   "recommended"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lines", force: true do |t|
+    t.integer  "section_id"
+    t.string   "section_type"
+    t.string   "part1"
+    t.string   "part2"
+    t.string   "part3"
+    t.string   "part4"
+    t.string   "part5"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locales", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -64,6 +116,41 @@ ActiveRecord::Schema.define(version: 20140727102553) do
     t.integer  "version_id"
     t.datetime "sent_at"
     t.string   "finding_1"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.integer  "newsletter_id"
+    t.integer  "bill_id"
+    t.decimal  "prev_bill_amt", precision: 8, scale: 2
+    t.string   "status"
+    t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "newsletter_id"
+    t.integer  "supplier_id"
+    t.string   "curr_plan"
+    t.string   "recc_plan"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reminders", force: true do |t|
+    t.integer  "newsletter_id"
+    t.date     "date"
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suppliers", force: true do |t|
+    t.string   "name"
+    t.string   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

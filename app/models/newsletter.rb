@@ -1,7 +1,11 @@
 class Newsletter < ActiveRecord::Base
-  belongs_to :version
-  belongs_to :customer
-  has_one :locale, through: :customer
+  belongs_to    :version
+  belongs_to    :customer
+  has_one       :locale, through: :customer
+  has_many      :dues
+  has_many      :notifications
+  has_many      :reminders
+  has_one       :plan
   
 =begin
   def matching_version(campaign_id)

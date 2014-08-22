@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  newsletter_id: 1
+  bill_id: 1
+  prev_bill_amt: 
+  prev_bill_amt: 
+  status: MyString
+  reason: MyString
+
+two:
+  newsletter_id: 1
+  bill_id: 1
+  prev_bill_amt: 
+  prev_bill_amt: 
+  status: MyString
+  reason: MyString

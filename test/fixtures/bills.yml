@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  customer_id: 1
+  supplier_id: 1
+  issue_date: 2014-08-22
+  due_date: 2014-08-22
+  amount: 
+  amount: 
+  paid: false
+  contract: MyString
+  last_digits: MyString
+
+two:
+  customer_id: 1
+  supplier_id: 1
+  issue_date: 2014-08-22
+  due_date: 2014-08-22
+  amount: 
+  amount: 
+  paid: false
+  contract: MyString
+  last_digits: MyString
