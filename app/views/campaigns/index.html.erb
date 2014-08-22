@@ -23,11 +23,13 @@
         <td>
           <%= link_to "Versions",
                       campaign_versions_path(campaign), :class => 'btn btn-mini' %>
+<!--
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       campaign_path(campaign),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
+-->
         </td>
       </tr>
     <% end %>

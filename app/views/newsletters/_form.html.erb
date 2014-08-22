@@ -12,7 +12,7 @@
   <div class="form-actions">
     <%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter.id, campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id]), :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                newsletters_path, :class => 'btn' %>
+                :back, :class => 'btn' %>
   </div>
 <% end %>
 <script>

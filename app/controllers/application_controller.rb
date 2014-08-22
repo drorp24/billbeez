@@ -1,11 +1,22 @@
 class ApplicationController < ActionController::Base
 before_filter :authenticate_user!
 before_filter :find_session, :except => [:destroy]
+before_filter :change_context, :except => [:destroy]
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  def clear_campaign
+    @version_id = session[:version_id] = 
+    @customer_id = session[:customer_id] = 
+    @newsletter_id = session[:newsletter_id] = nil
+  end
+
+  def change_context
+    clear_campaign if params[:campaign_id]  != session[:campaign_id]
+  end
+
   def find_session    
     @campaign_id = session[:campaign_id] = params[:campaign_id] || session[:campaign_id]
     @campaign = Campaign.find(@campaign_id) if @campaign_id
