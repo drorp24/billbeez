@@ -1,4 +1,9 @@
 <%- model_class = Customer -%>
+<% if @campaign %>
+	<% delivery_date_title = "Delivery Date"%>
+<% else %>
+	<% delivery_date_title = "Last Delivery Date"%>
+<% end %>
 <div class="page-header clearfix">
 	<span>
   		<h1 id="customers"><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
@@ -12,7 +17,7 @@
     <tr>
 		<th>id</th>
       	<th>Name</th>
-		<th>Last newsletter</th>
+		<th><%= delivery_date_title %></th>
     	<th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -21,15 +26,21 @@
       <tr>
         <td><%= link_to customer.id, customer_path(customer) %></td>
         <td><%= customer.first_name + ' ' + customer.last_name %></td>
-        <td dir="rtl"><%= l customer.last_newsletter, format: :long if customer.last_newsletter  %></td>
+		<% if @campaign %>
+			<% delivery_date = customer.delivery_date_for(@campaign) %>
+		<% else %>
+			<% delivery_date = customer.last_delivery_date %>
+		<% end %>
+		<td dir="rtl"><%= l delivery_date, format: :long if delivery_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_customer_path(customer), :class => 'btn btn-mini' %>
            <%= link_to 'view newsletters',
                       customer_newsletters_path(customer), :class => 'btn btn-mini' %>
 		   <% if @campaign_id and @version_id %>
+		   	   <% confirm_message = delivery_date ? "Are you sure? Newsletter already sent for that customer on this campaign (#{@campaign.id})" : "" %>
 	           <%= link_to 'create newsletter',
-	                      new_customer_newsletter_path(customer, campaign_id: @campaign_id, version_id: @version_id), :class => 'btn btn-mini' %>
+	                      new_customer_newsletter_path(customer, campaign_id: @campaign_id, version_id: @version_id), data: {confirm: confirm_message}, :class => 'btn btn-mini' %>
 		   <% end %>
        </td>
       </tr>

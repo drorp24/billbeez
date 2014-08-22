@@ -19,6 +19,12 @@ class Newsletter < ActiveRecord::Base
   end
 =end
 
+  def deliver
+    UserMailer.delay.weekly(self)
+    customer.update(last_newsletter: Time.now)
+    update!(sent_at: Time.now)
+  end
+  
   def locale_description
     self.locale.description
   end
