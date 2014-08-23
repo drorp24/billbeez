@@ -8,10 +8,13 @@ class Customer < ActiveRecord::Base
     newsletter.sent_at if newsletter
   end
     
-
   def last_delivery_date
     newsletter = newsletters.last
     newsletter.sent_at if newsletter
+  end
+
+  def name
+    first_name + " " + last_name
   end
 
   def matching_version(campaign)

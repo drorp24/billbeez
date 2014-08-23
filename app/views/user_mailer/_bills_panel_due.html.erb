@@ -1,0 +1,12 @@
+  <tr class="bill_background">
+    <td bgcolor="#FDE9C9"><%= image_tag due.bill.supplier.logo, class: 'sup_logo' %></td>
+    <td><%= l due.bill.issue_date, format: :short %></td>
+    <td class="amount"><%= number_to_currency due.bill.amount %></td>
+    <td><%= Date.today - due.bill.due_date %></td> 
+  </tr>
+  <tr>
+  	<td>חוזה מספר:  12345678</td>
+  	<td>ספרות אחרונות: 1234</td>
+  	<td><a href ="#">שלם</a></td>
+  	<td><a href ="#">סמן כמשולם</a></td>
+  </tr>

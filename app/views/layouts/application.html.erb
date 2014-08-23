@@ -62,14 +62,14 @@
     </div>
 			<ol class="breadcrumb clearfix">
 			  <li class="span2"></li>
-			  <li class="pull-left span2"><%= @campaign.id if @campaign %></li>
-			  <li class="pull-left span2">
+			  <li class="campaign_bc pull-left span2"><%= @campaign.id if @campaign %></li>
+			  <li class="version_bc pull-left span2">
 			  	<% if @version %>
 			  		<%= @version.id.to_s + '(' + @version.locale.description + ')' %>
 		  		<% end %>
 	  		  </li>
-			  <li class=" pull-left span2"><%= @customer.id if @customer %></li>
-			  <li class=" pull-left span2"><%= @newsletter.id if @newsletter %></li>
+			  <li class=" customer_bc pull-left span2"><%= "#{@customer.id} (#{@customer.name})" if @customer %></li>
+			  <li class=" newsletter_bc pull-left span2"><%= @newsletter.id if @newsletter %></li>
 			</ol>
 
     <div class="container-fluid">
@@ -95,12 +95,16 @@
 $(document).ready(function() {
 	<% if params[:controller] == 'campaigns' %>
 		$("#backoffice li#campaigns_menu a").addClass('active')
+		$("#backoffice .breadcrumb .campaign_bc").addClass('active')
 	<% elsif params[:controller] == 'versions' %>
 		$("#backoffice li#versions_menu a").addClass('active')
+		$("#backoffice .breadcrumb .version_bc").addClass('active')
 	<% elsif params[:controller] == 'customers' %>
 		$("#backoffice li#customers_menu a").addClass('active')
+		$("#backoffice .breadcrumb .customer_bc").addClass('active')
 	<% elsif params[:controller] == 'newsletters' %>
 		$("#backoffice li#newsletters_menu a").addClass('active')	
+		$("#backoffice .breadcrumb .newsletter_bc").addClass('active')
 	<% end %>
 })
 </script>

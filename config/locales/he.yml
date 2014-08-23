@@ -1,4 +1,10 @@
 he:
+  section:
+    findings: 'מה מצאנו השבוע'
+    bills: 'חשבוניות לתשלום'
+    notifications: 'הודעות'
+    reminders: תזכורות
+    recommendations: המלצות
   date:
     abbr_day_names:
     - א

@@ -16,8 +16,9 @@
           </tr>
         </thead>
         <tbody>
-			<%= render 'bills_panel_bill', company: 'bezeq.png' %>
-			<%= render 'bills_panel_bill', company: 'yes.png' %>
+        	<% @newsletter.dues.each do |due| %>
+				<%= render 'bills_panel_due', due: due %>
+			<% end %>
         </tbody>
   </table>
 </div>

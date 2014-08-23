@@ -2,4 +2,47 @@
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
-<%= render :partial => 'form', locals: {disabled: false}  %>
+
+<%= render 'findings_form' %>
+
+<%= render 'bills_form' %>
+
+<%= render 'notifications_form' %>
+
+<%= render 'reminders_form' %>
+
+<%= render 'recommendations_form' %>
+				
+<script>
+
+
+$(document).ready(function() {
+	align_val(<%= @newsletter.customer.locale_id %>)
+
+	function refresh_sample() {
+		var version_id = 	$('#newsletter_version_id').val()
+		var newsletter_id = $('#newsletter_id').val()
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "version_id=" + <%= @version.id %> + "&newsletter_id=" + <%= @newsletter.id %>,
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
+	}
+
+	refresh_sample();
+
+	$('input').blur(function() {
+		var field = 	$(this).attr('name').split('[')[1].split(']')[0]
+		var value = 	$(this).val()
+		$.ajax({
+	  		type: 'PUT',
+	  		url: "<%= newsletter_path(@newsletter)  %>",
+	  		data: field + '=' + value,
+	  		success: refresh_sample()
+	  	});
+	})
+	
+})	
+	
+</script>
