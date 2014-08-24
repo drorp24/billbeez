@@ -1,0 +1,22 @@
+<%= simple_form_for(@due) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+  	<%= f.simple_fields_for :bill do |bill_form| %>
+  		<%= bill_form.input :issue_date, input_html: {data: {behaviour: 'datepicker'}} %>
+   		<%= bill_form.input :due_date, input_html: {data: {behaviour: 'datepicker'}}  %>
+   		<%= bill_form.input :amount %>
+   		<%= bill_form.input :paid %>
+		<%= bill_form.input :contract %>
+		<%= bill_form.input :last_digits %>
+	<% end %>
+	<%= f.input :payment_url %>
+  	<%= f.input :paid_url %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            :back, :class => 'btn' %>
+  </div>
+<% end %>

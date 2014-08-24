@@ -71,7 +71,7 @@ h1#campaigns, h1#customers {
 }
 
 
-input[type="text"], input[type="email"] {
+#backoffice input {
     height: 34px;
     line-heigjt: 34px;
 }

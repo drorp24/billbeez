@@ -1,0 +1,23 @@
+<%= simple_form_for @bill, url: customer_newsletter_bills_path(@customer, @newsletter) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	<%= f.association :supplier, include_blank: "select an existing supplier" %>
+	<%= f.input :supplier_name, placeholder: "or create a new one"%>
+	<%= f.input :issue_date, as: :string, placeholder: "placeholder here", input_html: {data: {behaviour: 'datepicker'}} %>
+	<%= f.input :due_date, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
+	<%= f.input :amount %>
+	<%= f.input :contract %>
+	<%= f.input :last_digits %>
+  	<%= f.simple_fields_for :due do |due_form| %>
+		<%= due_form.input :payment_url %>
+	  	<%= due_form.input :paid_url %>
+	<% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            :back, :class => 'btn' %>
+  </div>
+<% end %>

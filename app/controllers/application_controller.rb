@@ -17,7 +17,14 @@ before_filter :change_context, :except => [:destroy]
     clear_campaign if params[:campaign_id]  != session[:campaign_id]
   end
 
-  def find_session    
+  def find_session  
+    puts ""
+    puts ""
+    puts "session[:customer_id] = " + session[:customer_id].to_s
+    puts ""
+    puts "params[:customer_id] = " + params[:customer_id].to_s
+    puts ""
+    puts ""  
     @campaign_id = session[:campaign_id] = params[:campaign_id] || session[:campaign_id]
     @campaign = Campaign.find(@campaign_id) if @campaign_id
     @version_id = session[:version_id] = params[:version_id] || session[:version_id]

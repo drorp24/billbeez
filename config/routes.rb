@@ -1,4 +1,8 @@
 Billbeez::Application.routes.draw do
+
+  resources :bills
+  resources :dues
+  
   resources :newsletters do
     member do
       get 'deliver'
@@ -6,7 +10,10 @@ Billbeez::Application.routes.draw do
   end
 
   resources :customers do
-    resources :newsletters
+    resources :newsletters do
+      resources :bills
+      resources :dues
+    end
   end
 
   resources :versions do

@@ -1,0 +1,25 @@
+<h1>Listing dues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dues.each do |due| %>
+      <tr>
+        <td><%= link_to 'Show', due %></td>
+        <td><%= link_to 'Edit', edit_due_path(due) %></td>
+        <td><%= link_to 'Destroy', due, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Due', new_due_path %>
