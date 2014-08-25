@@ -2,7 +2,7 @@ class Bill < ActiveRecord::Base
   
   belongs_to    :customer
   belongs_to    :supplier
-  has_many      :dues
+  has_many      :dues, dependent: :destroy
   accepts_nested_attributes_for :supplier
 
   def supplier_name

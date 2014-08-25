@@ -1,25 +1,18 @@
 <h1>Listing bills</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<script>
+	
+$(document).ready(function() {
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=bills&control=yes",
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
 
-  <tbody>
-    <% @bills.each do |bill| %>
-      <tr>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+})	
+	
+</script>
 <br>
 
-<%= link_to 'New Bill', new_bill_path %>
+<%= link_to 'New Bill', new_customer_newsletter_bill_path(@customer, @newsletter) %>

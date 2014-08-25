@@ -1,29 +1,29 @@
 <div id="billbeez">
 
-	<%= render 'top_wrap' %>
+	<%= render 'top_wrap' if @section == 'top_wrap' or @section.nil? %>
 	
-	<%= render 'header' %>														
+	<%= render 'header' if @section == 'header' or @section.nil? %>														
 	                                
 	
-	<%= render 'findings' %>
+	<%= render 'findings' if @section == 'findings' or @section.nil?%>
 
-	<%= render 'highlights' %>
+	<%= render 'highlights' if @section == 'highlights' or @section.nil?%>
 	
-	<%= render 'bills' %>
+	<%= render 'bills' if @section == 'bills' or @section.nil?%>
 	
-	<%= render 'notifications' %>
+	<%= render 'notifications' if @section == 'notifications' or @section.nil?%>
 	
-	<%= render 'reminders' %>
+	<%= render 'reminders' if @section == 'reminders' or @section.nil?%>
 
-	<%= render 'recommendations' %>
+	<%= render 'recommendations' if @section == 'recommendations' or @section.nil? %>
 				
 		</td>	
 	</tr>
 	<tr>													
 		<!-- END Blocks Zone -->
 
-	<%= render 'footer' %>
+	<%= render 'footer' if @section == 'footer' or @section.nil? %>
 	
-	<%= render 'bottom_wrap' %>
+	<%= render 'bottom_wrap' if @section == 'bottom_wrap' or @section.nil? %>
 		
 </div>

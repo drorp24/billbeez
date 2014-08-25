@@ -13,10 +13,14 @@
             <th>תאריך</th>
             <th>סכום</th>
             <th>ימים לתשלום</th>
+            <% if @control %>
+            	<th>בטל</th>
+        	<% end %>
           </tr>
         </thead>
         <tbody>
-        	<% @newsletter.dues.each do |due| %>
+        	<% @newsletter.dues.order(created_at: :desc).each do |due| %>
+        		<% next unless due.bill %>
 				<%= render 'bills_panel_due', due: due %>
 			<% end %>
         </tbody>

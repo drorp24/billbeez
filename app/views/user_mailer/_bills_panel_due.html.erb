@@ -1,12 +1,32 @@
   <tr class="bill_background">
-    <td bgcolor="#FDE9C9"><%= image_tag due.bill.supplier.logo, class: 'sup_logo' %></td>
-    <td><%= l due.bill.issue_date, format: :short %></td>
+    <td bgcolor="#FDE9C9">
+    	<% if due.bill.supplier %>
+	    	<% if logo = due.bill.supplier.logo %>
+	    		<%= image_tag due.bill.supplier.logo, class: 'sup_logo' %>
+	    	<% else %>	
+	    		<%= due.bill.supplier.name %>
+			<% end %>
+		<% end %>
+	</td>
+    <td><%= l due.bill.issue_date, format: :short if due.bill.issue_date %></td>
     <td class="amount"><%= number_to_currency due.bill.amount %></td>
-    <td><%= Date.today - due.bill.due_date %></td> 
+    <td><%= (Date.today.to_date - due.bill.due_date.to_date).to_i if due.bill.due_date %></td> 
+	  <% if @control %>	
+	  	<td>
+		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		              customer_newsletter_bill_path(@customer, @newsletter, due.bill),
+		              :method => :delete,
+		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		              :class => 'btn btn-mini btn-danger' %>
+	  	</td>
+	  <% end %>
   </tr>
   <tr>
   	<td>חוזה מספר:  12345678</td>
   	<td>ספרות אחרונות: 1234</td>
   	<td><a href ="#">שלם</a></td>
   	<td><a href ="#">סמן כמשולם</a></td>
+  	<% if @control %>
+  		<td></td>
+	<% end %>
   </tr>

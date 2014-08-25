@@ -28,7 +28,7 @@
 	        <td dir="rtl"><%= sent_at %></td>
 	        <td>
 	          <%= link_to t('.show', :default => t("helpers.links.show")),
-	                      edit_newsletter_path(newsletter, customer_id: @customer.id), :class => 'btn btn-mini' %>
+	                      customer_newsletter_path(customer, newsletter), :class => 'btn btn-mini' %>
 	        </td>
 	      </tr>
     	<% end %>

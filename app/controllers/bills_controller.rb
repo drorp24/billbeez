@@ -10,6 +10,7 @@ class BillsController < ApplicationController
   # GET /bills/1
   # GET /bills/1.json
   def show
+    
   end
 
   # GET /bills/new
@@ -30,7 +31,7 @@ class BillsController < ApplicationController
 
     respond_to do |format|
       if @bill.save 
-        format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Bill was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }
@@ -56,9 +57,11 @@ class BillsController < ApplicationController
   # DELETE /bills/1
   # DELETE /bills/1.json
   def destroy
+    @newsletter = @bill.dues.first.newsletter   #ToDo: If I delete bills, I might as well remove Due
+    @customer = @newsletter.customer
     @bill.destroy
     respond_to do |format|
-      format.html { redirect_to bills_url }
+      format.html { redirect_to customer_newsletter_bills_url(@customer, @newsletter) }
       format.json { head :no_content }
     end
   end

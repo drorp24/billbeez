@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Back', bills_path %>
+<script>
+	
+$(document).ready(function() {
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "newsletter_id=" + "<%= @newsletter.id %>" + "&section=bills",
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
+
+})	
+	
+</script>

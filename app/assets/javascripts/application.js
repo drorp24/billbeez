@@ -15,8 +15,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require_tree .
-
-$(document).ready(function(){
+$(document).ready(function() {
     $('[data-behaviour~=datepicker]').datepicker({format: 'dd-mm-yyyy'});
 
     function align(el) {
@@ -45,4 +44,5 @@ $(document).ready(function(){
         
     }
 
-  })
+    
+})
