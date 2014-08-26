@@ -2,6 +2,9 @@ Billbeez::Application.routes.draw do
 
   resources :bills
   resources :dues
+  resources :notifications
+  resources  :reminders
+  resources :plans
   
   resources :newsletters do
     member do

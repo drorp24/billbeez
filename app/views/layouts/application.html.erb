@@ -77,11 +77,11 @@
         <div class="span6">
           <%= bootstrap_flash %>
           <% if @newsletter %>
-          	<ul class="nav nav-pills">
-          		<li class="active"><%= link_to "Bills", customer_newsletter_bills_path(@customer, @newsletter) %>
-			  	<li><%= link_to "Notifications", customer_newsletter_notifications_path(@customer, @newsletter) %></li>
-			  	<li><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
-			  	<li><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
+          	<ul class="nav nav-pills newsletter_navs">
+          		<li id="bills_nav"><%= link_to "Bills", customer_newsletter_bills_path(@customer, @newsletter) %></li>
+			  	<li id="notifications_nav"><%= link_to "Notifications", customer_newsletter_notifications_path(@customer, @newsletter) %></li>
+			  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
+			  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
 			</ul>
 			</br>
 		  <% end %>	
@@ -111,9 +111,20 @@ $(document).ready(function() {
 	<% elsif params[:controller] == 'customers' %>
 		$("#backoffice li#customers_menu a").addClass('active')
 		$("#backoffice .breadcrumb .customer_bc").addClass('active')
-	<% elsif params[:controller] == 'newsletters' %>
+	<% elsif @newsletter %>
 		$("#backoffice li#newsletters_menu a").addClass('active')	
 		$("#backoffice .breadcrumb .newsletter_bc").addClass('active')
+		$('.newsletter_navs').removeClass("active")
+		<% case params[:controller] %>
+			<% when "bills" %>				
+				$('#bills_nav').addClass("active")
+			<% when "notifications" %>				
+				$('#notifications_nav').addClass("active")
+			<% when "reminders" %>				
+				$('#reminders_nav').addClass("active")
+			<% when "plans" %>				
+				$('#plans_nav').addClass("active")
+			<% end %>
 	<% end %>
 })
 </script>
