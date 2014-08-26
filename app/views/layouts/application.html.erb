@@ -76,6 +76,15 @@
       <div class="row-fluid">
         <div class="span6">
           <%= bootstrap_flash %>
+          <% if @newsletter %>
+          	<ul class="nav nav-pills">
+          		<li class="active"><%= link_to "Bills", customer_newsletter_bills_path(@customer, @newsletter) %>
+			  	<li><%= link_to "Notifications", customer_newsletter_notifications_path(@customer, @newsletter) %></li>
+			  	<li><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
+			  	<li><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
+			</ul>
+			</br>
+		  <% end %>	
           <%= yield %>
         </div>
         <div id="sample" class="span5">

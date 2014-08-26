@@ -13,6 +13,9 @@ Billbeez::Application.routes.draw do
     resources :newsletters do
       resources :bills
       resources :dues
+      resources :notifications
+      resources :reminders
+      resources :plans
     end
   end
 
