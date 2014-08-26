@@ -1,5 +1,3 @@
-<h1>Listing bills</h1>
-
 <script>
 	
 $(document).ready(function() {
@@ -15,4 +13,4 @@ $(document).ready(function() {
 </script>
 <br>
 
-<%= link_to 'New Bill', new_customer_newsletter_bill_path(@customer, @newsletter) %>
+<%= link_to 'New Bill', new_customer_newsletter_bill_path(@customer, @newsletter), class: 'btn btn-success' %>

@@ -45,7 +45,7 @@
     float: unset;
 }
 
-#backoffice #campaign_button, #backoffice #customer_button {
+#backoffice #campaign_button, #backoffice #customer_button, #backoffice .btn-success {
     margin-top: 8px;
     background-color: #BDCD40;
     background-image: none;
