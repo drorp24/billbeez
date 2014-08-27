@@ -6,6 +6,20 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
+.newsletter_navs li {
+    margin-right: 30px;
+}
+
+#backoffice .newsletter_navs .btn-success {
+    margin-left: 5px;
+}
+
+#credit {
+    position: fixed;
+    bottom: 20px;
+    margin-left: 30px;
+}
+
 #findings_form {
     margin-top: 150px;
 }
@@ -63,6 +77,7 @@ h1#campaigns, h1#customers {
 }
 #backoffice .btn-success {
      color: white;
+     margin-left: 10px; 
 }
 
 .form-horizontal .control-label {

@@ -1,0 +1,15 @@
+<%= simple_form_for @line, url: customer_newsletter_due_line_path(@customer, @newsletter, @due, @line), :html => {:class => 'form-horizontal' }   do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs"> 		
+	<%= f.input :part1, as: :string %>
+	<%= f.input :part2, as: :string %>
+	<%= f.input :part3, as: :string %>
+	<%= f.input :part4, as: :string %>
+	<%= f.input :part5, as: :string %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -93,7 +93,7 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Dror Poliak 2014</p>
+        <p id="credit">&copy; Dror Poliak 2014</p>
       </footer>
 
     </div> <!-- /container -->
@@ -118,6 +118,12 @@ $(document).ready(function() {
 		<% case params[:controller] %>
 			<% when "bills" %>				
 				$('#bills_nav').addClass("active")
+			<% when "lines" %>
+				<% if @due_id %>				
+					$('#bills_nav').addClass("active")
+				<% elsif @notification_id %>
+					$('#notifications_nav').addClass("active")
+				<% end %>
 			<% when "notifications" %>				
 				$('#notifications_nav').addClass("active")
 			<% when "reminders" %>				

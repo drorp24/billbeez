@@ -20,6 +20,7 @@ class BillsController < ApplicationController
 
   # GET /bills/1/edit
   def edit
+#    @due = @bill.dues.first
   end
 
   # POST /bills
@@ -43,9 +44,17 @@ class BillsController < ApplicationController
   # PATCH/PUT /bills/1
   # PATCH/PUT /bills/1.json
   def update
+    
+puts ""
+puts""
+puts"bill_params: " + bill_params.inspect.to_s
+puts ""
+puts ""
+puts ""
+puts ""
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to @bill, notice: 'Bill was successfully updated.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Bill was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

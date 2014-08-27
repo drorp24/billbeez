@@ -15,12 +15,16 @@ Billbeez::Application.routes.draw do
   resources :customers do
     resources :newsletters do
       resources :bills
-      resources :dues
+      resources :dues do
+        resources :lines
+      end
       resources :notifications
       resources :reminders
       resources :plans
     end
   end
+  
+#  patch customers/:customer_id/newsletters/:newsletter_id/dues/:due_id/lines
 
   resources :versions do
     resources :newsletters

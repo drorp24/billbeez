@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 before_filter :authenticate_user!
-before_filter :find_context, :except => [:destroy]
-before_filter :change_context, :except => [:destroy]
+before_filter :find_context   #, :except => [:destroy] # this except was there originally, dont know why
+before_filter :change_context #, :except => [:destroy]
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -45,6 +45,14 @@ before_filter :change_context, :except => [:destroy]
     @customer = Customer.find(@customer_id) if @customer_id
     @newsletter_id = session[:newsletter_id] = params[:newsletter_id] || session[:newsletter_id] 
     @newsletter = Newsletter.find(@newsletter_id) if @newsletter_id 
+    if params[:due_id]
+      @due_id = session[:due_id] = params[:due_id] 
+      @due = Due.find(@due_id)
+    end
+    if params[:line_id]
+      @line_id = session[:line_id] = params[:line_id] 
+      @line = Line.find(@line_id)
+    end
     puts ""
     puts "AFTER:"  
     puts ""

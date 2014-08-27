@@ -1,4 +1,4 @@
-<%= simple_form_for @bill, url: customer_newsletter_bills_path(@customer, @newsletter), :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @bill, url: customer_newsletter_bill_path(@customer, @newsletter, @bill), :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -9,9 +9,8 @@
 	<%= f.input :amount %>
 	<%= f.input :contract %>
 	<%= f.input :last_digits %>
-  	<%= f.simple_fields_for :due do |due_form| %>
+  	<%= f.simple_fields_for :dues do |due_form| %>
 		<%= due_form.input :payment_url %>
-	  	<%= due_form.input :paid_url %>
 	<% end %>
   </div>
 
