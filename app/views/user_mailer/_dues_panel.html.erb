@@ -24,7 +24,7 @@
         <tbody>
         	<% @newsletter.dues.includes(:bill, :supplier, :lines).order(created_at: :desc).each do |due| %>
         		<% next unless due.bill %>
-				<%= render 'bills_panel_due', due: due %>
+				<%= render 'dues_panel_due', due: due %>
 			<% end %>
         </tbody>
   </table>
