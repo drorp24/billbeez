@@ -79,7 +79,7 @@
           <% if @newsletter %>
           	<ul class="nav nav-pills newsletter_navs">
           		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
-          		<li id="notifications_nav"><%= link_to "Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
+          		<li id="notifications_nav"><%= link_to "Bill Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
 			  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
 			  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
 			</ul>

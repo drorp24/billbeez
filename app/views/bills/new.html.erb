@@ -1,4 +1,4 @@
-<h1>New bill</h1>
+<h1>New <%= params[:section] == 'dues' ? "Bill Due" : "Bill Notification" %></h1>
 
 <%= render 'form' %>
 

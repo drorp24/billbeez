@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823134502) do
+ActiveRecord::Schema.define(version: 20140830222037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,24 @@ ActiveRecord::Schema.define(version: 20140823134502) do
     t.string   "from_name"
     t.string   "from_email"
     t.datetime "sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charges", force: true do |t|
+    t.integer  "notification_id"
+    t.integer  "service_id"
+    t.decimal  "amount",          precision: 8, scale: 2
+    t.string   "status"
+    t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "comment_id"
+    t.date     "date"
+  end
+
+  create_table "comments", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -145,6 +163,12 @@ ActiveRecord::Schema.define(version: 20140823134502) do
     t.date     "date"
     t.string   "title"
     t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

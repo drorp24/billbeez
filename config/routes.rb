@@ -18,7 +18,10 @@ Billbeez::Application.routes.draw do
       resources :dues do
         resources :lines
       end
-      resources :notifications
+      resources :notifications do
+        resources :charges
+        resources :lines
+      end
       resources :reminders
       resources :plans
     end

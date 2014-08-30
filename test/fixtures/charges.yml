@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  section_id: 1
+  section_type: MyString
+  service_id: 1
+  amount: 9.99
+  status: MyString
+  reason: MyString
+
+two:
+  section_id: 1
+  section_type: MyString
+  service_id: 1
+  amount: 9.99
+  status: MyString
+  reason: MyString

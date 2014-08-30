@@ -4,7 +4,6 @@ class DuesController < ApplicationController
   # GET /dues
   # GET /dues.json
   def index
-    @dues = Due.all
   end
 
   # GET /dues/1

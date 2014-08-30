@@ -1,5 +1,6 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
+  before_action :set_section
 
   # GET /bills
   # GET /bills.json
@@ -15,13 +16,12 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = Bill.new
-    @due = @bill.dues.build(newsletter_id: params[:newsletter_id]) if params[:section] == 'dues'
-    @notification = @bill.notifications.build(newsletter_id: params[:newsletter_id]) if params[:section] == 'notifications'
+    @due = @bill.dues.build(newsletter_id: params[:newsletter_id]) if @section == 'dues'
+    @notification = @bill.notifications.build(newsletter_id: params[:newsletter_id]) if @section == 'notifications'
   end
 
   # GET /bills/1/edit
   def edit
-#    @due = @bill.dues.first
   end
 
   # POST /bills
@@ -30,7 +30,7 @@ class BillsController < ApplicationController
     @bill = @customer.bills.new(bill_params)
     respond_to do |format|
       if @bill.save 
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: params[:bill][:section]), notice: 'Bill was successfully created.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Bill was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class BillsController < ApplicationController
     
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Bill was successfully updated.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Bill was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -59,7 +59,7 @@ class BillsController < ApplicationController
   def destroy
     @bill.destroy
     respond_to do |format|
-      format.html { redirect_to customer_newsletter_bills_url(@customer, @newsletter) }
+      format.html { redirect_to customer_newsletter_bills_url(@customer, @newsletter, section: params[:section]) }
       format.json { head :no_content }
     end
   end
@@ -68,6 +68,16 @@ class BillsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_bill
       @bill = Bill.find(params[:id])
+    end
+    
+    def set_section
+      if params[:section]
+        @section = params[:section]
+      elsif params[:bill] and params[:bill][:section]
+        @section = params[:bill][:section]
+      else
+        redirect_to root_path, notice: "No section param"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

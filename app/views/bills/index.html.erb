@@ -3,7 +3,7 @@
 $(document).ready(function() {
 		$.ajax({
 	  		url: "<%= user_mailer_weekly_url %>",
-	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=bills&control=yes",
+	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=<%= params[:section] %>" + "&control=yes",
 	  		success: function(result) {
 	  			$('#sample').html(result);
 	  	}});		
@@ -13,4 +13,4 @@ $(document).ready(function() {
 </script>
 <br>
 
-<%= link_to 'New Bill', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-success' %>
+<%= link_to params[:section] == 'dues' ? 'New Bill Due' : 'New Bill Notification', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-success' %>

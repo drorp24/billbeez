@@ -25,10 +25,10 @@
 		              :class => 'btn btn-mini btn-danger' %>
 	  	</td>
 	  	<td>
-	  		<%= link_to "Edit", edit_customer_newsletter_bill_path(@customer, @newsletter, due.bill), class: 'btn btn-mini' %>
+	  		<%= link_to "Edit", edit_customer_newsletter_bill_path(@customer, @newsletter, due.bill, section: params[:section]), class: 'btn btn-mini' %>
   		</td>
   		<td>
-  			<%= link_to "Add Line", new_customer_newsletter_due_line_path(@customer, @newsletter, due), class: 'btn btn-mini' %>
+  			<%= link_to "Add Line", new_customer_newsletter_due_line_path(@customer, @newsletter, due, section: params[:section]), class: 'btn btn-mini' %>
 	  <% end %>
   </tr>
   <% due.lines.each do |line| %>

@@ -1,7 +1,8 @@
-<%= simple_form_for @line, url: customer_newsletter_due_line_path(@customer, @newsletter, @due, @line), :html => {:class => 'form-horizontal' }   do |f| %>
+<%= simple_form_for @line, url: params[:section] == 'dues' ? customer_newsletter_due_line_path(@customer, @newsletter, @due, @line) : customer_newsletter_notification_line_path(@customer, @newsletter, @notification, @line), :html => {:class => 'form-horizontal' }   do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs"> 		
+	<%= f.input :section, as: :hidden, input_html: {value: params[:section]} %>
 	<%= f.input :part1, as: :string %>
 	<%= f.input :part2, as: :string %>
 	<%= f.input :part3, as: :string %>

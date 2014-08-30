@@ -1,10 +1,9 @@
 class LinesController < ApplicationController
-  before_action :set_line, only: [:show, :edit, :update, :destroy]
+  before_action :set_line
 
   # GET /lines
   # GET /lines.json
   def index
-    @lines = Line.all
   end
 
   # GET /lines/1
@@ -24,11 +23,15 @@ class LinesController < ApplicationController
   # POST /lines
   # POST /lines.json
   def create
-    @line = @due.lines.build(line_params)
+    if @section == 'notifications'
+      @line = @notification.lines.build(line_params.except(:section))
+    elsif params[:section] == 'dues'
+      @line = @due.lines.build(line_params.except(:section))
+    end
 
     respond_to do |format|
       if @line.save
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Line was successfully created.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Line was successfully created.' }
         format.json { render action: 'show', status: :created, location: @line }
       else
         format.html { render action: 'new' }
@@ -42,7 +45,7 @@ class LinesController < ApplicationController
   def update
     respond_to do |format|
       if @line.update(line_params)
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Line was successfully updated.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Line was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +59,7 @@ class LinesController < ApplicationController
   def destroy
     @line.destroy
     respond_to do |format|
-      format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter)}
+      format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: params[:section])}
       format.json { head :no_content }
     end
   end
@@ -64,7 +67,8 @@ class LinesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line
-      @line = Line.find(params[:id])
+      @line = Line.find(params[:id]) if params[:id]
+      @section = params[:section] || (params[:line][:section] if params[:line])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

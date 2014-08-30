@@ -49,6 +49,10 @@ before_filter :change_context #, :except => [:destroy]
       @due_id = session[:due_id] = params[:due_id] 
       @due = Due.find(@due_id)
     end
+     if params[:notification_id]
+      @notification_id = session[:notification_id] = params[:notification_id] 
+      @notification = Notification.find(@notification_id)
+    end   
     if params[:line_id]
       @line_id = session[:line_id] = params[:line_id] 
       @line = Line.find(@line_id)
