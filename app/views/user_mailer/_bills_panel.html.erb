@@ -22,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-        	<% @newsletter.dues.order(created_at: :desc).each do |due| %>
+        	<% @newsletter.dues.includes(:bill, :supplier, :lines).order(created_at: :desc).each do |due| %>
         		<% next unless due.bill %>
 				<%= render 'bills_panel_due', due: due %>
 			<% end %>

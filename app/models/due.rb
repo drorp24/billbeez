@@ -1,10 +1,10 @@
 class Due < ActiveRecord::Base
   
   belongs_to              :newsletter
-  belongs_to                    :bill
-  accepts_nested_attributes_for :bill
-  has_many      :lines, as: :section
-  
+  belongs_to              :bill
+  has_one                 :supplier, through: :bill
+  has_many                :lines, as: :section
+    
   def payment_url=(url)
     u = URI.parse(url)
     if(!u.scheme)

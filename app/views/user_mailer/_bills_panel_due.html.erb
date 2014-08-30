@@ -1,10 +1,10 @@
   <tr class="bill_background">
     <td bgcolor="#FDE9C9">
-    	<% if due.bill.supplier %>
-	    	<% if logo = due.bill.supplier.logo %>
+    	<% if due.supplier %>
+	    	<% if logo = due.supplier.logo %>
 	    		<%= image_tag logo, class: 'sup_logo' %>
 	    	<% else %>	
-	    		<%= due.bill.supplier.name %>
+	    		<%= due.supplier.name %>
 			<% end %>
 		<% end %>
 	</td>
