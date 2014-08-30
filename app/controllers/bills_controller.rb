@@ -16,6 +16,8 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = Bill.new
+    @due = @bill.dues.build(newsletter_id: params[:newsletter_id]) if params[:section] == 'dues'
+    @notification = @bill.notifications.build(newsletter_id: params[:newsletter_id]) if params[:section] == 'notifications'
   end
 
   # GET /bills/1/edit
@@ -26,13 +28,10 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
-    @bill = @customer.bills.new(bill_params.except(:due))
-    @due = @bill.dues.build(bill_params[:due])
-    @due.newsletter_id = params[:newsletter_id]
-
+    @bill = @customer.bills.new(bill_params)
     respond_to do |format|
       if @bill.save 
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Bill was successfully created.' }
+        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: params[:bill][:section]), notice: 'Bill was successfully created.' }
         format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }
@@ -45,13 +44,6 @@ class BillsController < ApplicationController
   # PATCH/PUT /bills/1.json
   def update
     
-puts ""
-puts""
-puts"bill_params: " + bill_params.inspect.to_s
-puts ""
-puts ""
-puts ""
-puts ""
     respond_to do |format|
       if @bill.update(bill_params)
         format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter), notice: 'Bill was successfully updated.' }
@@ -66,8 +58,6 @@ puts ""
   # DELETE /bills/1
   # DELETE /bills/1.json
   def destroy
-    @newsletter = @bill.dues.first.newsletter   #ToDo: If I delete bills, I might as well remove Due
-    @customer = @newsletter.customer
     @bill.destroy
     respond_to do |format|
       format.html { redirect_to customer_newsletter_bills_url(@customer, @newsletter) }

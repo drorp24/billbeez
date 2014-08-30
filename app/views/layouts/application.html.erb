@@ -48,7 +48,7 @@
           </a>
           <div class="container-fluid nav-collapse clearfix">
             <ul class="nav">
-				<li class="span2"><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %></li>
+				<li class="span3"><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %><span class="badge">Newsletters</span></li>
 	            <li class="pull-left span2" id="campaigns_menu"><%= link_to "Campaign", campaigns_path %></li>
 	            <li class="pull-left span2" id="versions_menu"><%= link_to "Version", @campaign ? campaign_versions_path(@campaign) : "#" %></li>
 	            <li class="pull-left span2" id="customers_menu"><%= link_to "Customer", customers_path  %></li>
@@ -78,8 +78,8 @@
           <%= bootstrap_flash %>
           <% if @newsletter %>
           	<ul class="nav nav-pills newsletter_navs">
-          		<li id="bills_nav"><%= link_to "Bills", customer_newsletter_bills_path(@customer, @newsletter) %></li>
-			  	<li id="notifications_nav"><%= link_to "Notifications", customer_newsletter_notifications_path(@customer, @newsletter) %></li>
+          		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
+          		<li id="notifications_nav"><%= link_to "Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
 			  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
 			  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
 			</ul>
@@ -116,8 +116,12 @@ $(document).ready(function() {
 		$("#backoffice .breadcrumb .newsletter_bc").addClass('active')
 		$('.newsletter_navs').removeClass("active")
 		<% case params[:controller] %>
-			<% when "bills" %>				
-				$('#bills_nav').addClass("active")
+			<% when "bills" %>	
+				<% if params[:section] == 'dues'	%>		
+					$('#dues_nav').addClass("active")
+				<% elsif params[:section] == 'notifications' %>
+					$('#notifications_nav').addClass("active")
+				<% end %>
 			<% when "lines" %>
 				<% if @due_id %>				
 					$('#bills_nav').addClass("active")

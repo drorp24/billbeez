@@ -1,16 +1,26 @@
-<%= simple_form_for @bill, url: customer_newsletter_bill_path(@customer, @newsletter, @bill), :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @bill, url: customer_newsletter_bill_path(@customer.id, @newsletter.id, @bill.id), :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.association :supplier, include_blank: "select an existing supplier" %>
-	<%= f.input :supplier_name, placeholder: "or create a new one"%>
-	<%= f.input :issue_date, as: :string, placeholder: "placeholder here", input_html: {data: {behaviour: 'datepicker'}} %>
-	<%= f.input :due_date, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
-	<%= f.input :amount %>
-	<%= f.input :contract %>
-	<%= f.input :last_digits %>
-  	<%= f.simple_fields_for :dues do |due_form| %>
-		<%= due_form.input :payment_url %>
+	<%= f.association :supplier, label: "Existing supplier", placeholder: "select an existing supplier", include_blank: false %>
+	<%= f.input :new_supplier, label: "New supplier", placeholder: "Create a new supplier now"%>
+	<%= f.input :issue_date, placeholder: "Date the bill was issues at", as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+	<%= f.input :due_date, placeholder: "Last day to pay it", as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
+	<%= f.input :amount, placeholder: "Well that's obvious, isn't it" %>
+	<% if params[:section] == 'dues' %> 
+		<%= f.input :section, as: :hidden, input_html: {value: "dues"} %>
+	  	<%= f.simple_fields_for :dues do |due_form| %>
+	  		<%= due_form.input :newsletter_id, as: :hidden %>
+			<%= due_form.input :payment_url %>
+		<% end %>
+	<% elsif params[:section] == 'notifications' %>
+		<%= f.input :section, as: :hidden, input_html: {value: "notifications"} %>
+	  	<%= f.simple_fields_for :notifications do |notification_form| %>
+	  		<%= notification_form.input :newsletter_id, as: :hidden %>
+			<%= notification_form.input :prev_bill_amt %>
+			<%= notification_form.input :status %>
+			<%= notification_form.input :reason %>
+		<% end %>
 	<% end %>
   </div>
 

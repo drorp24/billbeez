@@ -6,6 +6,19 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
+#backoffice a#activities {
+    color: #0088ee;
+}
+
+#backoffice .badge {
+    position: relative;
+    top: 11px;
+}
+
+.navbar .brand {
+    display: inline;
+}
+
 .newsletter_navs li {
     margin-right: 30px;
 }
@@ -25,7 +38,7 @@
 }
 
 .breadcrumb li:first-of-type {
-    width: 275px;
+    width: 345px;
     color: #FFB74E;
     color: #000000;
 }
@@ -77,7 +90,6 @@ h1#campaigns, h1#customers {
 }
 #backoffice .btn-success {
      color: white;
-     margin-left: 10px; 
 }
 
 .form-horizontal .control-label {
@@ -98,10 +110,10 @@ body#backoffice .page-header h1  {
 }
 
 #backoffice .logo img {
-    width: 120px;
-    padding-bottom: 13px;
+    width: 162px;
+    padding-bottom: 2px;
     margin-bottom: 3px;
-    margin-left: -66px;
+    margin-left: -38px;
 }
 li {
     line-height: 45px;
@@ -124,7 +136,6 @@ input, select {
 #backoffice .navbar-inner a {
     text-shadow: white -1px 1px;
     font-size: 18px;
-    margin-left: 40px;
 }
 #backoffice li a {
     

@@ -13,7 +13,7 @@
     <td><%= (due.bill.due_date.to_date - Date.today.to_date).to_i if due.bill.due_date %></td> 
 	<td>
 		<% if due.payment_url.present? %>
-			<%= link_to "שלם", due.payment_url %></td>
+			<%= link_to "שלם", due.payment_url, id: "activities" %></td>
 		<% end %>
 	</td>
 	  <% if @control %>	
