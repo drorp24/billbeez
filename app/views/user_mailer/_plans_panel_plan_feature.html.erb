@@ -1,0 +1,19 @@
+<tr>
+	<td><%= feature.name %></td>
+	<td><%= feature.current %></td>
+	<td class="plan_background"><%= feature.recommended %></td>
+	<% if @control %>
+	  	<td>
+		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		              customer_newsletter_plan_feature_path(@customer, @newsletter, plan, feature),
+		              :method => :delete,
+		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		              :class => 'btn btn-mini btn-danger' %>
+	  	</td>
+	  	<td>
+	  		<%= link_to "Edit", edit_customer_newsletter_plan_feature_path(@customer, @newsletter, plan, feature), class: 'btn btn-mini' %>
+  		</td>
+  		<td>
+		</td>	
+	<% end %>
+</tr>

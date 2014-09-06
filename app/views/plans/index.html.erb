@@ -1,23 +1,16 @@
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<script>
+	
+$(document).ready(function() {
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=plans" + "&control=yes",
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
 
-  <tbody>
-    <% @plans.each do |plan| %>
-      <tr>
-        <td><%= link_to 'Show', plan %></td>
-        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
-        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+})	
+	
+</script>
 <br>
 
 <%= link_to 'New Plan', new_customer_newsletter_plan_path(@customer, @newsletter), class: 'btn btn-success' %>

@@ -1,23 +1,16 @@
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<script>
+	
+$(document).ready(function() {
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=reminders" + "&control=yes",
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
 
-  <tbody>
-    <% @reminders.each do |reminder| %>
-      <tr>
-        <td><%= link_to 'Show', reminder %></td>
-        <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
-        <td><%= link_to 'Destroy', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+})	
+	
+</script>
 <br>
 
 <%= link_to 'New Reminder', new_customer_newsletter_reminder_path(@customer, @newsletter), class: 'btn btn-success' %>

@@ -5,7 +5,7 @@ class Newsletter < ActiveRecord::Base
   has_many      :dues
   has_many      :notifications
   has_many      :reminders
-  has_one       :plan
+  has_many      :plans
   
 =begin
   def matching_version(campaign_id)

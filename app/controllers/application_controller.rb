@@ -57,6 +57,10 @@ before_filter :change_context #, :except => [:destroy]
       @line_id = session[:line_id] = params[:line_id] 
       @line = Line.find(@line_id)
     end
+    if params[:plan_id]
+      @plan_id = session[:plan_id] = params[:plan_id] 
+      @plan = Plan.find(@plan_id)
+    end
     puts ""
     puts "AFTER:"  
     puts ""

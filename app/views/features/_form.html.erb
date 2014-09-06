@@ -1,0 +1,13 @@
+<%= simple_form_for @feature, url: customer_newsletter_plan_feature_path(@customer, @newsletter, @plan, @feature), :html => {:class => 'form-horizontal' }   do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs"> 		
+	<%= f.input :name, placeholder: "Feature name" %>
+	<%= f.input :current, placeholder: "Current plan value" %>
+	<%= f.input :recommended, placeholder: "Recommended plan value" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

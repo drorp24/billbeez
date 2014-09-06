@@ -1,0 +1,31 @@
+<tr>
+	<td>
+    	<% if plan.supplier %>
+	    	<% if logo = plan.supplier.logo %>
+	    		<%= image_tag logo, class: 'sup_logo' %>
+	    	<% else %>	
+	    		<%= plan.supplier.name %>
+			<% end %>		
+		<% end %>
+	</td>
+	<td class="plan"><%= plan.curr_plan %></td>
+	<td class="plan plan_background"><%= plan.recc_plan %></td>
+	  <% if @control %>	
+	  	<td>
+		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		              customer_newsletter_plan_path(@customer, @newsletter, plan),
+		              :method => :delete,
+		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		              :class => 'btn btn-mini btn-danger' %>
+	  	</td>
+	  	<td>
+	  		<%= link_to "Edit", edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
+  		</td>
+  		<td>
+  			<%= link_to "Add Feature", new_customer_newsletter_plan_feature_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
+	  <% end %>
+
+</tr>
+<% plan.features.order(created_at: :asc).each do |feature| %>
+	<%= render 'plans_panel_plan_feature', plan: plan, feature: feature %>
+<% end %>

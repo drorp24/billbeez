@@ -24,11 +24,11 @@ class RemindersController < ApplicationController
   # POST /reminders
   # POST /reminders.json
   def create
-    @reminder = Reminder.new(reminder_params)
+    @reminder = @newsletter.reminders.build(reminder_params)
 
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully created.' }
+        format.html { redirect_to customer_newsletter_reminders_path(@customer, @newsletter), notice: 'Reminder was successfully created.' }
         format.json { render action: 'show', status: :created, location: @reminder }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class RemindersController < ApplicationController
   def update
     respond_to do |format|
       if @reminder.update(reminder_params)
-        format.html { redirect_to @reminder, notice: 'Reminder was successfully updated.' }
+        format.html { redirect_to customer_newsletter_reminders_path(@customer, @newsletter), notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +56,7 @@ class RemindersController < ApplicationController
   def destroy
     @reminder.destroy
     respond_to do |format|
-      format.html { redirect_to reminders_url }
+      format.html { redirect_to customer_newsletter_reminders_path(@customer, @newsletter)}
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class RemindersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
-      params[:reminder]
+      params[:reminder].permit!
     end
 end

@@ -23,7 +23,9 @@ Billbeez::Application.routes.draw do
         resources :lines
       end
       resources :reminders
-      resources :plans
+      resources :plans do
+        resources :features
+      end
     end
   end
   

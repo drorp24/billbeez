@@ -1,3 +1,6 @@
+#reminder_text {
+   text-align: right;
+}
 #billbeez td.plan {
     font-size: 18px;
 }
@@ -27,10 +30,10 @@
 }
 
 .reminder_background {
-    background-color: #ECF6A8;
+/*    background-color: #ECF6A8; */
 }
 
-.recommendation_background {
+.plan_background {
     background-color: #F7B547;
     color: #FFFFFF;
     font-weight: bold;

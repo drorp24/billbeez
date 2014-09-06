@@ -2,21 +2,24 @@
   <!-- Default panel contents -->
   <div class="panel-heading panel-primary"><a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">תזכורות</a></div>
   <div class="panel-body">
-    <p>רצינו להזכיר לך ש...</p>
+    <p>רצינו להזכיר לך...</p>
   </div>
 
   <!-- Table -->
-  <table class=" data table">	
+  <table class="data table">	
         <thead>
           <tr>
-            <th>ספק</th>
-            <th>תאריך תזכורת</th>
-            <th>נושא התזכורת</th>
-            <th>המלצה</th>
+            <th></th>
+            <% if @control %>
+            	<th></th>
+            	<th></th>
+        	<% end %>
           </tr>
         </thead>
         <tbody>
-			<%= render 'reminders_panel_reminder'  %>
+        	<% @newsletter.reminders.order(created_at: :desc).each do |reminder| %>
+				<%= render 'reminders_panel_reminder', reminder: reminder %>
+			<% end %>
         </tbody>
   </table>
 </div>

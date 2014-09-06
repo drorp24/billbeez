@@ -6,6 +6,10 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
+#menu {
+    margin-top: 20px;
+}
+
 #backoffice a#activities {
     color: #0088ee;
 }

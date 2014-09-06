@@ -12,10 +12,16 @@
             <th>ספק</th>
             <th>תכנית נוכחית</th>
             <th>תכנית מומלצת</th>
+            <% if @control %>
+            	<th></th>
+            	<th></th>
+        	<% end %>
           </tr>
         </thead>
         <tbody>
-			<%= render 'recommendations_panel_recommendation'  %>
+        	<% @newsletter.plans.includes(:supplier).order(created_at: :asc).each do |plan| %>
+				<%= render 'plans_panel_plan', plan: plan %>
+			<% end %>
         </tbody>
   </table>
 </div>
