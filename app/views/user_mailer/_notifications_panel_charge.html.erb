@@ -35,7 +35,13 @@
 		<td><%= l charge.date, format: :no_year if charge.date %></td>
 	  	<td><%= number_to_currency charge.amount %></td>
 	  	<td><%= charge.comment.name %></td>
-	  	<td><%= number_to_currency charge.amount %></td>
+	  	<td>
+	  		<% if charge.status and charge.exception? %>
+	  			<%= image_tag 'question-32.png' %>
+  			<% elsif charge.status and charge.ok? %>
+  				<%= image_tag 'check-32.png' %>
+			<% end %>
+	  	</td>
 	  	<% if @control %>
 	  		<td>
 			  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

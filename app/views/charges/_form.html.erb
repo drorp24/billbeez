@@ -8,6 +8,7 @@
 	<%= f.input :date, as: :string, placeholder: 'Charge date', input_html: {data: {behaviour: 'datepicker'}} %>
 	<%= f.association :comment, label: "Existing comment", placeholder: "select an already defined comment", include_blank: false %>
 	<%= f.input :new_comment, placeholder: "Define a new comment now" %>
+	<%= f.input :status, collection: Charge.statuses, include_blank: false %>
   </div>
 
   <div class="form-actions">

@@ -4,6 +4,18 @@ class Charge < ActiveRecord::Base
   belongs_to    :service
   belongs_to    :comment
   
+  def self.statuses
+    ['exception', 'ok']
+  end
+  
+  def exception?
+    status == 'exception'
+  end
+  
+  def ok?
+    status == 'ok'
+  end
+
   def new_service    
   end
 
