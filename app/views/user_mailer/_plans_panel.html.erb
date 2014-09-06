@@ -1,11 +1,17 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary"><a data-anchor="recommendations" name="recommendations" style="text-decoration: none; color: inherit;">בילביז ממליצה!</a></div>
+  <div class="panel-heading panel-primary clearfix">
+  	<a data-anchor="plans" name="plans" style="text-decoration: none; color: inherit;">
+  		<span class="pull-right">בילביז ממליצה!</span>
+  	</a>
+  		<span class="pull-left"><%= link_to "חזור", "#findings", class: 'back_link' %></span>
+  </div>
   <div class="panel-body">
     <p>מערכת בילביז השוותה את חשבונך לחשבונות לקוחותינו ולמבצעים העדכניים. לפניך המלצותינו:</p>
   </div>
 
   <!-- Table -->
+<% @newsletter.plans.includes(:supplier).order(created_at: :asc).each do |plan| %>
   <table class=" data table">	
         <thead>
           <tr>
@@ -19,9 +25,8 @@
           </tr>
         </thead>
         <tbody>
-        	<% @newsletter.plans.includes(:supplier).order(created_at: :asc).each do |plan| %>
-				<%= render 'plans_panel_plan', plan: plan %>
-			<% end %>
+			<%= render 'plans_panel_plan', plan: plan %>
         </tbody>
   </table>
+<% end %>
 </div>

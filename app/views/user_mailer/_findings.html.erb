@@ -1,12 +1,18 @@
 <div class="jumbotron clearfix">
-	<h1><%= @version.header_title %></h1>
+	<a name="findings"><h1><%= @version.header_title %></h1></a>
 	<p id="findings_sentence">מדי שבוע, בילביז סורקת את החשבוניות שלך ומוצאת עבורך דרכים חדשות ומלהיבות לחסוך ולשפר את ביצועי העסק שלך. ראה מה מצאנו עבורך השבוע:</p>
 	<table class="findings">
 		<tbody>
-			<tr>
-				<td><%= @newsletter.finding_1 %></td>
-				<td class="pull-left"><a href="#recommendations">ראה כיצד</a><td>						
-			</tr>
+			<% @newsletter.plans.order(created_at: :asc).each do |plan| %>
+				<tr class="clearfix">
+					<td class="pull-right">
+						<%= plan.findings %>
+					</td>
+					<td class="pull-left">
+						<%= link_to "ראה כיצד", "#plans" %>
+					</td>						
+				</tr>
+			<% end %>
 		</tbody>
 	</table>
 </div>

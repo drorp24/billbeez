@@ -1,6 +1,11 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary"><a data-anchor="bills" name="bills" style="text-decoration: none; color: inherit;">חשבוניות</a></div>
+  <div class="panel-heading panel-primary clearfix">
+  	<a data-anchor="dues" name="dues" style="text-decoration: none; color: inherit;">
+  		<span class="pull-right">חשבוניות</span>
+  	</a>
+  		<span class="pull-left"><%= link_to "חזור", "#highlights_dues", class: 'back_link' %></span>
+  </div>
   <div class="panel-body">
     <p>מועד התשלום של החשבוניות הבאות  קרב. לחץ על הקישור המתאים ושלם ישירות מהאימייל .</p>
   </div>

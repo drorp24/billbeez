@@ -1,6 +1,11 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary"><a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">תזכורות</a></div>
+  <div class="panel-heading panel-primary clearfix">
+  	<a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">
+  		<span class="pull-right">תזכורות</span>
+  	</a>
+  		<span class="pull-left"><%= link_to "חזור", "#highlights_reminders", class: 'back_link' %></span>
+  </div>
   <div class="panel-body">
     <p>רצינו להזכיר לך...</p>
   </div>

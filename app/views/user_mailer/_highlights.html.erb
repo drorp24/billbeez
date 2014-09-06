@@ -1,4 +1,4 @@
-<div class="bl-block bl-block-product bl-block-product-v2" id="bl_7" blocktype="product" name="product" width="100%" cellpadding="0" cellspacing="0" border="0"><div class="bl-block-toolbar-buttons Dir LanguageAlign bl-block-toolbar-item-hidden" id="toolbar_bl_7">
+<div class="bl-block bl-block-product bl-block-product-v2" id="bl_7" blocktype="product" width="100%" cellpadding="0" cellspacing="0" border="0"><div class="bl-block-toolbar-buttons Dir LanguageAlign bl-block-toolbar-item-hidden" id="toolbar_bl_7">
 	<div id="bl-block-toolbar-drag" class="bl-block-toolbar-item toolbar-drag" style="left: 0px; top: 0px;"></div>
                                     
     </div>
@@ -29,7 +29,7 @@
     																								<td class="bl-block-content-item-td-wrapper" style="height: 28px;" height="28">
     																									<div class="bl-block-content-item bl-block-content-item-text bl-block-content-item-title" style="direction: rtl; text-align: right;">                                	
 																											<div style="text-align: center;">
-																												<span style="font-size:24px;"><b>חשבוניות</b></span>
+																												<span style="font-size:24px;"><b><a name="highlights_dues">חשבוניות</a></b></span>
 																											</div>
 																										</div>
 																									</td>
@@ -58,7 +58,7 @@
 																								<tr>
 																									<td class="bl-block-content-item-td-wrapper" style="height: 18px;" height="18">
 																										<div class="bl-block-content-item bl-block-content-item-text" style="direction: rtl; text-align: right;"><div style="text-align: center;">
-																											<a href="#bills" style="text-decoration: none; color: #0000ff;">10   חשבוניות לתשלום </a>&nbsp;
+																											<a href="#dues" style="text-decoration: none; color: #0000ff;"><%= @newsletter.dues.count %>  חשבוניות לתשלום </a>&nbsp;
 																										</div>
 																										</div>
 																									</td>
@@ -89,7 +89,7 @@
 																									<td class="bl-block-content-item-td-wrapper" style="height: 28px;" height="28">
 																										<div class="bl-block-content-item bl-block-content-item-text bl-block-content-item-title" style="direction: rtl; text-align: right;">
 	
-																											<div style="text-align: center;"><span style="font-size:24px;"><b>הודעות</b></span></div>
+																											<div style="text-align: center;"><span style="font-size:24px;"><b><a name="highlights_notifications">הודעות</a></b></span></div>
 	
 																										</div>
 																									</td>
@@ -117,14 +117,14 @@
 																					<td class="bl-block-content-item-td bl-block-content-item-td-textContent" height="27" style="height: 27px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="bl-block-content-item-td-wrapper" style="height: 18px;" valign="top" height="18"><div class="bl-block-content-item bl-block-content-item-text cke_editable_inline cke_contents_rtl" spellcheck="true" role="textbox" aria-label="עורך טקסט עשיר, editor4" aria-describedby="cke_210" style="direction: rtl; text-align: right;">
 																						<div style="text-align: center;">
 																							<a href="#notifications" style="text-decoration: none; color: #0000ff;">
-																								10 הודעות
+																								<%= @newsletter.notifications.count %> הודעות
 																							</a> חדשות
 																							
 																						</div>
 </div></td></tr></tbody></table></td></tr></tbody></table>                                    </td>                    </tr>                </tbody>            </table>        </td>        <td class="bl-block-content-column bl-3-columns bl-column-last bl-block-content-new-column" align="left" valign="top" width="33%">            <table border="0" cellpadding="0" cellspacing="0" width="100%">                <tbody>                    <tr>                        <td valign="top" class="bl-padding-3-columns bl-content-wrapper"><table border="0" cellpadding="9" cellspacing="0" width="100%" class="bl-product-container bl-auto-align-container"><tbody><tr><td valign="top" class="bl-block-content-item-td-titleContent" height="37" style="height: 37px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="bl-block-content-item-td-wrapper" style="height: 28px;" valign="top" height="28"><div class="bl-block-content-item bl-block-content-item-text bl-block-content-item-title" style="direction: rtl; text-align: right;">
 	
-<div style="text-align: center;"><span style="font-size:24px;"><b>תזכורות</b></span></div>
+<div style="text-align: center;"><span style="font-size:24px;"><b><a name="highlights_reminders">תזכורות</a></b></span></div>
 
-</div></td></tr></tbody></table></td></tr><tr><td valign="top" class="bl-block-content-item-td bl-block-content-item-td-imageContent" height="137" style="height: 137px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="highlight_img bl-block-content-item-td-wrapper" style="height: 128px;" valign="top" height="128"><div class="bl-block-content-item bl-block-content-item-image" style="text-align: center;"><img id="bl_20" border="0" src="https://cdn-media.web-view.net/i/wwtfwcch2c/1404092168_Reminder_3.png?cache=1404075173668" width="118" height="111" style="display: inline-block; max-width: 118px; width: 118px; height: 111px;" class="" alt="1404092168_R..."></div></td></tr></tbody></table></td></tr><tr><td valign="top" class="bl-block-content-item-td bl-block-content-item-td-textContent" height="27" style="height: 27px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="bl-block-content-item-td-wrapper" style="height: 18px;" valign="top" height="18"><div class="bl-block-content-item bl-block-content-item-text" style="direction: rtl; text-align: right;"><div style="text-align: center;">ממתינות לך <a href="#reminders" style="text-decoration: none; color: #0000ff;">10 תזכורות</a></div>
+</div></td></tr></tbody></table></td></tr><tr><td valign="top" class="bl-block-content-item-td bl-block-content-item-td-imageContent" height="137" style="height: 137px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="highlight_img bl-block-content-item-td-wrapper" style="height: 128px;" valign="top" height="128"><div class="bl-block-content-item bl-block-content-item-image" style="text-align: center;"><img id="bl_20" border="0" src="https://cdn-media.web-view.net/i/wwtfwcch2c/1404092168_Reminder_3.png?cache=1404075173668" width="118" height="111" style="display: inline-block; max-width: 118px; width: 118px; height: 111px;" class="" alt="1404092168_R..."></div></td></tr></tbody></table></td></tr><tr><td valign="top" class="bl-block-content-item-td bl-block-content-item-td-textContent" height="27" style="height: 27px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="bl-block-content-item-td-wrapper" style="height: 18px;" valign="top" height="18"><div class="bl-block-content-item bl-block-content-item-text" style="direction: rtl; text-align: right;"><div style="text-align: center;">ממתינות לך <a href="#reminders" style="text-decoration: none; color: #0000ff;"><%= @newsletter.reminders.count %> תזכורות</a></div>
 </div></td></tr></tbody></table></td></tr></tbody></table>                        </td>                    </tr>                </tbody>            </table>        </td>    </tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></div>
 </div>

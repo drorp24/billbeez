@@ -1,6 +1,11 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary"><a data-anchor="bills" name="bills" style="text-decoration: none; color: inherit;">הודעות</a></div>
+  <div class="panel-heading panel-primary clearfix">
+  	<a data-anchor="notifications" name="notifications" style="text-decoration: none; color: inherit;">
+  		<span class="pull-right">הודעות</span>
+  	</a>
+  		<span class="pull-left"><%= link_to "חזור", "#highlights_notifications", class: 'back_link' %></span>
+  </div>
   <div class="panel-body">
     <p>בילביז סרקה את חשבונך ומצאה דברים שדורשים את תשומת לבך  </p>
   </div>
@@ -22,7 +27,7 @@
           </tr>
         </thead>
         <tbody>
-        	<% @newsletter.notifications.includes(:bill, :supplier, :lines, :charges).order(created_at: :desc).each do |notification| %>
+        	<% @newsletter.notifications.includes(:bill, :supplier, :lines, :charges).order(created_at: :asc).each do |notification| %>
         		<% next unless notification.bill %>
 				<%= render 'notifications_panel_charge', notification: notification %>
 			<% end %>

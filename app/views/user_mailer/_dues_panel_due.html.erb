@@ -19,7 +19,7 @@
 	  <% if @control %>	
 	  	<td>
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-		              customer_newsletter_bill_path(@customer, @newsletter, due.bill),
+		              customer_newsletter_bill_path(@customer, @newsletter, due.bill, section: params[:section]),
 		              :method => :delete,
 		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 		              :class => 'btn btn-mini btn-danger' %>

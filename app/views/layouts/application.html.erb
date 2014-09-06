@@ -66,6 +66,8 @@
 			  <li class="version_bc pull-left span2">
 			  	<% if @version %>
 			  		<%= @version.id.to_s + '(' + @version.locale.description + ')' %>
+		 		<% elsif @newsletter %>
+		 			<%= @newsletter.version.id.to_s + '(' + @newsletter.version.locale.description + ')' %>
 		  		<% end %>
 	  		  </li>
 			  <li class=" customer_bc pull-left span2"><%= "#{@customer.id} (#{@customer.name})" if @customer %></li>
