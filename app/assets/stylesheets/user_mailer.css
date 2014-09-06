@@ -12,6 +12,7 @@
 
 #reminder_text {
    text-align: right;
+   width: 500px;
 }
 #billbeez td.plan {
     font-size: 18px;
