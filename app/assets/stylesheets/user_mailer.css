@@ -1,3 +1,11 @@
+.data.table .btn {
+    visibility: hidden;
+}
+
+.data.table tr:hover .btn {
+    visibility: visible;
+}
+
 .back_link {
     font-size: 18px;
 }
@@ -25,10 +33,16 @@
     color: #888888;
 }
 
-.bill_background {
+.bill_background  {
     background-color: #FDE9C9;
 }
 
+/*
+.bill_background td.control {
+    background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+    background-repeat: repeat-x;
+}
+*/
 .notification_background {
     background-color: #FCF7C9;
 }

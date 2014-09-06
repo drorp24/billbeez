@@ -23,13 +23,13 @@ class LinesController < ApplicationController
   # POST /lines
   # POST /lines.json
   def create
-    if @section == 'notifications'
+    if params[:line][:section] == 'notifications'
       @line = @notification.lines.build(line_params.except(:section))
-    elsif params[:section] == 'dues'
+    elsif params[:line][:section] == 'dues'
       @line = @due.lines.build(line_params.except(:section))
     end
-
-    respond_to do |format|
+    
+   respond_to do |format|
       if @line.save
         format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Line was successfully created.' }
         format.json { render action: 'show', status: :created, location: @line }

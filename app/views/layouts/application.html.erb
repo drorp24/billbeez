@@ -49,10 +49,10 @@
           <div class="container-fluid nav-collapse clearfix">
             <ul class="nav">
 				<li class="span3"><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %><span class="badge">Newsletters</span></li>
-	            <li class="pull-left span2" id="campaigns_menu"><%= link_to "Campaign", campaigns_path %></li>
-	            <li class="pull-left span2" id="versions_menu"><%= link_to "Version", @campaign ? campaign_versions_path(@campaign) : "#" %></li>
-	            <li class="pull-left span2" id="customers_menu"><%= link_to "Customer", customers_path  %></li>
-	            <li class="pull-left span2" id="newsletters_menu"><%= link_to "Newsletter", @customer ? customer_newsletters_path(@customer) : "#"  %></li>
+	            <li class="pull-left span2" id="campaigns_menu"><%= link_to "Campaigns", campaigns_path %></li>
+	            <li class="pull-left span2" id="versions_menu"><%= link_to "Versions", @campaign ? campaign_versions_path(@campaign) : "#" %></li>
+	            <li class="pull-left span2" id="customers_menu"><%= link_to "Customers", customers_path  %></li>
+	            <li class="pull-left span2" id="newsletters_menu"><%= link_to "Newsletters", @customer ? customer_newsletters_path(@customer) : "#"  %></li>
 				<li class="pull-right"><%= render 'devise/menu/login_items' %></li> 
 			</ul>
           </div><!--/.nav-collapse -->
@@ -65,13 +65,16 @@
 			  <li class="campaign_bc pull-left span2"><%= @campaign.id if @campaign %></li>
 			  <li class="version_bc pull-left span2">
 			  	<% if @version %>
-			  		<%= @version.id.to_s + '(' + @version.locale.description + ')' %>
+					<% version = @version %>
 		 		<% elsif @newsletter %>
-		 			<%= @newsletter.version.id.to_s + '(' + @newsletter.version.locale.description + ')' %>
+		 			<% version = @newsletter.version %>
 		  		<% end %>
+		  		<% if version %>
+		  			<%= link_to version.id.to_s + '(' + version.locale.description + ')', edit_campaign_version_path(@campaign, version) %>
+	  			<% end %>
 	  		  </li>
-			  <li class=" customer_bc pull-left span2"><%= "#{@customer.id} (#{@customer.name})" if @customer %></li>
-			  <li class=" newsletter_bc pull-left span2"><%= @newsletter.id if @newsletter %></li>
+			  <li class=" customer_bc pull-left span2"><%= link_to "#{@customer.id} (#{@customer.name})", edit_customer_path(@customer) if @customer %></li>
+			  <li class=" newsletter_bc pull-left span2"><%= link_to @newsletter.id, customer_newsletter_path(@customer, @newsletter) if @newsletter %></li>
 			</ol>
 
     <div class="container-fluid">

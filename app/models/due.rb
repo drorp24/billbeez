@@ -6,6 +6,7 @@ class Due < ActiveRecord::Base
   has_many                :lines, as: :section
     
   def payment_url=(url)
+    return if url.blank?
     u = URI.parse(url)
     if(!u.scheme)
         payment_url = "http://" + url
