@@ -20,7 +20,7 @@ class Newsletter < ActiveRecord::Base
 =end
 
   def deliver
-    UserMailer.delay.weekly(self)
+    Billbeez::Application.config.use_delayed_job ? UserMailer.delay.weekly(self) : UserMailer.weekly(self).deliver
     customer.update(last_newsletter: Time.now)
     update!(sent_at: Time.now)
   end

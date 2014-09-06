@@ -3,7 +3,7 @@ class NewslettersController < ApplicationController
 
   def deliver
     @newsletter.deliver
-    redirect_to customers_path(campaign_id: params[:campaign_id], version_id: params[:version_id], locale_id: params[:locale_id]), notice: 'Newsletter sent successfully!'
+    redirect_to customer_newsletter_path(@newsletter.customer.id, @newsletter.id, notice: 'Newsletter sent successfully!')
   end
 
 
