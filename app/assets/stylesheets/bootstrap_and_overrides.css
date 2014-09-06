@@ -10,6 +10,10 @@
     margin-top: 20px;
 }
 
+#menu .alert-success {
+    width: 460px;
+}
+
 #backoffice a#activities {
     color: #0088ee;
 }
