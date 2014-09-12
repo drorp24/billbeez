@@ -44,5 +44,5 @@ Billbeez::Application.configure do
   
   config.assets.raise_production_errors = true
   
-  config.use_delayed_job = false
+  config.use_delayed_job = true
 end

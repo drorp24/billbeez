@@ -3,7 +3,7 @@ class NewslettersController < ApplicationController
 
   def deliver
     @newsletter.deliver
-    redirect_to customer_newsletter_path(@newsletter.customer.id, @newsletter.id, notice: 'Newsletter sent successfully!')
+    redirect_to customer_newsletter_path(@newsletter.customer.id, @newsletter.id), notice: 'Newsletter sent to customer!'
   end
 
 
