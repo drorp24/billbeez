@@ -24,17 +24,14 @@
 	  		<%= link_to "Edit", edit_customer_newsletter_bill_path(@customer, @newsletter, notification.bill, section: params[:section]), class: 'btn btn-mini' %>
   		</td>
   		<td class="control">
-  			<%= link_to "Add Bill Line", new_customer_newsletter_notification_line_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
-  			<%= link_to "Add Bill Charge", new_customer_newsletter_notification_charge_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
+  			<%= link_to "Add Line", new_customer_newsletter_notification_line_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
+  			<%= link_to "Add Charge", new_customer_newsletter_notification_charge_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
 	  <% end %>
   </tr>
 
   <% notification.charges.order(created_at: :desc).each do |charge| %>
   	<tr>
 	  	<td><%= charge.service.name %></td>
-		<td><%= l charge.date, format: :no_year if charge.date %></td>
-	  	<td><%= number_to_currency charge.amount %></td>
-	  	<td><%= charge.comment.name %></td>
 	  	<td>
 	  		<% if charge.status and charge.exception? %>
 	  			<%= image_tag 'question-32.png' %>
@@ -42,6 +39,9 @@
   				<%= image_tag 'check-32.png' %>
 			<% end %>
 	  	</td>
+	  	<td><%= number_to_currency charge.amount if charge.amount %></td>
+	  	<td><%= charge.comment.name %></td>
+	  	<td><%= number_to_currency charge.amount if charge.amount %></td>	  	
 	  	<% if @control %>
 	  		<td>
 			  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
