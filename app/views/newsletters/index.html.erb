@@ -27,7 +27,11 @@
 	        <td dir="rtl"><%= newsletter.sent_at ? (l newsletter.sent_at, format: :short) :  "" %></td>
 	        <td>
 	          <%= link_to t('.show', :default => t("helpers.links.show")),
-	                      customer_newsletter_path(customer, newsletter), :class => 'btn btn-mini' %>
+	                      newsletter_path(newsletter), :class => 'btn btn-mini' %>
+	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	                      edit_newsletter_path(newsletter), :class => 'btn btn-mini' %>
+	          <%= link_to t('.resend', :default => t("helpers.links.resend")),
+	                      deliver_newsletter_path(newsletter), :class => 'btn btn-mini' %>
 	        </td>
 	      </tr>
     	<% end %>

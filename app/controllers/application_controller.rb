@@ -17,7 +17,8 @@ before_filter :change_context #, :except => [:destroy]
     clear_campaign if params[:campaign_id]  != session[:campaign_id]
   end
 
-  def find_context  
+  def find_context
+    @newsletter_edit = true if ["bills", "dues", "reminders", "notifications", "plans", "charges", "features", "lines"].include? params[:controller]  
     puts ""
     puts ""
     puts "BEFORE"  

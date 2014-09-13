@@ -1,5 +1,9 @@
+.data.table tr {
+    height: 55px;
+}
+
 .data.table .btn {
-    visibility: hidden;
+/*    visibility: hidden; */  /* uncomment to return hover nehavior */
 }
 
 .data.table tr:hover .btn {

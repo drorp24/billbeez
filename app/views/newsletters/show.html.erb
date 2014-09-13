@@ -1,5 +1,45 @@
-<%- model_class = Newsletter -%>
 <div class="page-header">
   <h1>View Newsletter</h1>
 </div>
-<%= render :partial => 'form', locals: {disabled: true} %>
+<p>
+	<% if @newsletter.sent_at %>
+		<%= "This newsletter was sent on "%>
+		<%= l @newsletter.sent_at, format: :long, locale: :en %>
+	<% else %>
+		<span>This newsletter was never sent to the customer</span>
+		<span><%= link_to "Edit Newsletter", edit_newsletter_path(@newsletter), class: "btn btn-success", id: "edit_newsletter" %></span>
+			
+	<% end %>	
+</p>
+<script>
+	
+$(document).ready(function() {
+// not working for some reason	align_val(<%= @newsletter.customer.locale_id %>)
+
+	function refresh_sample() {
+		var version_id = 	$('#newsletter_version_id').val()
+		var newsletter_id = $('#newsletter_id').val()
+		$.ajax({
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "newsletter_id=" + "<%= params[:id] %>",
+	  		success: function(result) {
+	  			$('#sample').html(result);
+	  	}});		
+	}
+	
+	refresh_sample();
+
+	$('.newsletter_form input').blur(function() {
+		var field = 	$(this).attr('name').split('[')[1].split(']')[0]
+		var value = 	$(this).val()
+		$.ajax({
+	  		type: 'PUT',
+	  		url: "<%= newsletter_path(@newsletter)  %>",
+	  		data: field + '=' + value,
+	  		success: refresh_sample()
+	  	});
+	})
+	
+})	
+	
+</script>

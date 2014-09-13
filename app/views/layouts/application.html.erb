@@ -50,7 +50,7 @@
             <ul class="nav">
 				<li class="span3"><%= link_to image_tag('Final.png'), root_path, class: "logo brand" %><span class="badge">Newsletters</span></li>
 	            <li class="pull-left span2" id="campaigns_menu"><%= link_to "Campaigns", campaigns_path %></li>
-	            <li class="pull-left span2" id="versions_menu"><%= link_to "Versions", @campaign ? campaign_versions_path(@campaign) : "#" %></li>
+	            <li class="pull-left span2" id="versions_menu"><%= link_to "Versions", @campaign ? campaign_versions_path(@campaign) : "#", title: @campaign ? "" : "To view versions, select Campaign", data: {toggle: 'tooltip'} %></li>
 	            <li class="pull-left span2" id="customers_menu"><%= link_to "Customers", customers_path  %></li>
 	            <li class="pull-left span2" id="newsletters_menu"><%= link_to "Newsletters", @customer ? customer_newsletters_path(@customer) : "#"  %></li>
 				<li class="pull-right"><%= render 'devise/menu/login_items' %></li> 
@@ -81,19 +81,25 @@
       <div class="row-fluid">
         <div id="menu" class="span6">
           <%= bootstrap_flash %>
-          <% if @newsletter %>
-          	<ul class="nav nav-pills newsletter_navs">
-          		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
-          		<li id="notifications_nav"><%= link_to "Bill Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
-			  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
-			  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
-			</ul>
+           <% if params[:newsletter_id] or (params[:controller] == 'newsletters' and params[:action] == 'edit' and params[:id]) %>
+			<div class="page-header">
+				<h1>Edit Newsletter</h1>
+			</div>
+			<div id="sidebar-wrapper">
+	          	<ul class="sidebar-nav newsletter_navs">
+	          		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
+	          		<li id="notifications_nav"><%= link_to "Bill Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
+				  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
+				  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
+				  	<li id="newsletter_nav"><%= link_to "View Newsletter", customer_newsletter_path(@customer, @newsletter) %></li>
+				</ul>
+			</div>			
 			</br>
 		  <% end %>	
-          <%= yield %>
+          <%= yield unless @newsletter_edit %>
         </div>
         <div id="sample" class="span5">
-        	
+        	<%= yield if @newsletter_edit %>
         </div>	
       </div><!--/row-->
 
@@ -140,6 +146,13 @@ $(document).ready(function() {
 			<% when "plans" %>				
 				$('#plans_nav').addClass("active")
 			<% end %>
+	<% end %>
+	
+	$('#versions_menu a').tooltip({placement: 'bottom'})
+	
+	<% if params[:controller] == 'newsletters' and params[:action] == 'index' %>
+		$('#menu').attr('class','span9')
+		$('#sample').remove()
 	<% end %>
 })
 </script>

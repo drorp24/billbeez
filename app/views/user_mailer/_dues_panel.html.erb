@@ -4,7 +4,11 @@
   	<a data-anchor="dues" name="dues" style="text-decoration: none; color: inherit;">
   		חשבוניות
   	</a>
-  		<%= link_to "חזור", "#highlights_dues", class: 'back_link' %>
+  		<% if @control %> 			
+			<span class="pull-left"><%= link_to  'Add Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
+  		<% else %>
+  			<span class="pull-left"><%= link_to "חזור", "#highlights_dues", class: 'back_link' %></span>
+  		<% end %>
   </div>
   <div class="panel-body">
     <p>מועד התשלום של החשבוניות הבאות  קרב. לחץ על הקישור המתאים ושלם ישירות מהאימייל .</p>
@@ -27,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-        	<% @newsletter.dues.includes(:bill, :supplier, :lines).order(created_at: :desc).each do |due| %>
+        	<% @newsletter.dues.includes(:bill, :supplier, :lines).order(created_at: :asc).each do |due| %>
         		<% next unless due.bill %>
 				<%= render 'dues_panel_due', due: due %>
 			<% end %>

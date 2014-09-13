@@ -4,7 +4,11 @@
   	<a data-anchor="plans" name="plans" style="text-decoration: none; color: inherit;">
   		<span class="pull-right">בילביז ממליצה!</span>
   	</a>
-  		<span class="pull-left"><%= link_to "חזור", "#findings", class: 'back_link' %></span>
+  		<% if @control %>
+  			<span class="pull-left"><%= link_to 'Add Plan', new_customer_newsletter_plan_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
+		<% else %>
+  			<span class="pull-left"><%= link_to "חזור", "#findings", class: 'back_link' %></span>
+		<% end %>
   </div>
   <div class="panel-body">
     <p>מערכת בילביז השוותה את חשבונך לחשבונות לקוחותינו ולמבצעים העדכניים. לפניך המלצותינו:</p>

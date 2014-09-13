@@ -15,3 +15,8 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+<script>
+	$(document).ready(function() {	
+		align_val(<%= @newsletter.version.locale_id %>)
+	})
+</script>

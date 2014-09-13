@@ -11,6 +11,3 @@ $(document).ready(function() {
 })	
 	
 </script>
-<br>
-
-<%= link_to params[:section] == 'dues' ? 'New Bill Due' : 'New Bill Notification', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-success' %>

@@ -29,9 +29,9 @@
 		<% if @campaign %>
 			<% delivery_date = customer.delivery_date_for(@campaign) %>
 		<% else %>
-			<% delivery_date = customer.last_delivery_date %>
+			<% delivery_date = customer.last_newsletter %>
 		<% end %>
-		<td dir="rtl"><%= l delivery_date, format: :long if delivery_date %></td>
+		<td dir="rtl"><%= l delivery_date, format: :short if delivery_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_customer_path(customer), :class => 'btn btn-mini' %>

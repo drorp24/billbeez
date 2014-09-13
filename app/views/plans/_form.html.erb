@@ -14,4 +14,9 @@
 	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             :back, :class => 'btn' %>
   </div>
+<script>
+	$(document).ready(function() {	
+		align_val(<%= @newsletter.version.locale_id %>)
+	})
+</script>
 <% end %>

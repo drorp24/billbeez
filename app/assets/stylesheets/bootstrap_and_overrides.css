@@ -6,6 +6,20 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
+
+.panel:first-of-type {
+    margin-top: 35px;
+}
+
+#sample {
+    margin-top: 95px;
+}
+
+#edit_newsletter {
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+
 #menu {
     margin-top: 20px;
 }
@@ -28,7 +42,6 @@
 }
 
 .newsletter_navs li {
-    margin-right: 30px;
 }
 
 #backoffice .newsletter_navs .btn-success {
@@ -110,8 +123,11 @@ h1#campaigns, h1#customers {
     height: 34px;
     line-heigjt: 34px;
 }
-body#backoffice .page-header h1  {
+body#backoffice .page-header h1, body#backoffice #sample h1:not(.findings_title)  {
     font-family: monospace;
+}
+body#backoffice #sample h1  {
+    font-size: 24px;
 }
 .sidebar-nav {
     margin-top: 145px;
@@ -133,7 +149,7 @@ label {
     display: inline;
 }
 input, select {
-    width: 74%;
+    width: 65%;
 }
 #backoffice .span6 {
     margin-left: 2%;
