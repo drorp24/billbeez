@@ -12,6 +12,7 @@
 	  	<%= f.simple_fields_for :dues do |due_form| %>
 	  		<%= due_form.input :newsletter_id, as: :hidden %>
 			<%= due_form.input :payment_url %>
+			<%= due_form.input :paid_url %>
 		<% end %>
 	<% elsif params[:section] == 'notifications' %>
 		<%= f.input :section, as: :hidden, input_html: {value: "notifications"} %>

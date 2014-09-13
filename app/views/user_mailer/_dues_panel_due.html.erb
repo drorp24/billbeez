@@ -10,10 +10,18 @@
 	</td>
     <td><%= l due.bill.issue_date, format: :no_year if due.bill.issue_date %></td>
     <td class="amount"><%= number_to_currency due.bill.amount %></td>
-    <td><%= (due.bill.due_date.to_date - Date.today.to_date).to_i if due.bill.due_date %></td> 
+    <td>
+		<% if due.bill.due_date %>
+			<% days = (due.bill.due_date.to_date - Date.today.to_date).to_i %>
+	    	<%= days == 1 ? t("datetime.distance_in_words.x_days.one") : t("datetime.distance_in_words.x_days", count: days) %>
+    	<% end %>
+	</td> 
 	<td>
 		<% if due.payment_url.present? %>
-			<%= link_to "שלם", due.payment_url, id: "activities" %></td>
+			<%= link_to "שלם", due.payment_url, class: "activities" %>
+		<% end %>
+		<% if due.paid_url.present? %>
+			<%= link_to "סמן כמשולם", due.paid_url, class: "activities" %>
 		<% end %>
 	</td>
 	  <% if @control %>	

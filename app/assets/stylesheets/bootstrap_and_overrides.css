@@ -31,7 +31,7 @@ textarea#reminder_text {
     width: 460px;
 }
 
-#backoffice a#activities {
+#backoffice a.activities {
     color: #0088ee;
 }
 
