@@ -1,3 +1,19 @@
+.section_title {
+    width: 100%;
+}
+
+.section_title td {
+    font-size: 22px;
+}
+
+.section_title .td_right {
+    text-align: right;
+}
+
+.section_title .td_left {
+    text-align: left;
+}
+
 .data.table tr {
     height: 55px;
 }
@@ -11,7 +27,7 @@
 }
 
 .back_link {
-    font-size: 18px;
+/*    font-size: 18px; */
 }
 
 #reminder_text {
@@ -26,9 +42,6 @@
     font-weight: bold;
 }
 
-#billbeez td{
-    font-size: 12px;
-}
 .amount {
     font-weight: bold;
 }

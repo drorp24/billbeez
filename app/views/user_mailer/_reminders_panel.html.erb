@@ -1,14 +1,24 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading panel-primary clearfix">
-  	<a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">
-  		<span class="pull-right">תזכורות</span>
-  	</a>
-  		<% if @control %>
-			<span class="pull-left"><%= link_to 'Add Reminder', new_customer_newsletter_reminder_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
-		<% else %>
-  			<span class="pull-left"><%= link_to "חזור", "#highlights_reminders", class: 'back_link' %></span>
-		<% end %>
+ 	<table class="section_title">
+		<tbody>
+			<tr>
+				<td class="td_right">
+  					<a data-anchor="reminders" name="reminders" style="text-decoration: none; color: inherit;">
+  						תזכורות	
+  					</a>
+			  	</td>
+			  	<td class="td_left">
+			  		<% if @control %>
+						<span class="pull-left"><%= link_to 'Add Reminder', new_customer_newsletter_reminder_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
+					<% else %>
+			  			<span class="pull-left"><%= link_to "חזור", "#highlights_reminders", class: 'back_link' %></span>
+					<% end %>
+		  		</td>
+	  		</tr>			  		
+		</tbody>
+	</table>
   </div>
   <div class="panel-body">
     <p>רצינו להזכיר לך...</p>
