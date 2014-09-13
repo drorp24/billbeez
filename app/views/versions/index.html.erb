@@ -1,10 +1,14 @@
 <%- model_class = Version -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1>
+  	<%= "Campaign #{@campaign.id} " %>
+  	<%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
+  </h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
+	  <th>Campaign</th>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th>Locale</th>
       <th><%= model_class.human_attribute_name(:updated_at) %></th>
@@ -15,20 +19,22 @@
   <tbody>
     <% @versions.order(updated_at: :desc).each do |version| %>
       <tr>
+		<td><%= version.campaign_id %></td>
         <td><%= link_to version.id, version_path(version) %></td>
 		<td><%= version.locale.description if version.locale_id%></td>
-         <td dir="rtl"><%=l version.updated_at, format: :long %></td>
+         <td dir="rtl"><%=l version.updated_at, format: :short %></td>
 		 <td><%= version.user.email if version.user_id %> </td>
        <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_campaign_version_path(@campaign, version), :class => 'btn btn-mini' %>
-          <%= link_to "Customers", customers_path(campaign_id: @campaign.id, version_id: version.id, locale_id: version.locale_id), :class => 'btn btn-mini' %>
 
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_campaign_version_path(@campaign),
-            :class => 'btn btn-primary' %>
+<% if @available_locales.count > 0 %>
+	<%= link_to  t('.new', :default => t("helpers.links.new")),
+	            new_campaign_version_path(@campaign),
+	            :class => 'btn btn-primary' %>
+<% end %>

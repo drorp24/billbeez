@@ -64,7 +64,7 @@
 			  <li class="span2"></li>
 			  <li class="campaign_bc pull-left span2"><%= @campaign.id if @campaign %></li>
 			  <li class="version_bc pull-left span2">
-			  	<% if @version %>
+			  	<% if @version and @version.id %>
 					<% version = @version %>
 		 		<% elsif @newsletter %>
 		 			<% version = @newsletter.version %>

@@ -8,6 +8,7 @@
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:customer_id) %></th>
       <th><%= model_class.human_attribute_name(:campaign_id) %></th>
+      <th><%= model_class.human_attribute_name(:version_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%= model_class.human_attribute_name(:sent_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -17,15 +18,13 @@
   	<% if @newsletters %>
 	    <% @newsletters.order(created_at: :desc).each do |newsletter| %>
 	      <% customer = newsletter.customer if newsletter and newsletter.customer_id %>
-	      <% version = newsletter.version if newsletter and newsletter.version_id %>
-	      <% campaign = version.campaign if version and version.campaign_id %>
-	      <% sent_at = newsletter.sent_at ? (l newsletter.sent_at, forat: :long) :  nil %>
 	      <tr>
 	        <td><%= link_to newsletter.id, newsletter_path(newsletter) %></td>
-	        <td><%= link_to (customer.first_name + ' ' + customer.last_name), customer_path(customer) if customer %></td>
-	        <td><%= link_to newsletter.version.campaign_id if version and version.campaign_id %></td>
-	        <td dir="rtl"><%=l newsletter.created_at, format: :long %></td>
-	        <td dir="rtl"><%= sent_at %></td>
+	        <td><%= link_to (customer.name), customer_path(customer) if customer %></td>
+	        <td><%= link_to newsletter.campaign.id, edit_campaign_path(newsletter.campaign.id) if newsletter.version_id  %></td>
+	        <td><%= link_to newsletter.version_id, edit_campaign_version_path(newsletter.campaign.id, newsletter.version_id) if newsletter.version_id %></td>
+	        <td dir="rtl"><%=l newsletter.created_at, format: :short %></td>
+	        <td dir="rtl"><%= newsletter.sent_at ? (l newsletter.sent_at, format: :short) :  "" %></td>
 	        <td>
 	          <%= link_to t('.show', :default => t("helpers.links.show")),
 	                      customer_newsletter_path(customer, newsletter), :class => 'btn btn-mini' %>

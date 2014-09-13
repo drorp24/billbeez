@@ -5,4 +5,8 @@ class Version < ActiveRecord::Base
   has_many :newsletters
   
   scope :approved, -> {where("user_id IS NOT NULL")}
+  
+  def approved?
+    user_id.present?
+  end
 end

@@ -1,16 +1,28 @@
-<%= simple_form_for @version, :html => { :class => 'form-horizontal version_form' } do |f| %>
+<%= simple_form_for @version, url: campaign_version_path(@campaign, @version), :html => { :class => 'form-horizontal version_form' } do |f| %>
 	<%= f.input :campaign_id, as: :string, disabled: true %>
 	<%= f.input :id, label: "Version", as: :string, disabled: true %>
-	<%= f.association :locale, value_method: :id, label_method: :description, include_blank: false %>
-  	<% @version.attributes.each do |name, value| %>
-  		<% next if ['approved_at', 'user_id','campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>
-  		<%= f.input name, as: :string %>
+	<% if @version.new_record? %>
+		<%= f.association :locale, collection: @available_locales_collection, include_blank: false %>
+	<% else %>
+		<%= f.association :locale, label_method: :description, html: {selected: @version.locale_id}, disabled: true %>
+	  	<% @version.attributes.each do |name, value| %>
+	  		<% next if ['approved_at', 'user_id','campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>
+	  		<%= f.input name, as: :string %>
+	  	<% end %>
   	<% end %>
   	<div class="form-actions">
-    <%= link_to 'Approve version', approve_campaign_version_path(@campaign, @version), method: 'POST', class: 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                campaign_versions_path(@campaign.id), :class => 'btn' %>
-  </div>
+		<% if @version.new_record? %>
+			<%= f.button :submit %>
+		<% else%>	
+			<% if @version.approved? %>
+	    		<%= link_to 'Return to Draft', unapprove_campaign_version_path(@campaign, @version), method: 'PUT', class: 'btn btn-primary', disabled: @version.id.nil? %>
+	    	<% else %>
+	    		<%= link_to 'Approve', approve_campaign_version_path(@campaign, @version), method: 'PUT', class: 'btn btn-primary', disabled: @version.id.nil? %>
+	    	<% end %>
+	    <% end %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                :back, :class => 'btn' %>
+  	</div>
 <% end %>
 <script>
 $(document).ready(function () {
@@ -34,7 +46,6 @@ $(document).ready(function () {
 		align($(this))
 	})
 	
-
 	function refresh_sample() {
 		var version_id = 	$('#version_id').val()
 		$.ajax({
@@ -45,18 +56,19 @@ $(document).ready(function () {
 	  	}});		
 	}
 	
-	refresh_sample();
+	<% unless @version.new_record? %>
 
+	refresh_sample ()
 	$('.version_form input').blur(function() {
-		var field = $(this).attr('name').split('[')[1].split(']')[0]
-		var value = $(this).val()
 		$.ajax({
-	  		type: 'PUT',
-	  		url: "<%= version_path(@version)  %>",
-	  		data: field + '=' + value,
-	  		success: refresh_sample()
-	  		});
+			type: "PATCH",
+			url: "<%= campaign_version_path(@campaign, @version) %>",
+			data: $('.version_form').serialize(),
+			success: refresh_sample()		
+		})
 	})
+
+	<% end %>
 
 })
 

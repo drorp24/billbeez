@@ -38,13 +38,13 @@ Billbeez::Application.routes.draw do
   resources :campaigns do
     resources :versions do
       member do
-        post 'approve'
+        put 'approve', 'unapprove'
       end
     end
   end
 
   devise_for :users, :controllers => { :sessions => "sessions" }
-  root "campaigns#index"
+  root "home#index"
   get "user_mailer/weekly"
   get "sample_mailer/weekly"
   # The priority is based upon order of creation: first created -> highest priority.

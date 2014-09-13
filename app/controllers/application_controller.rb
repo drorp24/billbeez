@@ -37,13 +37,24 @@ before_filter :change_context #, :except => [:destroy]
     puts "params[:bill_id] = " + params[:bill_id].to_s
     puts ""
     puts ""  
-    @campaign_id = session[:campaign_id] = params[:campaign_id] || session[:campaign_id]
+    @campaign_id = session[:campaign_id] = params[:campaign_id] 
     @campaign = Campaign.find(@campaign_id) if @campaign_id
-    @version_id = session[:version_id] = params[:version_id] || session[:version_id]
+    @version_id = session[:version_id] = params[:version_id] 
+    puts ""  
+    puts "session[:version_id] = " + session[:version_id].to_s
+    puts ""
+    puts "params[:version_id] = " + params[:version_id].to_s
+    puts ""
+    puts "" 
+    puts "@version_id = " + @version_id.to_s 
+    puts ""
+    puts "@version.inspect: " + @version.inspect
+    puts ""
+      
     @version = Version.find(@version_id) if @version_id
     @customer_id = session[:customer_id] = params[:customer_id] || session[:customer_id]
     @customer = Customer.find(@customer_id) if @customer_id
-    @newsletter_id = session[:newsletter_id] = params[:newsletter_id] || session[:newsletter_id] 
+    @newsletter_id = session[:newsletter_id] = params[:newsletter_id] 
     @newsletter = Newsletter.find(@newsletter_id) if @newsletter_id 
     if params[:due_id]
       @due_id = session[:due_id] = params[:due_id] 

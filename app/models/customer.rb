@@ -3,6 +3,10 @@ class Customer < ActiveRecord::Base
   has_many    :newsletters
   has_many    :bills
   
+  def self.relating_to(campaign)
+    self.includes(newsletters: :campaign).where(campaigns: {id: campaign.id})
+  end
+
   def delivery_date_for(campaign)
     newsletter = Newsletter.joins(:version).where(customer_id: id, versions: {campaign_id: campaign.id}).where("sent_at IS NOT NULL").last
     newsletter.sent_at if newsletter

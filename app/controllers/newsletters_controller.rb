@@ -11,13 +11,13 @@ class NewslettersController < ApplicationController
   # GET /newsletters.json
   def index
     if params[:customer_id]
-      @newsletters = Newsletter.where(customer_id: params[:customer_id])
+      @newsletters = Newsletter.where(customer_id: params[:customer_id]).includes(:customer, :campaign)
     elsif params[:version_id]
-      @newsletters = Newsletter.where(version_id: params[:version_id])
+      @newsletters = Newsletter.where(version_id: params[:version_id]).includes(:customer, :campaign)
     else
-      @newsletters = Newsletter.all
+      @newsletters = Newsletter.includes(:customer, :campaign)
     end
-  end
+   end
 
   # GET /newsletters/1
   # GET /newsletters/1.json

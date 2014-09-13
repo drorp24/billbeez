@@ -1,6 +1,7 @@
 class Newsletter < ActiveRecord::Base
   belongs_to    :version
   belongs_to    :customer
+  has_one       :campaign, through: :version
   has_one       :locale, through: :customer
   has_many      :dues
   has_many      :notifications

@@ -1,17 +1,31 @@
 class VersionsController < ApplicationController
-  before_action :set_version, only: [:approve, :show, :edit, :update, :destroy]
+  before_action :set_version, only: [:approve, :unapprove, :show, :edit, :update, :destroy]
 #  before_action :set_campaign, except: [:create, :show, :index, :edit]
 
   def approve
     @version.update(user_id: current_user.id, approved_at: Time.now)
     session[:campaign_id] = @campaign.id
-    redirect_to campaign_versions_path(@campaign)
+    redirect_to campaign_versions_path(@campaign), notice: "Version was successfully approved"
+  end
+
+  def unapprove
+    @version.update(user_id: nil, approved_at: nil)
+    session[:campaign_id] = @campaign.id
+    redirect_to campaign_versions_path(@campaign), notice: "Version has returned to Draft mode"
   end
 
   # GET /versions
   # GET /versions.json
   def index
-    @versions = @campaign.versions
+
+    if @campaign
+      @versions = @campaign.versions
+      @available_locales = Locale.pluck(:id) - @campaign.versions.pluck(:locale_id)
+    else
+      @versions = Version.all
+      @available_locales = Locale.pluck(:id)
+    end
+
   end
 
   # GET /versions/1
@@ -22,32 +36,36 @@ class VersionsController < ApplicationController
   # GET /versions/new
   def new
 
-    last_version = @campaign.versions.last || Version.last
-    if last_version.present?
-      @version = @campaign.versions.build(last_version.attributes.except("id"))
-    else
-      @version = @campaign.versions.build
-    end
-    @version.locale_id = 1 unless @version.locale_id
-    @version.save
-    session[:version_id] = @version.id
-    @customer = @customer_id = session[:customer_id] = nil
-    @newsletter = @newsletter_id = session[:newsletter_id] = nil
+    redirect_to root_path, notice: "Campaign should be selected first" unless @campaign
+    @version = @campaign.versions.build
+
+    @available_locales = Locale.pluck(:id) - @campaign.versions.pluck(:locale_id)
+    redirect_to root_path, notice: "Versions for all locales created already" unless @available_locales.count > 0 # should never happen: "New" button should be disabled
+    @available_locales_collection = @available_locales.map{|locale_id| [Locale.find(locale_id).description, locale_id]}    
 
   end
 
   # GET /versions/1/edit
   def edit
+    @version = Version.find(params[:id])
+    render nothing: request.xhr?
   end
 
   # POST /versions
   # POST /versions.json
   def create
-    @version = Version.new(version_params)
+
+    if Version.where(locale_id: version_params[:locale_id]).any?
+      @version = Version.where(locale_id: version_params[:locale_id]).last.dup
+      @version.update(version_params)
+      @version.campaign_id = @campaign.id
+    else
+      @version = @campaign.versions.build(version_params)
+    end
 
     respond_to do |format|
       if @version.save
-        format.html { redirect_to user_mailer_weekly_path, notice: 'Version was successfully created.' }
+        format.html { redirect_to edit_campaign_version_path(@campaign, @version), notice: 'Version was successfully created.' }
         format.json { render action: 'show', status: :created, location: @version }
       else
         format.html { render action: 'new' }
@@ -65,7 +83,7 @@ class VersionsController < ApplicationController
           if request.xhr? 
             render nothing: true
           else
-            redirect_to versions_path
+            redirect_to edit_campaign_version_path(@campaign, @version)
           end 
           }
         format.json { head :no_content }
@@ -95,6 +113,6 @@ class VersionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def version_params
-      params.permit!.except(:action, :controller, :_method, :authenticity_token)
+      params[:version].permit!
     end
 end
