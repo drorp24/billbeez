@@ -8,7 +8,7 @@
 		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 		              :class => 'btn btn-mini btn-danger' %>
 	  	</td>
-	  	<td>
+	  	<td class="leftmost">
 	  		<%= link_to "Edit", edit_customer_newsletter_reminder_path(@customer, @newsletter, reminder), class: 'btn btn-mini' %>
   		</td>
 	<% end %>

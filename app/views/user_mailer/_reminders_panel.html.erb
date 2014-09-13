@@ -36,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-        	<% @newsletter.reminders.order(created_at: :desc).each do |reminder| %>
+        	<% @newsletter.reminders.order(created_at: :asc).each do |reminder| %>
 				<%= render 'reminders_panel_reminder', reminder: reminder %>
 			<% end %>
         </tbody>

@@ -21,8 +21,9 @@
 	  	<td>
 	  		<%= link_to "Edit", edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
   		</td>
-  		<td>
+  		<td class="leftmost">
   			<%= link_to "Add Feature", new_customer_newsletter_plan_feature_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
+		</td>
 	  <% end %>
 
 </tr>

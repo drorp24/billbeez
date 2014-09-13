@@ -25,7 +25,10 @@
   		</td>
   		<td class="control">
   			<%= link_to "Add Line", new_customer_newsletter_notification_line_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
+		</td>
+		<td class="leftmost">
   			<%= link_to "Add Charge", new_customer_newsletter_notification_charge_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
+		</td>
 	  <% end %>
   </tr>
 
@@ -76,7 +79,6 @@
 	  		<td>
 	  			<%= link_to "Edit", edit_customer_newsletter_notification_line_path(@customer, @newsletter, notification, line, section: params[:section]), class: 'btn btn-mini' %>	  			
 	  		</td>
-	  		<td></td>
 		<% end %>
   	</tr>
   <% end %>
