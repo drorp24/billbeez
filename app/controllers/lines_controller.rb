@@ -59,7 +59,7 @@ class LinesController < ApplicationController
   def destroy
     @line.destroy
     respond_to do |format|
-      format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: params[:section])}
+      format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section)}
       format.json { head :no_content }
     end
   end
@@ -73,6 +73,6 @@ class LinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_params
-      params[:line].permit!
+      params[:line].except(:section).permit!
     end
 end
