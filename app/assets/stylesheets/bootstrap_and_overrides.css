@@ -7,6 +7,10 @@
   */
 
 
+textarea#reminder_text {
+    width: 533px;
+}
+
 .panel:first-of-type {
     margin-top: 35px;
 }
@@ -15,9 +19,8 @@
     margin-top: 95px;
 }
 
-#edit_newsletter {
-    margin-left: 60px;
-    margin-bottom: 10px;
+#send_newsletter {
+    margin-left: 20px;
 }
 
 #menu {

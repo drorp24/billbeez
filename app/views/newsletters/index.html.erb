@@ -31,7 +31,7 @@
 	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
 	                      edit_newsletter_path(newsletter), :class => 'btn btn-mini' %>
 	          <%= link_to t('.resend', :default => t("helpers.links.resend")),
-	                      deliver_newsletter_path(newsletter), :class => 'btn btn-mini' %>
+	                      deliver_newsletter_path(newsletter), :class => 'btn btn-mini' if newsletter.sent_at and newsletter.version.approved? %>
 	        </td>
 	      </tr>
     	<% end %>

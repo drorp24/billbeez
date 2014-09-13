@@ -70,7 +70,7 @@
 		 			<% version = @newsletter.version %>
 		  		<% end %>
 		  		<% if version %>
-		  			<%= link_to version.id.to_s + '(' + version.locale.description + ')', edit_campaign_version_path(@campaign, version) %>
+		  			<%= link_to version.id.to_s + '(' + version.locale.description + ')', edit_version_path(version) %>
 	  			<% end %>
 	  		  </li>
 			  <li class=" customer_bc pull-left span2"><%= link_to "#{@customer.id} (#{@customer.name})", edit_customer_path(@customer) if @customer %></li>
@@ -80,10 +80,12 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div id="menu" class="span6">
-          <%= bootstrap_flash %>
+          <%= bootstrap_flash unless @newsletter_edit %>
            <% if params[:newsletter_id] or (params[:controller] == 'newsletters' and params[:action] == 'edit' and params[:id]) %>
 			<div class="page-header">
 				<h1>Edit Newsletter</h1>
+				<p><%= "Note: This newsletter was sent already on #{l @newsletter.sent_at, format: :long, locale: :en}" if @newsletter.sent_at %>
+					
 			</div>
 			<div id="sidebar-wrapper">
 	          	<ul class="sidebar-nav newsletter_navs">

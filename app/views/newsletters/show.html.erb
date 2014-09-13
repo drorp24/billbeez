@@ -6,10 +6,17 @@
 		<%= "This newsletter was sent on "%>
 		<%= l @newsletter.sent_at, format: :long, locale: :en %>
 	<% else %>
-		<span>This newsletter was never sent to the customer</span>
-		<span><%= link_to "Edit Newsletter", edit_newsletter_path(@newsletter), class: "btn btn-success", id: "edit_newsletter" %></span>
-			
+		This newsletter was never sent to the customer
 	<% end %>	
+</p>
+<p>
+	<span><%= link_to "Edit Newsletter", edit_newsletter_path(@newsletter), class: "btn btn-success" %></span>
+	<span id="send_newsletter">
+		<% if @newsletter.version.approved? %>
+			<%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter), class: "btn btn-success" %>	
+   		<% else %>
+    		<%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter.id), confirm: "Version #{@newsletter.version_id} has not been approved. Are you sure you want to send newsletter?", :class => 'btn btn-success' %>
+    	<% end %>
 </p>
 <script>
 	
