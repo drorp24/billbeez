@@ -94,6 +94,6 @@ Billbeez::Application.configure do
     password: 'dror160395'
   }
 
-  config.use_delayed_job = true
+  config.use_delayed_job = false
 
 end
