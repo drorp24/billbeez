@@ -1,3 +1,15 @@
+body#backoffice #sample h1#findings_title {
+    font-size: 48px;
+    font-family: arial;
+    font-weight: 600;
+}
+
+#logo {
+    position: relative;
+    width: 296px;
+    right: 136px;
+}
+
 td.leftmost a {
     margin-left: 8px;
 }
