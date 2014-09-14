@@ -83,7 +83,7 @@ td.leftmost a {
 }
 
 #billbeez #bill_background.bill_background  {
-    background-color: #FDE9C9;
+    background-color: #FDE9C9 !important;
 }
 
 /*
@@ -93,7 +93,7 @@ td.leftmost a {
 }
 */
 .notification_background {
-    background-color: #FCF7C9;
+    background-color: #FCF7C9 !important;
 }
 
 .reminder_background {
@@ -101,7 +101,7 @@ td.leftmost a {
 }
 
 .plan_background {
-    background-color: #F7B547;
+    background-color: #F7B547 !important;
     color: #FFFFFF;
     font-weight: bold;
 }

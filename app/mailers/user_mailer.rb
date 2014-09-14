@@ -12,6 +12,6 @@ class UserMailer < ActionMailer::Base
     @version =    @newsletter.version
     @email =      @newsletter.customer.email
 
-    mail to: @email, subject:"Billbeez Weekly Newsletter"
+    mail to: @email, subject: Billbeez::Application.config.newsletter_subject
   end
 end

@@ -6,7 +6,7 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
-
+/* the !important directive works!
   .table td,
   .table th {
     background-color: yellow !important;  
@@ -16,7 +16,7 @@ table {
 .panel {
   background-color: blue !important;  
 
-
+*/
 textarea#reminder_text {
     width: 533px;
 }
@@ -108,7 +108,7 @@ textarea#reminder_text {
 
 #backoffice #campaign_button, #backoffice #customer_button, #backoffice .btn-success {
     margin-top: 8px;
-    background-color: #BDCD40;
+    background-color: #BDCD40 !important;
     background-image: none;
     font-weight: bold;
 }

@@ -95,5 +95,7 @@ Billbeez::Application.configure do
   }
 
   config.use_delayed_job = true
+  config.newsletter_subject = "Production newsletter"
+
 
 end
