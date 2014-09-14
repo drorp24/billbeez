@@ -3275,7 +3275,7 @@ pre code {
   }
 }
 table {
-  background-color: transparent;
+/*  background-color: transparent; */ 
 }
 th {
   text-align: left;
@@ -6196,8 +6196,8 @@ a.list-group-item-danger.active:focus {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: #ffffff;
-  border: 1px solid transparent;
+/*   background-color: #ffffff; */
+  border: 1px solid transparent; 
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -7798,7 +7798,7 @@ legend+.control-group{margin-top:20px;-webkit-margin-top-collapse:separate;}
 .form-horizontal .help-block{margin-bottom:0;}
 .form-horizontal input+.help-block,.form-horizontal select+.help-block,.form-horizontal textarea+.help-block,.form-horizontal .uneditable-input+.help-block,.form-horizontal .input-prepend+.help-block,.form-horizontal .input-append+.help-block{margin-top:10px;}
 .form-horizontal .form-actions{padding-left:180px;}
-table{max-width:100%;background-color:transparent;border-collapse:collapse;border-spacing:0;}
+/*table{max-width:100%;background-color:transparent;border-collapse:collapse;border-spacing:0;} */
 .table{width:100%;margin-bottom:20px;}.table th,.table td{padding:8px;line-height:20px;text-align:left;vertical-align:top;border-top:1px solid #dddddd;}
 .table th{font-weight:bold;}
 .table thead th{vertical-align:bottom;}
