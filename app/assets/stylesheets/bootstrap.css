@@ -242,7 +242,7 @@ th {
   }
   .table td,
   .table th {
-    background-color: #fff !important;
+/*    background-color: #fff !important; */ /* Dror */
   }
   .btn > .caret,
   .dropup > .btn > .caret {
