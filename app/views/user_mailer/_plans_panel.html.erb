@@ -2,23 +2,21 @@
   <!-- Default panel contents -->
   <div class="panel-heading panel-primary clearfix">
  	<table class="section_title">
-		<tbody>
 			<tr>
-				<td class="td_right">
-					<%= image_tag "medal-128.png", class: "section_title_logo "%>
+				<th class="td_right" style="text-align: right">
+					<%= image_tag "medal-128.png", class: "section_title_logo", size: "48x48"%>
   					<a data-anchor="plans" name="plans" class="section_title_name", style="text-decoration: none; color: inherit;">
   						בילביז ממליצה!
   					</a>
-			  	</td>
-			  	<td class="td_left">
+			  	</th>
+			  	<th class="td_left" style="text-align: left">
 			  		<% if @control %>
 			  			<span class="pull-left"><%= link_to 'Add Plan', new_customer_newsletter_plan_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
 					<% else %>
 			  			<span class="pull-left"><%= link_to "חזור", "#findings", class: 'back_link' %></span>
 					<% end %>
-		  		</td>
+		  		</th>
 	  		</tr>			  		
-		</tbody>
 	</table>
   </div>
   <div class="panel-body">

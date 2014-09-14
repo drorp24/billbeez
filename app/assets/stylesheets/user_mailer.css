@@ -1,4 +1,17 @@
-#billbeez td {
+th.td_left {
+    text-align: left;
+}
+
+th.td_right {
+    text-align: right;
+}
+
+.highlights_link {
+    color: #0000ff !important;
+    text-decoration: underline !important;
+}
+
+#billbeez td, #billbeez th {
     text-align: center;
 }
 
@@ -20,9 +33,10 @@ body#backoffice #sample h1#findings_title {
 }
 
 #logo {
-    position: relative;
-    width: 296px;
-    right: 136px;
+/*    position: relative !important; */
+    width: 296px !important;
+    right: 136px !important;
+    max-width: 296px !important;
 }
 
 td.leftmost a {
@@ -92,7 +106,7 @@ td.leftmost a {
     background-repeat: repeat-x;
 }
 */
-.notification_background {
+#billbeez #notification_background.notification_background {
     background-color: #FCF7C9 !important;
 }
 
@@ -100,7 +114,7 @@ td.leftmost a {
 /*    background-color: #ECF6A8; */
 }
 
-.plan_background {
+#billbeez #plan_background.plan_background {
     background-color: #F7B547 !important;
     color: #FFFFFF;
     font-weight: bold;
@@ -110,7 +124,7 @@ td.leftmost a {
     border-top: none;
 }
 
-th, td {
+#billbeez td {
     text-align: center;
 }
 .sup_logo {

@@ -1,5 +1,5 @@
-  <tr id="bill_background" class="bill_background">
-    <td bgcolor="#000000">
+  <tr id="bill_background" class="bill_background" bgcolor="#FDE9C9">
+    <td>
     	<% if due.supplier %>
 	    	<% if logo = due.supplier.logo %>
 	    		<%= image_tag logo, class: 'sup_logo' %>
@@ -18,10 +18,12 @@
 	</td> 
 	<td>
 		<% if due.payment_url.present? %>
-			<%= link_to "שלם", due.payment_url, class: "activities" %>
+			<%= link_to "שלם", due.payment_url, class: "activities highlights_link" %>
 		<% end %>
+	</td>
+	<td>
 		<% if due.paid_url.present? %>
-			<%= link_to "סמן כמשולם", due.paid_url, class: "activities" %>
+			<%= link_to "סמן כמשולם", due.paid_url, class: "activities highlights_link" %>
 		<% end %>
 	</td>
 	  <% if @control %>	

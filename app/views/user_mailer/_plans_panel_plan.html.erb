@@ -9,7 +9,7 @@
 		<% end %>
 	</td>
 	<td class="plan"><%= plan.curr_plan %></td>
-	<td class="plan plan_background"><%= plan.recc_plan %></td>
+	<td class="plan plan_background" id="plan_background" bgcolor="#F7B547"><%= plan.recc_plan %></td>
 	  <% if @control %>	
 	  	<td>
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

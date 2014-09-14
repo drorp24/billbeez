@@ -44,6 +44,6 @@ Billbeez::Application.configure do
   
   config.assets.raise_production_errors = true
   
-  config.use_delayed_job = true
+  config.use_delayed_job = false
   config.newsletter_subject = "Test newsletter"
 end
