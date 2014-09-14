@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('[data-behaviour~=datepicker]').datepicker({format: 'dd-mm-yyyy'});    
+    $('[data-behaviour~=datepicker]').datepicker({format: 'dd-mm-yyyy'}); 
 })
 
 function align_val(val) {
