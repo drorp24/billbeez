@@ -7,6 +7,16 @@
   */
 
 
+  .table td,
+  .table th {
+    background-color: yellow !important;  
+table {
+  background-color: green !important;
+}
+.panel {
+  background-color: blue !important;  
+
+
 textarea#reminder_text {
     width: 533px;
 }
