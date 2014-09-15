@@ -1,15 +1,17 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading panel-primary">
-	<table class="section_title">
+	<table class="section_title" style="color: #888888">
 			<tr>
-				<th class="td_right" style="text-align: right">
+				<th width="190" class="td_right" style="text-align: right;">
 					<%= image_tag "bell-128.png", class: "section_title_logo", size: "48x48" %>
-				  	<a data-anchor="dues" name="dues" class="section_title_name" style="text-decoration: none; color: inherit;">
+				</th>
+				<th width="190">
+				  	<a data-anchor="dues" name="dues" class="section_title_name" style="text-decoration: none; color: #888888 !important;">
 				  		חשבוניות
 				  	</a>
 			  	</th>
-			  	<th class="td_left" style="text-align: left">
+			  	<th width="190" class="td_left" style="text-align: left">
 			  		<% if @control %> 			
 						<span class="pull-left"><%= link_to  'Add Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
 			  		<% else %>
@@ -33,7 +35,7 @@
             <th>סכום</th>
             <th>נותרו</th>
             <th>פעולות</th>
-            
+            <th></th>
             <% if @control %>
             	<th></th>
             	<th></th>

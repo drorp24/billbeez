@@ -3,13 +3,15 @@
   <div class="panel-heading panel-primary clearfix">
  	<table class="section_title">
 			<tr>
-				<th class="td_right" style="text-align: right">
+				<th width="100" class="td_right" style="text-align: right">
 					<%= image_tag "medal-128.png", class: "section_title_logo", size: "48x48"%>
-  					<a data-anchor="plans" name="plans" class="section_title_name", style="text-decoration: none; color: inherit;">
+				</th>
+				<th width="368">
+  					<a data-anchor="plans" name="plans" class="section_title_name", style="text-decoration: none; color: #888888 !important;">
   						בילביז ממליצה!
   					</a>
 			  	</th>
-			  	<th class="td_left" style="text-align: left">
+			  	<th width="100" class="td_left" style="text-align: left">
 			  		<% if @control %>
 			  			<span class="pull-left"><%= link_to 'Add Plan', new_customer_newsletter_plan_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
 					<% else %>
