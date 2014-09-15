@@ -13,7 +13,9 @@
     <td>
 		<% if due.bill.due_date %>
 			<% days = (due.bill.due_date.to_date - Date.today.to_date).to_i %>
-	    	<%= days == 1 ? t("datetime.distance_in_words.x_days.one") : t("datetime.distance_in_words.x_days", count: days) %>
+			<% scope = days > 0 ? 'datetime.future_time_in_words.x_days' : 'datetime.time_ago_in_words.x_days' %>
+			<% days = days.abs %>
+	    	<%= days < 3 ? t(days.to_s, scope: scope) : t('other', scope: scope, count: days) %> 
     	<% end %>
 	</td> 
 	<td>

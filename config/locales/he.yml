@@ -60,10 +60,25 @@ he:
     - :month
     - :year
   datetime:
+    time_ago_in_words:
+      x_days:
+        "0": היום
+        "1": אתמול
+        "2": שלשום
+        other: לפני %{count} ימים  
+    future_time_in_words:    
+      x_days:
+        "1": מחר
+        "2": מחרתיים
+        other: עוד %{count} ימים  
     distance_in_words:
       about_x_hours:
         one: בערך שעה אחת
         other: בערך %{count} שעות
+      x_days_ago:
+        one: אתמול
+        two: שלשום
+        other: לפני %{count} ימים
       about_x_months:
         one: בערך חודש אחד
         other: בערך %{count} חודשים
