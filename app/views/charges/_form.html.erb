@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs"> 		
-	<%= f.input :amount, as: :string, placeholder: "Charge amount" %>
+	<%= f.input :amount, as: :decimal, required: true, placeholder: "Charge amount" %>
 	<%= f.association :service, label: "Existing service", placeholder: "select an already defined service", include_blank: false %>
 	<%= f.input :new_service, placeholder: "Define a new service now" %>
 	<%= f.association :comment, label: "Existing comment", placeholder: "select an already defined comment", include_blank: false %>

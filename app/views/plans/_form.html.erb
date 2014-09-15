@@ -4,9 +4,9 @@
   <div class="form-inputs">
 	<%= f.association :supplier, label: "Existing supplier", placeholder: "select an existing supplier", include_blank: false %>
 	<%= f.input :new_supplier, label: "New supplier", placeholder: "Create a new supplier now"%>
-	<%= f.input :curr_plan, label: "Current Plan", placeholder: "Current Plan", as: :string %>
-	<%= f.input :recc_plan, label: "Recommended Plan", placeholder: "Recommended Plan", as: :string %>
-	<%= f.input :findings, label: "Findings", placeholder: "Text to show on top", as: :string %>
+	<%= f.input :curr_plan, required: true, label: "Current Plan", placeholder: "Current Plan", as: :string %>
+	<%= f.input :recc_plan, required: true, label: "Recommended Plan", placeholder: "Recommended Plan", as: :string %>
+	<%= f.input :findings, required: true, label: "Findings", placeholder: "Text to show on top", as: :string %>
   </div>
 
   <div class="form-actions">
