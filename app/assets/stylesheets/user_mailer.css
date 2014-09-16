@@ -1,3 +1,13 @@
+#billbeez tr.section_title.panel-heading {
+    height: 62px;
+}
+
+.panel-default > .panel-heading {
+/*    background-color: #bdcd3f !important; */
+    background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important; 
+    border-color: #94A22A !important;
+}
+
 #toolbar_bl_7 {
 }
 
@@ -48,6 +58,8 @@ th.td_right {
     line-height: 45px;
     margin-top: 15px;
     font-weight: 100;
+    color: #595959;
+    text-shadow: 0 1px 0 #ffffff;
 }
 
 body#backoffice #sample h1#findings_title {
@@ -122,6 +134,7 @@ td.leftmost a {
 
 #billbeez #bill_background.bill_background  {
     background-color: #FDE9C9 !important;
+    background-color: #ebce49 !important;
 }
 
 /*

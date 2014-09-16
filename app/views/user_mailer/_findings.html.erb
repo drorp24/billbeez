@@ -5,7 +5,7 @@
 	<table class="findings jumbo" style="background-color: #f9f9f9 !important;" bgcolor="#f9f9f9">
 		<tbody>
 			<% @newsletter.plans.order(created_at: :asc).each do |plan| %>
-				<tr class="clearfix">
+				<tr bgcolor="#f9f9f9" style="background-color: #f9f9f9 !important;">
 					<td style="text-align: right">
 						<%= plan.findings %>
 					</td>
