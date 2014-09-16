@@ -1,3 +1,19 @@
+#bl_4 {
+    
+}
+
+.margin {
+    margin: 0 40px; 
+    height: 50px;
+}
+h1#findings_title {
+    margin-top: 0
+}
+
+p#findings_sentence {
+    margin-bottom: 0;
+}
+
 #billbeez tr.section_title.panel-heading {
     height: 62px;
 }
@@ -11,21 +27,19 @@
 #toolbar_bl_7 {
 }
 
-#highlights_container {
-    margin-right: -40px;
-    padding-right: 0;
-}
-#highlights_container #highlights_container_table {
-    margin-right: -40px;
-}
 
 .jumbo {
     background-color: #eeeeee !important;
     background-color: #f9f9f9 !important;
-    padding: 10px 40px !important;
     width: 600px !important;
 }
 
+.jumbo1 {
+    background-color: #eeeeee !important;
+    background-color: #f9f9f9 !important;
+/*    padding: 10px 40px !important; */
+    width: 600px !important;
+}
 #bl_5.jumbotron, #findings.jumbotron {
     margin-bottom: 0;
 }
@@ -59,13 +73,14 @@ th.td_right {
     margin-top: 15px;
     font-weight: 100;
     color: #595959;
-    text-shadow: 0 1px 0 #ffffff;
+    text-shadow: 0 1px 0 #ffffff !important;
 }
 
 body#backoffice #sample h1#findings_title {
     font-size: 48px;
     font-family: arial;
     font-weight: 600;
+    line-height: 120px !important;
 }
 
 #logo {

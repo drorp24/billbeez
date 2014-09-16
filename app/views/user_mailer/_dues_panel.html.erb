@@ -1,24 +1,22 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-	<table width="600px">
+	<table width="<%= @control ? "750" : "600"%>">
 			<tr class="section_title panel-heading panel-primary dues-panel" style="background-color: #bdcd3f !important; padding: 10px 15px !important; background-color: #bdcd3f !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#bdcd3f" bgcolor="#bdcd3f">
-				<th></th>
-				<th width="200" class="td_right" style="text-align: right;">
+				<th width="<%= @control ? "250" : "200"%>" class="td_right" style="text-align: right;">
 					<%= image_tag "checklist-128.png", class: "section_title_logo", size: "48x48" %>
 				</th>
-				<th width="200">
+				<th width="<%= @control ? "250" : "200"%>">
 				  	<a data-anchor="dues" name="dues" class="section_title_name" style="text-decoration: none;">
 				  		חשבוניות
 				  	</a>
 			  	</th>
-			  	<th width="200" class="td_left" style="text-align: left">
+			  	<th width="<%= @control ? "250" : "200"%>" class="td_left" style="text-align: left">
 			  		<% if @control %> 			
 						<span class="pull-left"><%= link_to  'Add Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
 			  		<% else %>
 			  			<span class="pull-left"><%= link_to "חזור", "#highlights_dues", class: 'back_link' %></span>
 			  		<% end %>
 		  		</th>
-		  		<th></th>
 	  		</tr>
 	</table>
   <div class="panel-body">
@@ -26,7 +24,7 @@
   </div>
 
   <!-- Table -->
-  <table id="bills" class="data table">	
+  <table id="bills" class="data table" cellspacing="0">	
         <thead>
           <tr>
             <th>ספק</th>
