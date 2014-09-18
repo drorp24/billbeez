@@ -18,6 +18,5 @@ class Bill < ActiveRecord::Base
     return unless !name.blank?
     supplier = Supplier.create!(name: name)
     update(supplier_id: supplier.id)
-  end 
-  
+  end   
 end

@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.association :supplier, label: "Existing supplier", placeholder: "select an existing supplier", include_blank: false %>
-	<%= f.input :new_supplier, label: "New supplier" %>
+	<%= f.association :supplier ,label: "Existing supplier", placeholder: "select an existing supplier", include_blank: "Select an existing supplier" %>
+	<%= f.input :new_supplier, label: "New supplier", placeholder: "or define a new one now" %>
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
 	<%= f.input :due_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
 	<%= f.input :amount, required: true, as: :decimal %>
@@ -31,6 +31,16 @@
 <% end %>
 <script>
 	$(document).ready(function() {	
+		
 		align_val(<%= @newsletter.version.locale_id %>)
+	
+
+		$('#bill_supplier_id').change(function() {
+			$.getJSON("/suppliers/" + $(this).val() + "/url", function(data) {
+				$('#bill_dues_attributes_0_payment_url').val(data)
+				
+			})
+		})
+
 	})
 </script>
