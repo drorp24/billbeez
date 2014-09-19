@@ -2,6 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+	<div id="supplierDropdown"></div>
 	<%= f.association :supplier ,label: "Existing supplier", placeholder: "select an existing supplier", include_blank: "Select an existing supplier" %>
 	<%= f.input :new_supplier, label: "New supplier", placeholder: "or define a new one now" %>
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
@@ -43,7 +44,19 @@
 			})
 		})
 		
-		
+		$.getJSON("/suppliers/list", function(data) {
+			$('#supplierDropdown').ddslick({
+				
+			    data:data,
+			    width:342,
+			    selectText: "Select existing supplier",
+			    imagePosition:"right",
+			    onSelected: function(selectedData){
+			        //callback function: do something with selectedData;
+			    }   
+			});
+		})
+
 
 	})
 </script>

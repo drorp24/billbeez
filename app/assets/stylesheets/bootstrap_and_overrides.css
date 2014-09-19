@@ -17,6 +17,60 @@ table {
   background-color: blue !important;  
 
 */
+
+#backoffice .dd-option, #backoffice .dd-selected {
+    height: 48px;
+    padding: 0;
+}
+
+#backoffice .dd-option-description {
+    margin-top: -14px;
+-}
+
+backoffice .dd-option-text {
+    
+}
+
+#backoffice .dd-option-image, #backoffice .dd-selected-image {
+    width: 48px;
+}
+
+#backoffice .dd-image-right {
+    margin-right: 30px;
+}
+
+#backoffice .dd-select a {
+/*    margin-right: 30px;
+    margin-bottom: -16px;
+    margin-top: 12px; */
+}
+
+#backoffice .dd-select a:hover {
+    background-color: transparent;
+    color: #000;
+}
+
+#supplierDropdown {
+  margin: 20px 160px;  
+}
+
+#backoffice .dd-selected .initial {
+    position: relative;
+    top: 12px;
+    right: 30px;
+}
+#backoffice .dd-selected label {
+/*    position: relative;
+    top: 12px; */
+   margin-right: 20px;
+   line-height: 42px;
+}
+#backoffice .dd-selected small {
+    position: relative;
+    top: -14px;
+    right: 20px;
+}
+
 textarea#reminder_text {
     width: 533px;
 }

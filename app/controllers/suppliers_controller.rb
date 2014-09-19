@@ -7,34 +7,53 @@ class SuppliersController < ApplicationController
    end
   
   def list
-    var ddData = [
+    
+    ddData = []
+    
+    Supplier.all.each do |supplier| 
+      ddData << 
+        {
+        text:         supplier.name,
+        value:        supplier.id,
+        selected:     false,
+        description:  supplier.description,
+        imageSrc:     image_url("globes.jpg")
+        }
+    end
+    
+    render json: ddData
+
+  end
+
+  def list1
+    ddData = [
     {
         text: "Facebook",
         value: 1,
         selected: false,
         description: "Description with Facebook",
-        imageSrc: "http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
+        imageSrc: image_url("globes.jpg")
     },
     {
         text: "Twitter",
         value: 2,
         selected: false,
         description: "Description with Twitter",
-        imageSrc: "http://dl.dropbox.com/u/40036711/Images/twitter-icon-32.png"
+        imageSrc: image_url("globes.jpg")
     },
     {
         text: "LinkedIn",
         value: 3,
-        selected: true,
+        selected: false,
         description: "Description with LinkedIn",
-        imageSrc: "http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
+        imageSrc: image_url("globes.jpg")
     },
     {
         text: "Foursquare",
         value: 4,
         selected: false,
         description: "Description with Foursquare",
-        imageSrc: "http://dl.dropbox.com/u/40036711/Images/foursquare-icon-32.png"
+        imageSrc: image_url("globes.jpg")
     }
 ];
 

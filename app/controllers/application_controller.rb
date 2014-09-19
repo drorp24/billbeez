@@ -7,6 +7,10 @@ before_filter :change_context #, :except => [:destroy]
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  def image_url(source)
+    "#{root_url}#{ActionController::Base.helpers.asset_path(source)}"
+  end
+
   def clear_campaign
     @version_id = session[:version_id] = 
     @customer_id = session[:customer_id] = 

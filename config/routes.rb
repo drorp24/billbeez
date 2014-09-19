@@ -7,6 +7,7 @@ Billbeez::Application.routes.draw do
   resources :plans
 
   get "/suppliers/:id/url", to: 'suppliers#url'
+  get "/suppliers/list", to: 'suppliers#list'
   
   resources :newsletters do
     member do
