@@ -7,6 +7,11 @@ class SuppliersController < ApplicationController
    end
   
   def list
+       
+    if params[:bill_id] and bill = Bill.find(params[:bill_id])
+      bill_supplier_id = bill.supplier_id 
+      bill_payment_url = bill.payment_url
+    end
     
     ddData = []
     
@@ -15,9 +20,10 @@ class SuppliersController < ApplicationController
         {
         text:         supplier.name,
         value:        supplier.id,
-        selected:     false,
+        selected:     supplier.id == bill_supplier_id,
         description:  supplier.description,
-        imageSrc:     image_url("globes.jpg")
+        imageSrc:     image_url("globes.jpg"),
+        payment_url:  bill_payment_url || supplier.payment_url
         }
     end
     

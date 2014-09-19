@@ -18,6 +18,10 @@ table {
 
 */
 
+.dd-options, .dd-click-off-close{
+    overflow-y:auto !important;
+}
+
 #backoffice .dd-option, #backoffice .dd-selected {
     height: 48px;
     padding: 0;
