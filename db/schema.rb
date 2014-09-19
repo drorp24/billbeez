@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915170736) do
+ActiveRecord::Schema.define(version: 20140919082329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 20140915170736) do
     t.date     "due_date"
     t.decimal  "amount",      precision: 8, scale: 2
     t.boolean  "paid"
-    t.string   "contract"
-    t.string   "last_digits"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "payment_url"
+    t.string   "paid_url"
+    t.string   "view_url"
   end
 
   create_table "campaigns", force: true do |t|
@@ -86,8 +87,6 @@ ActiveRecord::Schema.define(version: 20140915170736) do
   create_table "dues", force: true do |t|
     t.integer  "newsletter_id"
     t.integer  "bill_id"
-    t.string   "payment_url"
-    t.string   "paid_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -151,12 +150,13 @@ ActiveRecord::Schema.define(version: 20140915170736) do
 
   create_table "plans", force: true do |t|
     t.integer  "newsletter_id"
-    t.integer  "supplier_id"
     t.string   "curr_plan"
     t.string   "recc_plan"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "findings"
+    t.integer  "recc_supplier_id"
+    t.integer  "curr_supplier_id"
   end
 
   create_table "reminders", force: true do |t|

@@ -1,7 +1,8 @@
 class Plan < ActiveRecord::Base
   
   belongs_to    :newsletter
-  belongs_to    :supplier
+  belongs_to    :curr_supplier, class_name: "Supplier", foreign_key: :curr_supplier_id
+  belongs_to    :recc_supplier, class_name: "Supplier", foreign_key: :recc_supplier_id
   has_many      :features
   
 
