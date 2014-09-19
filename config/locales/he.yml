@@ -37,7 +37,7 @@ he:
     - שישי
     - שבת
     formats:
-      default: ! '%d-%m-%Y'
+      default: ! '%d-%m-%y'
       long: ! '%e ב%B, %Y'
       short: ! '%e %b %Y'
       no_year: ! '%e %b'

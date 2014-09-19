@@ -8,14 +8,15 @@
 			<% end %>
 		<% end %>
 	</td>
-    <td><%= l due.bill.issue_date, format: :no_year if due.bill.issue_date %></td>
+    <td><%= l due.bill.issue_date if due.bill.issue_date %></td>
     <td class="amount"><%= number_to_currency due.bill.amount %></td>
     <td>
 		<% if due.bill.due_date %>
 			<% days = (due.bill.due_date.to_date - Date.today.to_date).to_i %>
 			<% scope = days > 0 ? 'datetime.future_time_in_words.x_days' : 'datetime.time_ago_in_words.x_days' %>
+			<% behind = days < 0 %>
 			<% days = days.abs %>
-	    	<%= days < 3 ? t(days.to_s, scope: scope) : t('other', scope: scope, count: days) %> 
+	    	<span class=<%= behind ? "behind" : "" %>><%= days < 3 ? t(days.to_s, scope: scope) : t('other', scope: scope, count: days) %></span> 
     	<% end %>
 	</td> 
 	<td>

@@ -8,7 +8,7 @@
 			<% end %>
 		<% end %>
 	</td>
-    <td><%= l notification.bill.issue_date, format: :no_year if notification.bill.issue_date %></td>
+    <td><%= l notification.bill.issue_date if notification.bill.issue_date %></td>
     <td class="amount"><%= number_to_currency notification.bill.amount %></td>
 	<td><%= number_to_currency notification.prev_bill_amt %></td>
 	<td><%= number_to_currency notification.charges.sum(:amount) %></td>
@@ -39,7 +39,6 @@
 
   <% notification.charges.order(created_at: :desc).each do |charge| %>
   	<tr>
-	  	<td><%= charge.service.name %></td>
 	  	<td>
 	  		<% if charge.status and charge.exception? %>
 	  			<%= image_tag 'question-32.png' %>
@@ -47,9 +46,11 @@
   				<%= image_tag 'check-32.png' %>
 			<% end %>
 	  	</td>
+	  	<td><%= charge.service.name %></td>
 	  	<td><%= number_to_currency charge.amount if charge.amount %></td>
 	  	<td><%= charge.comment.name %></td>
-	  	<td><%= number_to_currency charge.amount if charge.amount %></td>	  	
+	  	<td><%= number_to_currency charge.amount if charge.amount %></td>
+	  	<td></td>	  	
 	  	<% if @control %>
 	  		<td>
 			  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
@@ -68,6 +69,7 @@
 
   <% notification.lines.order(created_at: :desc).each do |line| %>
   	<tr>
+	  	<td></td>
 	  	<td><%= line.part1 %></td>
 	  	<td><%= line.part2 %></td>
 	  	<td><%= line.part3 %></td>
