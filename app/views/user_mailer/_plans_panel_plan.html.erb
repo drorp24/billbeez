@@ -1,13 +1,31 @@
 <tr>
+	<td></td>
 	<td>
-    	<% if plan.supplier %>
-	    	<% if logo = plan.supplier.logo %>
+    	<% if plan.curr_supplier %>
+	    	<% if logo = plan.curr_supplier.logo %>
 	    		<%= image_tag logo, class: 'sup_logo' %>
 	    	<% else %>	
-	    		<%= plan.supplier.name %>
+	    		<%= plan.curr_supplier.name %>
 			<% end %>		
 		<% end %>
 	</td>
+	<td>
+    	<% if plan.recc_supplier %>
+	    	<% if logo = plan.recc_supplier.logo %>
+	    		<%= image_tag logo, class: 'sup_logo' %>
+	    	<% else %>	
+	    		<%= plan.recc_supplier.name %>
+			<% end %>		
+		<% end %>
+	</td>
+	<% if @control %>
+		<td></td>
+		<td></td>
+		<td><%= link_to 'Edit Plan', edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %></td>
+	<% end %>
+</tr>
+<tr>
+	<td></td>
 	<td class="plan"><%= plan.curr_plan %></td>
 	<td class="plan plan_background" id="plan_background" bgcolor="#F7B547"><%= plan.recc_plan %></td>
 	  <% if @control %>	

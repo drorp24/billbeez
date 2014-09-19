@@ -29,17 +29,18 @@
   <table class=" data table" cellspacing="0">	
         <thead>
           <tr>
-            <th>ספק</th>
+            <th></th>
             <th>תכנית נוכחית</th>
             <th>תכנית מומלצת</th>
             <% if @control %>
+            	<th></th>
             	<th></th>
             	<th></th>
         	<% end %>
           </tr>
         </thead>
         <tbody>
-		<% @newsletter.plans.includes(:supplier).order(created_at: :asc).each do |plan| %>
+		<% @newsletter.plans.includes(:curr_supplier, :recc_supplier).order(created_at: :asc).each do |plan| %>
 			<%= render 'plans_panel_plan', plan: plan %>
 		<% end %>
         </tbody>

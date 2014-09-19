@@ -2,11 +2,12 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.association :supplier, label: "Existing supplier", placeholder: "select an existing supplier", include_blank: false %>
-	<%= f.input :new_supplier, label: "New supplier", placeholder: "Create a new supplier now"%>
-	<%= f.input :curr_plan, required: true, label: "Current Plan", placeholder: "Current Plan", as: :string %>
-	<%= f.input :recc_plan, required: true, label: "Recommended Plan", placeholder: "Recommended Plan", as: :string %>
-	<%= f.input :findings, required: true, label: "Findings", placeholder: "Text to show on top", as: :string %>
+	<%= f.association :curr_supplier, label: "Curr plan supplier", input_html: {value: ""}, include_blank: "select an existing supplier", required: true %>
+	<%= f.association :recc_supplier, label: "Recc plan supplier", include_blank: "(could be the same supplier)" %>
+	<%= f.input :new_supplier, label: "A new supplier", placeholder: "Create a new supplier now"%>
+	<%= f.input :curr_plan, required: true, label: "Curr plan name", placeholder: "Current Plan", as: :string, required: true %>
+	<%= f.input :recc_plan, required: true, label: "Recc plan name", placeholder: "Recommended Plan", as: :string, required: true %>
+	<%= f.input :findings, required: true, label: "Text to show", placeholder: "(appears on top of newsletter)", as: :string, required: true %>
   </div>
 
   <div class="form-actions">

@@ -12,6 +12,11 @@
     <td class="amount"><%= number_to_currency notification.bill.amount %></td>
 	<td><%= number_to_currency notification.prev_bill_amt %></td>
 	<td><%= number_to_currency notification.charges.sum(:amount) %></td>
+	<td>
+		<% if notification.bill.view_url.present? %>
+			<%= link_to "צפה", notification.bill.view_url, class: "activities highlights_link" %>
+		<% end %>
+	</td>
 	  <% if @control %>	
 	  	<td class="control">
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

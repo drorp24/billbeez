@@ -13,7 +13,7 @@ class Plan < ActiveRecord::Base
   def new_supplier=(name)
     return unless !name.blank?
     supplier = Supplier.create!(name: name)
-    update(supplier_id: supplier.id)
+    update(recc_supplier_id: supplier.id)
   end 
 
 end

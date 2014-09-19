@@ -7,12 +7,13 @@
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
 	<%= f.input :due_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
 	<%= f.input :amount, required: true, as: :decimal %>
+	<%= f.input :payment_url, as: :url unless params[:section] == 'notifications' %>
+	<%= f.input :paid_url, as: :url unless params[:section] == 'notifications' %>
+	<%= f.input :view_url, as: :url %>
 	<% if params[:section] == 'dues' %> 
 		<%= f.input :section, as: :hidden, input_html: {value: "dues"} %>
 	  	<%= f.simple_fields_for :dues do |due_form| %>
 	  		<%= due_form.input :newsletter_id, as: :hidden %>
-			<%= due_form.input :payment_url, as: :url %>
-			<%= due_form.input :paid_url, as: :url %>
 		<% end %>
 	<% elsif params[:section] == 'notifications' %>
 		<%= f.input :section, as: :hidden, input_html: {value: "notifications"} %>
@@ -37,7 +38,7 @@
 
 		$('#bill_supplier_id').change(function() {
 			$.getJSON("/suppliers/" + $(this).val() + "/url", function(data) {
-				$('#bill_dues_attributes_0_payment_url').val(data)
+				$('#bill_payment_url').val(data)
 				
 			})
 		})

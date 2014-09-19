@@ -10,6 +10,58 @@ class Bill < ActiveRecord::Base
   
   attr_accessor :section
 
+  def payment_url
+    db_payment_url = read_attribute(:payment_url)
+    return db_payment_url if db_payment_url
+    self.supplier.payment_url
+  end
+
+  def view_url=(url)
+    if url.blank?
+      super(url)
+      return
+    end
+    url = url.gsub("_", "-")
+    u = URI.parse(url)
+    if(!u.scheme)
+        view_url = "http://" + url
+    elsif(%w{http https}.include?(u.scheme))
+        view_url = url
+    end
+    super(view_url)
+  end
+
+  def payment_url=(url)
+    if url.blank?
+      super(url)
+      return
+    end
+    url = url.gsub("_", "-")
+    u = URI.parse(url)
+    if(!u.scheme)
+        payment_url = "http://" + url
+    elsif(%w{http https}.include?(u.scheme))
+        payment_url = url
+    end
+    super(payment_url)
+  end
+
+  def paid_url=(url)
+    if url.blank?
+      super(url)
+      return
+    end
+    url = url.gsub("_", "-")
+    u = URI.parse(url)
+    if(!u.scheme)
+        paid_url = "http://" + url
+    elsif(%w{http https}.include?(u.scheme))
+        paid_url = url
+    end
+    super(paid_url)
+  end
+
+
   def new_supplier
     
   end

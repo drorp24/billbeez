@@ -19,13 +19,19 @@
     	<% end %>
 	</td> 
 	<td>
-		<% if due.payment_url.present? %>
-			<%= link_to "שלם", due.payment_url, class: "activities highlights_link" %>
+		<% if due.bill.view_url.present? %>
+			<%= link_to "צפה", due.bill.view_url, class: "activities highlights_link" %>
 		<% end %>
 	</td>
 	<td>
-		<% if due.paid_url.present? %>
-			<%= link_to "סמן כמשולם", due.paid_url, class: "activities highlights_link" %>
+	<td>
+		<% if due.bill.payment_url.present? %>
+			<%= link_to "שלם", due.bill.payment_url, class: "activities highlights_link" %>
+		<% end %>
+	</td>
+	<td>
+		<% if due.bill.paid_url.present? %>
+			<%= link_to "סמן כמשולם", due.bill.paid_url, class: "activities highlights_link" %>
 		<% end %>
 	</td>
 	  <% if @control %>	
@@ -46,12 +52,14 @@
   </tr>
   <% due.lines.each do |line| %>
   	<tr>
+	  	<td></td>
 	  	<td><%= line.part1 %></td>
 	  	<td><%= line.part2 %></td>
 	  	<td><%= line.part3 %></td>
 	  	<td><%= line.part4 %></td>
 	  	<td><%= line.part5 %></td>
-	  	<td><%= line.part6 %></td>	 
+	  	<td><%= line.part6 %></td>
+	  	<td></td>	 
 	  	<% if @control %>
 	  		<td>
 			  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
