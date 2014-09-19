@@ -1,5 +1,7 @@
-  <tr id="bill_background" class="bill_background" bgcolor="#FCF7C9" style="background-color: #FCF7C9 !important;">
-    <td>
+<tbody>
+
+  <tr id="bill_background" class="bill_background" bgcolor="#FFFFFF" style="background-color: #FFFFFF !important;">
+    <td align=right>
     	<% if due.supplier %>
 	    	<% if logo = due.supplier.logo %>
 	    		<%= image_tag logo, class: 'sup_logo' %>
@@ -52,8 +54,8 @@
 	  <% end %>
   </tr>
   <% due.lines.each do |line| %>
-  	<tr>
-	  	<td></td>
+  	<tr class="detail_line">
+	  	<td><%= image_tag "detail-16.png" %></td>
 	  	<td><%= line.part1 %></td>
 	  	<td><%= line.part2 %></td>
 	  	<td><%= line.part3 %></td>
@@ -75,3 +77,5 @@
 		<% end %>
   	</tr>
   <% end %>
+	
+</tbody>

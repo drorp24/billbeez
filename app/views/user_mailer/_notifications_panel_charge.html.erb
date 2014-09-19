@@ -1,4 +1,6 @@
-  <tr class="notification_background" id="notification_background" bgcolor="#FCF7C9">
+<tbody>
+
+  <tr class="notification_background" id="notification_background" bgcolor="#FFFFFF">
     <td>
     	<% if notification.supplier %>
 	    	<% if logo = notification .supplier.logo %>
@@ -38,10 +40,10 @@
   </tr>
 
   <% notification.charges.order(created_at: :desc).each do |charge| %>
-  	<tr>
+  	<tr class="detail_line">
 	  	<td>
 	  		<% if charge.status and charge.exception? %>
-	  			<%= image_tag 'question-32.png' %>
+	  			<%= image_tag 'question-16.png' %>
   			<% elsif charge.status and charge.ok? %>
   				<%= image_tag 'check-32.png' %>
 			<% end %>
@@ -68,8 +70,8 @@
   <% end %>
 
   <% notification.lines.order(created_at: :desc).each do |line| %>
-  	<tr>
-	  	<td></td>
+  	<tr class="detail_line">
+	  	<td><%= image_tag "detail-16.png" %></td>
 	  	<td><%= line.part1 %></td>
 	  	<td><%= line.part2 %></td>
 	  	<td><%= line.part3 %></td>
@@ -89,3 +91,5 @@
 		<% end %>
   	</tr>
   <% end %>
+	
+</tbody>

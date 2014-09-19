@@ -1,10 +1,9 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading panel-primary clearfix">
  	<table class="section_title">
-			<tr style="background-color: #bdcd3f !important; padding: 10px 15px !important; background-color: #bdcd3f !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#bdcd3f">
+			<tr class="section_title panel-heading panel-primary dues-panel" style="padding: 10px 15px !important; background-color: #D2DE7D !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#D2DE7D">
 				<th width="100" class="td_right" style="text-align: right">
-					<%= image_tag "medal-128.png", class: "section_title_logo", size: "48x48"%>
+					<%= image_tag "medal-128.png", class: "section_title_logo section_title_element", size: "48x48"%>
 				</th>
 				<th width="368">
   					<a data-anchor="plans" name="plans" class="section_title_name", style="text-decoration: none;">
@@ -13,14 +12,13 @@
 			  	</th>
 			  	<th width="100" class="td_left" style="text-align: left">
 			  		<% if @control %>
-			  			<span class="pull-left"><%= link_to 'Add Plan', new_customer_newsletter_plan_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
+			  			<span class="section_title_element"><%= link_to 'Add Plan', new_customer_newsletter_plan_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
 					<% else %>
-			  			<span class="pull-left"><%= link_to "חזור", "#findings", class: 'back_link' %></span>
+			  			<span class="section_title_element"><%= link_to "חזור", "#findings", class: 'back_link' %></span>
 					<% end %>
 		  		</th>
 	  		</tr>			  		
 	</table>
-  </div>
   <div class="panel-body">
     <p>מערכת בילביז השוותה את חשבונך לחשבונות לקוחותינו ולמבצעים העדכניים. לפניך המלצותינו:</p>
   </div>

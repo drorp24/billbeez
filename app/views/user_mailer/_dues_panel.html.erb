@@ -1,9 +1,9 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
 	<table width="<%= @control ? "750" : "600"%>">
-			<tr class="section_title panel-heading panel-primary dues-panel" style="background-color: #bdcd3f !important; padding: 10px 15px !important; background-color: #bdcd3f !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#bdcd3f">
+			<tr class="section_title panel-heading panel-primary dues-panel" style="padding: 10px 15px !important; background-color: #D2DE7D !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#D2DE7D">
 				<th width="<%= @control ? "250" : "200"%>" class="td_right" style="text-align: right;">
-					<%= image_tag "checklist-128.png", class: "section_title_logo", size: "48x48" %>
+					<%= image_tag "checklist-128.png", class: "section_title_logo section_title_element", size: "48x48", style: "margin: 0 30px" %>
 				</th>
 				<th width="<%= @control ? "250" : "200"%>">
 				  	<a data-anchor="dues" name="dues" class="section_title_name" style="text-decoration: none;text-shadow: 0 1px 0 #ffffff !important;">
@@ -12,9 +12,9 @@
 			  	</th>
 			  	<th width="<%= @control ? "250" : "200"%>" class="td_left" style="text-align: left">
 			  		<% if @control %> 			
-						<span class="pull-left"><%= link_to  'Add Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
+						<span class="section_title_element", style="margin: 0 30px"><%= link_to  'Add Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
 			  		<% else %>
-			  			<span class="pull-left"><%= link_to "חזור", "#highlights_dues", class: 'back_link' %></span>
+			  			<span class="section_title_element", style="margin: 0 30px"><%= link_to "חזור", "#highlights_dues", class: 'back_link' %></span>
 			  		<% end %>
 		  		</th>
 	  		</tr>
@@ -33,6 +33,8 @@
             <th>לתשלום</th>
             <th>פעולות</th>
             <th></th>
+            <th></th>
+            <th></th>
             <% if @control %>
             	<th></th>
             	<th></th>
@@ -40,11 +42,9 @@
         	<% end %>
           </tr>
         </thead>
-        <tbody>
         	<% @newsletter.dues.includes(:bill, :supplier, :lines).order(created_at: :asc).each do |due| %>
         		<% next unless due.bill %>
 				<%= render 'dues_panel_due', due: due %>
 			<% end %>
-        </tbody>
   </table>
 </div>

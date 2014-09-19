@@ -22,6 +22,7 @@ class BillsController < ApplicationController
 
   # GET /bills/1/edit
   def edit
+    @bill = Bill.find(params[:id])
   end
 
   # POST /bills
