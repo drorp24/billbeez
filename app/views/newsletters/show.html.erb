@@ -10,7 +10,7 @@
 	<% end %>	
 </p>
 <p>
-	<span><%= link_to "Edit Newsletter", edit_newsletter_path(@newsletter), class: "btn btn-success" %></span>
+	<span><%= link_to "Edit Newsletter", edit_customer_newsletter_path(@newsletter.customer.id, @newsletter.id), class: "btn btn-success" %></span>
 	<span id="send_newsletter">
 		<% if @newsletter.version.approved? %>
 			<%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter), class: "btn btn-success" %>	

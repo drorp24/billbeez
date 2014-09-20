@@ -12,8 +12,9 @@ class NewslettersController < ApplicationController
   def index
     if params[:customer_id]
       @newsletters = Newsletter.where(customer_id: params[:customer_id]).includes(:customer, :campaign)
-    elsif params[:version_id]
-      @newsletters = Newsletter.where(version_id: params[:version_id]).includes(:customer, :campaign)
+      if params[:campaign_id]
+        @newsletters = @newsletters.where(campaigns: {id: params[:campaign_id]})
+      end
     else
       @newsletters = Newsletter.includes(:customer, :campaign)
     end
@@ -28,8 +29,12 @@ class NewslettersController < ApplicationController
   def new
 
     # session to avoid creating another newsletter with every refresh
-    @customer = Customer.find(params[:customer_id])
-    @newsletter = @customer.newsletters.create(version_id: params[:version_id])
+    redirect_to root_path, notice: "No customer id passed" and return unless customer_id = params[:customer_id]
+    redirect_to root_path, notice: "Select campaign first" and return unless current_campaign
+    redirect_to campaign_versions_path(current_campaign.id), notice: "No version exists that matches customer locale. You can create one here." and return unless version_id = current_campaign.version_of(customer_id)
+    @customer = Customer.find(customer_id)
+    @newsletter = @customer.newsletters.create(version_id: version_id)
+    redirect_to customer_newsletter_path(customer_id, @newsletter.id)
 
   end
 

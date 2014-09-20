@@ -31,6 +31,8 @@ class CampaignsController < ApplicationController
 
     respond_to do |format|
       if @campaign.save
+        session[:campaign_id] = @campaign.id
+        @current_campaign = Campaign.find(session[:campaign_id])
         format.html { redirect_to new_campaign_version_path(@campaign), notice: 'Campaign was successfully created.' }
         format.json { render action: 'show', status: :created, location: @campaign }
       else

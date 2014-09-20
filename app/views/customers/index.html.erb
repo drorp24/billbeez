@@ -26,24 +26,24 @@
       <tr>
         <td><%= link_to customer.id, customer_path(customer) %></td>
         <td><%= customer.first_name + ' ' + customer.last_name %></td>
-		<% if @campaign %>
-			<% delivery_date = customer.delivery_date_for(@campaign) %>
-		<% else %>
-			<% delivery_date = customer.last_newsletter %>
-		<% end %>
-		<td dir="rtl"><%= l delivery_date, format: :short if delivery_date %></td>
+		<% last_delivery_date = customer.last_delivery_date_for(@current_campaign) %>
+		<td dir="rtl"><%= l last_delivery_date, format: :short if last_delivery_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_customer_path(customer), :class => 'btn btn-mini' %>
            <%= link_to 'view newsletters',
-                      customer_newsletters_path(customer), :class => 'btn btn-mini' %>
-		   <% if @campaign_id and @version_id %>
-		   	   <% confirm_message = delivery_date ? "Are you sure? Newsletter already sent for that customer on this campaign (#{@campaign.id})" : "" %>
-	           <%= link_to 'create newsletter',
-	                      new_customer_newsletter_path(customer, campaign_id: @campaign_id, version_id: @version_id), data: {confirm: confirm_message}, :class => 'btn btn-mini' %>
-		   <% end %>
+                      customer_newsletters_path(customer, campaign_id: (@current_campaign.id if @current_campaign)), :class => 'btn btn-mini' %>		   
+	   	   <% if last_delivery_date %>
+	   	   		<% confirm_message = "Are you sure? Newsletter already sent to that customer on current campaign" %>
+   	   		<% elsif customer.newsletters_for(@current_campaign).any? %>
+   	   			<% confirm_message = "Are you sure? Newsletter was already created for current campaign" %>
+   			<% else %>
+				<% confirm_message = "" %>
+   			<% end %>
+           <%= link_to 'create newsletter',
+                      new_customer_newsletter_path(customer), data: {confirm: confirm_message}, :class => 'btn btn-mini' %>
        </td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>

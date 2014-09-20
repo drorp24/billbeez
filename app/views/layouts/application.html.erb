@@ -62,7 +62,7 @@
     </div>
 			<ol class="breadcrumb clearfix">
 			  <li class="span2"></li>
-			  <li class="campaign_bc pull-left span2"><%= @campaign.id if @campaign %></li>
+			  <li class="campaign_bc pull-left span2"><%= @current_campaign.id if @current_campaign %></li>
 			  <li class="version_bc pull-left span2">
 			  	<% if @version and @version.id %>
 					<% version = @version %>
