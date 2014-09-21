@@ -35,6 +35,10 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js"></script>
+	<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+
   </head>
   <body id="backoffice">
 
@@ -81,7 +85,7 @@
       <div class="row-fluid">
         <div id="menu" class="span6">
           <%= bootstrap_flash unless @newsletter_edit %>
-           <% if params[:newsletter_id] or (params[:controller] == 'newsletters' and params[:action] == 'edit' and params[:id]) %>
+           <% if params[:controller] != "user_mailer" and (params[:newsletter_id] or (params[:controller] == 'newsletters' and params[:action] == 'edit' and params[:id])) %>
 			<div class="page-header">
 				<h1>Edit Newsletter</h1>
 				<p><%= "Note: This newsletter was sent already on #{l @newsletter.sent_at, format: :long, locale: :en}" if @newsletter.sent_at %>
@@ -98,10 +102,10 @@
 			</div>			
 			</br>
 		  <% end %>	
-          <%= yield unless @newsletter_edit %>
+          <%= yield unless @newsletter_edit or params[:controller] == "user_mailer" %>
         </div>
         <div id="sample" class="span5">
-        	<%= yield if @newsletter_edit %>
+        	<%= yield if @newsletter_edit or params[:controller] == "user_mailer" %>
         </div>	
       </div><!--/row-->
 
