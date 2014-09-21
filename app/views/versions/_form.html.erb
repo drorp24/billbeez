@@ -49,8 +49,8 @@ $(document).ready(function () {
 	function refresh_sample() {
 		var version_id = 	$('#version_id').val()
 		$.ajax({
-	  		url: "<%= sample_mailer_weekly_url %>",
-	  		data: "version_id=" + version_id,
+	  		url: "<%= user_mailer_weekly_url %>",
+	  		data: "newsletter_id=244", //+ version_id,
 	  		success: function(result) {
 	  			$('#sample').html(result);
 	  	}});		

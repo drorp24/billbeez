@@ -2,6 +2,28 @@ class VersionsController < ApplicationController
   before_action :set_version, only: [:approve, :unapprove, :show, :edit, :update, :destroy]
 #  before_action :set_campaign, except: [:create, :show, :index, :edit]
 
+  def modify
+=begin    
+    respond_to do |format|
+      if @version.update(version_params)
+        format.html { 
+          if request.xhr? 
+            render nothing: true
+          else
+            redirect_to edit_campaign_version_path(@campaign, @version)
+          end 
+          }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @version.errors, status: :unprocessable_entity }
+      end
+    end
+=end
+    render nothing: true
+  end
+
+
   def approve
     @version.update(user_id: current_user.id, approved_at: Time.now)
     session[:campaign_id] = @campaign.id

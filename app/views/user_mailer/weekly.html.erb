@@ -27,18 +27,14 @@
 		
 </div>
 <script>
-	$(document).ready(function() {
+$(document).ready(function() {
 		
-//		$('tr').attr('bgcolor', 'yellow');
-//		$('tr').css('background-color', 'green');   
+	<% if @control %>				
+			$(".bl-block-content-column.bl-block-content-new-column.bl-1-column").css("width", "750px")	
+			$(".bl-padding-1-column.bl-content-wrapper").css("width", "750px")
+			$(".bl-block-content").css("margin-left", "-150px")
+	<% end %>		
 
-		<% if @control %>				
-				$(".bl-block-content-column.bl-block-content-new-column.bl-1-column").css("width", "750px")	
-				$(".bl-padding-1-column.bl-content-wrapper").css("width", "750px")
-				$(".bl-block-content").css("margin-left", "-150px")
-		<% end %>		
-
-	})
-
+});
 </script>
 

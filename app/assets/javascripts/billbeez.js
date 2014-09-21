@@ -1,6 +1,10 @@
 $(document).ready(function() {
     $('[data-behaviour~=datepicker]').datepicker({format: 'dd-mm-yyyy'}); 
-})
+    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
+    
+    $("a[data-editable-field='true']").editable();
+});
 
 function align_val(val) {
     if (val == '1') {

@@ -1,3 +1,38 @@
+/*
+a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
+    outline: none;
+    text-decoration: none;
+    background: none;
+    color: #000000;
+}
+*/
+#billbeez /* IOS-style clear button for text inputs */
+.editable-clear-x {
+   background: image-url('clear.png') center center no-repeat;
+   display: block;
+   width: 13px;    
+   height: 13px;
+   position: absolute;
+   opacity: 0.6;
+   z-index: 100;
+   
+   top: 50%;
+   right: 6px;
+   margin-top: -6px;
+   
+}
+
+#billbeez .editableform-loading {
+    background: image-url('loading.gif') center center no-repeat;  
+    height: 25px;
+    width: auto; 
+    min-width: 25px; 
+}
+
+
+#billbeez .editable-input textarea.input-large{
+}
+
 #billbeez #bills.data.table {
     background-color: #f9f9f9 !important;
 }
@@ -223,7 +258,7 @@ td.leftmost a {
 }
 #findings_sentence {
     font-size: 1.1em;
-    text-align: right;
+    text-align: center !important;
 }
 .finding p{
     font-size: 0.9em;
