@@ -36,9 +36,11 @@ before_filter :change_context #, :except => [:destroy]
     elsif params[:campaign_id]
       session[:campaign_id] = params[:campaign_id]
       @current_campaign = Campaign.find(session[:campaign_id])
-    else
+    elsif Campaign.any?
       @current_campaign = Campaign.last
       session[:campaign_id] = @current_campaign.id
+    else
+      @current_campaign = nil
     end
     @newsletter_edit = true if ["bills", "dues", "reminders", "notifications", "plans", "charges", "features", "lines"].include? params[:controller]  
     @campaign_id = params[:campaign_id] 
