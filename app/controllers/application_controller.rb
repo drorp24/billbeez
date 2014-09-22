@@ -12,6 +12,7 @@ before_filter :change_context #, :except => [:destroy]
   end
 
   def image_url(source)
+    return "#{root_url}#{ActionController::Base.helpers.asset_path("missing-48.png")}" unless source
     "#{root_url}#{ActionController::Base.helpers.asset_path(source)}"
   end
 

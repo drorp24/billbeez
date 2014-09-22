@@ -22,7 +22,7 @@ class SuppliersController < ApplicationController
         value:        supplier.id,
         selected:     supplier.id == bill_supplier_id,
         description:  supplier.description,
-        imageSrc:     image_url("globes.jpg"),
+        imageSrc:     image_url(supplier.logo),
         payment_url:  bill_payment_url || supplier.payment_url
         }
     end
