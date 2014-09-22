@@ -194,10 +194,6 @@ td.leftmost a {
     text-align: left;
 }
 
-.data.table tr {
-    height: 40px;
-}
-
 .data.table .btn {
 /*    visibility: hidden; */  /* uncomment to return hover nehavior */
 }
@@ -266,9 +262,10 @@ td.leftmost a {
     padding: 0;
 }
 
-.sup_logo {
-     
+.sup_logo, .data.table tr {
+    height: 42px;
 }
+
 .status_logo {
     
 }
