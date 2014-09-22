@@ -41,8 +41,14 @@ Billbeez::Application.routes.draw do
   resources :campaigns do
     resources :versions do
       member do
-        put 'modify', 'approve', 'unapprove'
+        put 'approve', 'unapprove'
       end
+    end
+  end
+  
+  resources :versions do
+    member do
+      put 'modify'
     end
   end
 

@@ -194,7 +194,7 @@ h1#campaigns, h1#customers {
     height: 34px;
     line-heigjt: 34px;
 }
-body#backoffice .page-header h1, body#backoffice #sample h1:not(#findings_title)  {
+body#backoffice .page-header h1, body#backoffice #sample h1:not(#findings_title1)  {
     font-family: monospace;
 }
 body#backoffice #sample h1  {

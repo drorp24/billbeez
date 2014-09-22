@@ -2,25 +2,32 @@
   <!-- Default panel contents -->
  	<table class="section_title">		<tbody>
 			<tr class="section_title panel-heading panel-primary dues-panel" style="padding: 10px 15px !important; background-color: #D2DE7D !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#D2DE7D">
-				<th width="190" class="td_right" style="text-align: right">
+				<th width="<%= @control ? "187" : "150"%>" class="td_right" style="text-align: right">
 					<%= image_tag "calendar-128.png", class: "section_title_logo section_title_element", size: "48x48" %>
 				</th>
-				<th width="190">
+				<th width="<%= @control ? "375" : "300"%>">
   					<a data-anchor="reminders" name="reminders" class="section_title_name", style="text-decoration: none;">
-  						תזכורות	
+  						<%= @version.reminders_title %>	
   					</a>
 			  	</th>
-			  	<th width="190" class="td_left" style="text-align: left">
+			  	<th width="<%= @control ? "187" : "150"%>" class="td_left" style="text-align: left">
 			  		<% if @control %>
 						<span class="section_title_element"><%= link_to 'Add Reminder', new_customer_newsletter_reminder_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
 					<% else %>
-			  			<span class="section_title_element"><%= link_to "חזור", "#highlights_reminders", class: 'back_link' %></span>
+			  			<span class="section_title_element"><%= link_to "חזור", "#reminders_title", class: 'back_link' %></span>
 					<% end %>
 		  		</th>
 	  		</tr>			  				</tbody>
 	</table>
   <div class="panel-body">
-    <p>רצינו להזכיר לך...</p>
+    <p>
+		<% if @edit %>
+			<%= link_to @version.reminders_sentence, "#", data: {:'editable-field' => 'true', pk: "1", type: "text", name: "reminders_sentence", url: modify_version_path(@version.id), title: "Update"} %>
+		<% else %>
+			<%= @version.reminders_sentence %>
+		<% end %>    	
+    	
+	</p>
   </div>
 
   <!-- Table -->

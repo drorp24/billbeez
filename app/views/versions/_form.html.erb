@@ -5,10 +5,6 @@
 		<%= f.association :locale, collection: @available_locales_collection, include_blank: false %>
 	<% else %>
 		<%= f.association :locale, label_method: :description, html: {selected: @version.locale_id}, disabled: true %>
-	  	<% @version.attributes.each do |name, value| %>
-	  		<% next if ['approved_at', 'user_id','campaign_id', 'id','locale_id','updated_at','created_at', 'header_external', 'header_external_link'].include? name %>
-	  		<%= f.input name, as: :string %>
-	  	<% end %>
   	<% end %>
   	<div class="form-actions">
 		<% if @version.new_record? %>
@@ -50,7 +46,7 @@ $(document).ready(function () {
 		var version_id = 	$('#version_id').val()
 		$.ajax({
 	  		url: "<%= user_mailer_weekly_url %>",
-	  		data: "newsletter_id=244", //+ version_id,
+	  		data: "<%= "version_id=#{params[:id]}&newsletter_id=1&edit=true".html_safe %>", 
 	  		success: function(result) {
 	  			$('#sample').html(result);
 	  	}});		

@@ -6,6 +6,22 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
     color: #000000;
 }
 */
+
+#billbeez .editable-input input{
+    width: 480px;
+    height: 30px;
+}
+
+#billbeez a[name="dues_title"] .editable-input input{
+    width: 280px;
+    height: 30px;
+}
+
+
+#billbeez .editable-input .input-large{
+    width: 425px !important;
+    height: 30px;
+}
 #billbeez /* IOS-style clear button for text inputs */
 .editable-clear-x {
    background: image-url('clear.png') center center no-repeat;
@@ -66,7 +82,7 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
     margin: 0 40px; 
     height: 50px;
 }
-h1#findings_title {
+h1#findings_title1 {
     margin-top: 0
 }
 
@@ -129,13 +145,6 @@ th.td_right {
     font-weight: 100;
     color: #595959;
     text-shadow: 0 1px 0 #ffffff !important;
-}
-
-body#backoffice #sample h1#findings_title {
-    font-size: 48px;
-    font-family: arial;
-    font-weight: 600;
-    line-height: 120px !important;
 }
 
 #logo {

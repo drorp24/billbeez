@@ -1,11 +1,10 @@
 class VersionsController < ApplicationController
-  before_action :set_version, only: [:approve, :unapprove, :show, :edit, :update, :destroy]
+  before_action :set_version, only: [:modify, :approve, :unapprove, :show, :edit, :update, :destroy]
 #  before_action :set_campaign, except: [:create, :show, :index, :edit]
 
   def modify
-=begin    
     respond_to do |format|
-      if @version.update(version_params)
+      if @version.update_attribute(params[:name], params[:value])
         format.html { 
           if request.xhr? 
             render nothing: true
@@ -19,8 +18,6 @@ class VersionsController < ApplicationController
         format.json { render json: @version.errors, status: :unprocessable_entity }
       end
     end
-=end
-    render nothing: true
   end
 
 

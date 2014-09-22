@@ -3,11 +3,12 @@ class UserMailerController < ApplicationController
   def weekly()   
 
     @newsletter = Newsletter.find(params[:newsletter_id]) 
-    @version = @newsletter.version 
-    @section = params[:section]
-    @control = params[:control]
+    @version =    params[:version_id] ? Version.find(params[:version_id]) : @newsletter.version
+    @section =    params[:section]
+    @control =    params[:control]
+    @edit =       params[:edit]
     
-    render layout: request.xhr? ? false : "layouts/application"
+    render layout: request.xhr? ? "layouts/xhr_user_mailer" : "layouts/application"
 
   end
   

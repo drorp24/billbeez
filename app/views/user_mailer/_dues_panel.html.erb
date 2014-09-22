@@ -2,25 +2,31 @@
   <!-- Default panel contents -->
 	<table width="<%= @control ? "750" : "600"%>">
 			<tr class="section_title panel-heading panel-primary dues-panel" style="padding: 10px 15px !important; background-color: #D2DE7D !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#D2DE7D">
-				<th width="<%= @control ? "250" : "200"%>" class="td_right" style="text-align: right;">
+				<th width="<%= @control ? "187" : "150"%>" class="td_right" style="text-align: right;">
 					<%= image_tag "checklist-128.png", class: "section_title_logo section_title_element", size: "48x48", style: "margin: 0 30px" %>
 				</th>
-				<th width="<%= @control ? "250" : "200"%>">
+				<th width="<%= @control ? "375" : "300"%>">
 				  	<a data-anchor="dues" name="dues" class="section_title_name" style="text-decoration: none;text-shadow: 0 1px 0 #ffffff !important;">
-				  		חשבוניות
+				  		<%= @version.dues_title %>
 				  	</a>
 			  	</th>
-			  	<th width="<%= @control ? "250" : "200"%>" class="td_left" style="text-align: left">
+			  	<th width="<%= @control ? "188" : "150"%>" class="td_left" style="text-align: left">
 			  		<% if @control %> 			
 						<span class="section_title_element", style="margin: 0 30px"><%= link_to  'Add Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
 			  		<% else %>
-			  			<span class="section_title_element", style="margin: 0 30px"><%= link_to "חזור", "#highlights_dues", class: 'back_link' %></span>
+			  			<span class="section_title_element", style="margin: 0 30px"><%= link_to "חזור", "#dues_title", class: 'back_link' %></span>
 			  		<% end %>
 		  		</th>
 	  		</tr>
 	</table>
   <div class="panel-body">
-    <p>מועד התשלום של החשבוניות הבאות  קרב. לחץ על הקישור המתאים ושלם ישירות מהאימייל .</p>
+    <p>
+		<% if @edit %>
+			<%= link_to @version.dues_sentence, "#", data: {:'editable-field' => 'true', pk: "1", type: "text", name: "reminders_title", url: modify_version_path(@version.id), title: "Update"} %>
+		<% else %>
+			<%= @version.reminders_title %>
+		<% end %>    	
+ .  </p>
   </div>
 
   <!-- Table -->
