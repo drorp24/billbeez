@@ -5,6 +5,7 @@ Billbeez::Application.routes.draw do
   resources :notifications
   resources  :reminders
   resources :plans
+  resources :suppliers
 
   get "/suppliers/:id/url", to: 'suppliers#url'
   get "/suppliers/list", to: 'suppliers#list'

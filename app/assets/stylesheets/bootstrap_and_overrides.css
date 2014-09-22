@@ -18,6 +18,9 @@ table {
 
 */
 
+.suppliers {
+    padding-bottom: 50px;
+}
 .dd-options, .dd-click-off-close{
     overflow-y:auto !important;
 }
@@ -164,14 +167,14 @@ textarea#reminder_text {
     float: unset;
 }
 
-#backoffice #campaign_button, #backoffice #customer_button, #backoffice .btn-success {
+#backoffice #campaign_button, #supplier_button, #backoffice #customer_button, #backoffice .btn-success {
     margin-top: 8px;
     background-color: #BDCD40 !important;
     background-image: none;
     font-weight: bold;
 }
 
-h1#campaigns, h1#customers {
+h1#campaigns, h1#customers, h1#suppliers {
     display: inline;
 }
 #backoffice .btn-primary {

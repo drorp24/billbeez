@@ -1,0 +1,54 @@
+<%- model_class = Supplier -%>
+<div class="page-header suppliers">
+	<span class="pull-left">
+  		<h1 id="suppliers">Suppliers</h1>
+	</span>
+	<span class="pull-right">
+  		<%= link_to "Create a new supplier", new_supplier_path, :class => 'btn btn-success', id: "supplier_button" %>  	
+  </span>
+
+</div>
+<table id="suppliers_table" class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th>Created</th>
+	  <th>Updated</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Logo</th>
+      <th>Payment url</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @suppliers.order(updated_at: :desc).each do |supplier| %>
+      <tr>
+        <td><%= link_to supplier.id, supplier_path(supplier) %></td>
+        <td dir="rtl"><%=l supplier.created_at, format: :short if supplier.created_at %></td>
+        <td dir="rtl"><%=l supplier.updated_at, format: :short if supplier.updated_at %></td>
+        <td><%= supplier.name %></td>
+        <td><%= supplier.description %></td>
+        <td><%= supplier.logo %></td>
+        <td><%= supplier.payment_url %></td>
+        <td>
+          <%= link_to "Edit",
+                      supplier_path(supplier), :class => 'btn btn-mini' %>
+
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      supplier_path(supplier),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+	$(document).ready(function() {
+		$('#backoffice div#menu #suppliers_table').parent().attr('class', 'span9')
+		$('#backoffice #menu .alert.alert-success').css('width', '100%')
+	})
+</script>

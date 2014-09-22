@@ -1,4 +1,35 @@
 class SuppliersController < ApplicationController
+  before_action :set_supplier, except: [:index, :create, :new]
+
+  def index
+    @suppliers = Supplier.all
+  end
+  
+  def edit
+  end
+  
+  def show    
+  end
+  
+  def new
+    @supplier = Supplier.new
+  end
+  
+  def update
+    @supplier.update(supplier_params)
+    redirect_to suppliers_path, notice: "Supplier successfully updated"
+  end
+  
+  def create 
+     @supplier = Supplier.new(supplier_params)
+     @supplier.save
+     redirect_to suppliers_path, notice: "Supplier successfully created"
+  end
+  
+  def destroy
+    @supplier.destroy
+    redirect_to suppliers_path
+  end
 
   def url
     return unless params[:id]
@@ -30,39 +61,14 @@ class SuppliersController < ApplicationController
     render json: ddData
 
   end
+  
+  private
+  
+  def set_supplier
+    @supplier = Supplier.find(params[:id])
+  end
 
-  def list1
-    ddData = [
-    {
-        text: "Facebook",
-        value: 1,
-        selected: false,
-        description: "Description with Facebook",
-        imageSrc: image_url("globes.jpg")
-    },
-    {
-        text: "Twitter",
-        value: 2,
-        selected: false,
-        description: "Description with Twitter",
-        imageSrc: image_url("globes.jpg")
-    },
-    {
-        text: "LinkedIn",
-        value: 3,
-        selected: false,
-        description: "Description with LinkedIn",
-        imageSrc: image_url("globes.jpg")
-    },
-    {
-        text: "Foursquare",
-        value: 4,
-        selected: false,
-        description: "Description with Foursquare",
-        imageSrc: image_url("globes.jpg")
-    }
-];
-
-    render json: ddData
+  def supplier_params
+    params.require(:supplier).permit!
   end
 end
