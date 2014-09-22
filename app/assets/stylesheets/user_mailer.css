@@ -7,10 +7,29 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+#suppliers_logo {
+    width: 48px;
+}
+
 #billbeez .editable-input input{
     width: 480px;
     height: 30px;
 }
+
+#billbeez #dues_title_edit .editable-input input{
+    width: 180px;
+    height: 30px;
+}
+
+#billbeez #notifications_title_edit .editable-input input{
+    width: 180px;
+    height: 30px;
+}
+#billbeez #reminders_title_edit .editable-input input{
+    width: 180px;
+    height: 30px;
+}
+
 
 #billbeez a[name="dues_title"] .editable-input input{
     width: 280px;

@@ -29,7 +29,7 @@
         <td dir="rtl"><%=l supplier.updated_at, format: :short if supplier.updated_at %></td>
         <td><%= supplier.name %></td>
         <td><%= supplier.description %></td>
-        <td><%= supplier.logo %></td>
+        <td><%= image_tag supplier.logo, id: "suppliers_logo" %></td>
         <td><%= supplier.payment_url %></td>
         <td>
           <%= link_to "Edit",
