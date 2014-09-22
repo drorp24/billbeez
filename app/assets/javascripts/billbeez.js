@@ -3,7 +3,23 @@ $(document).ready(function() {
     $.fn.editable.defaults.mode = 'inline';
     $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
     
+    $("a[data-name='dues_title']").editable({
+        success: function(response, newValue) {
+        $('a.section_title_name[name="dues"]').html(newValue);
+        }
+    });
+    $("a[data-name='notifications_title']").editable({
+        success: function(response, newValue) {
+        $('a.section_title_name[name="notifications"]').html(newValue);
+        }
+    });
+    $("a[data-name='reminders_title']").editable({
+        success: function(response, newValue) {
+        $('a.section_title_name[name="reminders"]').html(newValue);
+        }
+    });
     $("a[data-editable-field='true']").editable();
+    
 });
 
 function align_val(val) {

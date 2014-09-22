@@ -30,6 +30,7 @@ class Customer < ActiveRecord::Base
   end
 
   def name
+    return "" if self.new_record?
     first_name + " " + last_name
   end
 

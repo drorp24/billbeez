@@ -35,7 +35,7 @@
                       customer_newsletters_path(customer, campaign_id: (@current_campaign.id if @current_campaign)), :class => 'btn btn-mini' %>		   
 	   	   <% if last_delivery_date %>
 	   	   		<% confirm_message = "Are you sure? Newsletter already sent to that customer on current campaign" %>
-   	   		<% elsif customer.newsletters_for(@current_campaign).any? %>
+   	   		<% elsif newsletters_for_current_campaign = customer.newsletters_for(@current_campaign) and newsletters_for_current_campaign.any? %>
    	   			<% confirm_message = "Are you sure? Newsletter was already created for current campaign" %>
    			<% else %>
 				<% confirm_message = "" %>
