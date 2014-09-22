@@ -1,5 +1,8 @@
 Billbeez::Application.routes.draw do
 
+  get "/suppliers/:id/url", to: 'suppliers#url'
+  get "/suppliers/list", to: 'suppliers#list'
+  
   resources :bills
   resources :dues
   resources :notifications
@@ -7,9 +10,6 @@ Billbeez::Application.routes.draw do
   resources :plans
   resources :suppliers
 
-  get "/suppliers/:id/url", to: 'suppliers#url'
-  get "/suppliers/list", to: 'suppliers#list'
-  
   resources :newsletters do
     member do
       get 'deliver'
