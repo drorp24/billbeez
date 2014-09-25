@@ -7,6 +7,10 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+.section_title th {
+    padding: 0 30px !important;
+}
+
 #suppliers_logo {
     width: 48px;
 }
@@ -73,7 +77,6 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 
 .section_title_element {
-    margin: 0 30px;
 }
 
 #billbeez tr.detail_line td {
@@ -102,7 +105,8 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
     height: 50px;
 }
 h1#findings_title1 {
-    margin-top: 0
+    margin: 50px 0 !important;
+    font-size: 24px !important;
 }
 
 p#findings_sentence {
