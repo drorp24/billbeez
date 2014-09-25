@@ -10,7 +10,7 @@
 		<% if @newsletter.version.approved? %>
     		<%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter.id), :class => 'btn btn-primary' %>
     	<% else %>
-    		<%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter.id), confirm: "Version #{@newsletter.version_id} has not been approved. Are you sure you want to send newsletter?", :class => 'btn btn-primary' %>
+    		<%= link_to "Send Newsletter", deliver_newsletter_path(@newsletter.id), confirm: "Version #{@newsletter.version_id} has really not been approved. Are you sure you want to send newsletter?", :class => 'btn btn-primary' %>
     	<% end %>
     	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 :back, :class => 'btn' %>

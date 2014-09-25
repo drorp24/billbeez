@@ -250,7 +250,7 @@ td.leftmost a {
 
 #billbeez #plan_background.plan_background {
     background-color: #F7B547 !important;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     font-weight: bold;
 }
 
@@ -263,7 +263,7 @@ td.leftmost a {
 }
 
 .sup_logo, .data.table tr {
-    height: 42px;
+    height: 42px !important;
 }
 
 .status_logo {

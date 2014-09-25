@@ -2,9 +2,9 @@
   <%= f.error_notification %>
 
   <div class="form-inputs"> 		
-	<%= f.input :name, placeholder: "Feature name" %>
-	<%= f.input :current, placeholder: "Current plan value" %>
-	<%= f.input :recommended, placeholder: "Recommended plan value" %>
+	<%= f.input :name, required: true, placeholder: "Feature name" %>
+	<%= f.input :current, required: true, placeholder: "Current plan value" %>
+	<%= f.input :recommended, required: true, placeholder: "Recommended plan value" %>
   </div>
 
   <div class="form-actions">

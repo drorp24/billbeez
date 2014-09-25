@@ -21,21 +21,16 @@
 <script>
 	
 $(document).ready(function() {
-// not working for some reason	align_val(<%= @newsletter.customer.locale_id %>)
 
-	function refresh_sample() {
-		var version_id = 	$('#newsletter_version_id').val()
-		var newsletter_id = $('#newsletter_id').val()
-		$.ajax({
-	  		url: "<%= user_mailer_weekly_url %>",
-	  		data: "newsletter_id=" + "<%= params[:id] %>",
-	  		success: function(result) {
-	  			$('#sample').html(result);
-	  	}});		
-	}
-	
-	refresh_sample();
+	$.ajax({
+  		url: "<%= user_mailer_weekly_url %>",
+  		data: "newsletter_id=" + "<%= params[:id] %>",
+  		success: function(result) {
+  			$('#sample').html(result);
+  		}
+	});		
 
+/* delete
 	$('.newsletter_form input').blur(function() {
 		var field = 	$(this).attr('name').split('[')[1].split(']')[0]
 		var value = 	$(this).val()
@@ -46,7 +41,7 @@ $(document).ready(function() {
 	  		success: refresh_sample()
 	  	});
 	})
-	
+*/	
 })	
 	
 </script>
