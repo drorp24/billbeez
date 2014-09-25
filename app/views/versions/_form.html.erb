@@ -11,9 +11,9 @@
 			<%= f.button :submit %>
 		<% else%>	
 			<% if @version.approved? %>
-	    		<%= link_to 'Return to Draft', unapprove_campaign_version_path(@campaign, @version), method: 'PUT', class: 'btn btn-primary', disabled: @version.id.nil? %>
+	    		<%= link_to 'Return to Draft', unapprove_version_path(@version), method: 'PUT', class: 'btn btn-primary', disabled: @version.id.nil? %>
 	    	<% else %>
-	    		<%= link_to 'Approve', approve_campaign_version_path(@campaign, @version), method: 'PUT', class: 'btn btn-primary', disabled: @version.id.nil? %>
+	    		<%= link_to 'Approve', approve_version_path(@version), method: 'PUT', class: 'btn btn-primary', disabled: @version.id.nil? %>
 	    	<% end %>
 	    <% end %>
 	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

@@ -23,8 +23,7 @@ class VersionsController < ApplicationController
 
   def approve
     @version.update(user_id: current_user.id, approved_at: Time.now)
-    session[:campaign_id] = @campaign.id
-    redirect_to campaign_versions_path(@campaign), notice: "Version was successfully approved"
+    redirect_to versions_path, notice: "Version was successfully approved"
   end
 
   def unapprove
