@@ -32,8 +32,23 @@ class SuppliersController < ApplicationController
   end
 
   def url
+
     return unless params[:id]
-    render json: @supplier.payment_url.to_json if supplier
+
+    if params[:bill_id] and bill = Bill.find(params[:bill_id])
+      bill_payment_url = bill.payment_url
+    end
+
+    if bill_payment_url
+      payment_url = bill_payment_url
+    elsif @supplier = Supplier.find(params[:id])
+      payment_url = @supplier.payment_url
+    else
+      payment_url = nil
+    end
+
+    render json: payment_url.to_json if payment_url
+
    end
   
   def list

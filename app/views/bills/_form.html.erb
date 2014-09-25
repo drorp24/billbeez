@@ -35,10 +35,9 @@
 	$(document).ready(function() {	
 		
 		align_val(<%= @newsletter.version.locale_id %>)
-	
 
 		$('#bill_supplier_id').change(function() {
-			$.getJSON("/suppliers/" + $(this).val() + "/url", function(data) {
+			$.getJSON("/suppliers/" + $(this).val() + "/url","<%= @bill.id ? "bill_id=#{@bill.id}" : "" %>", function(data) {
 				$('#bill_payment_url').val(data)
 				
 			})
@@ -53,7 +52,7 @@
 			    imagePosition:"right",
 			    onSelected: function(selectedData){
 			        $('#bill_payment_url').val(selectedData.selectedData.payment_url)
-			        $('#bill_supplier_id').val(selectedData.selectedData.value)
+			        $('#bill_supplier_id').val(selectedData.selectedData.value).trigger('change');
 			    }   
 			});
 		})
