@@ -29,14 +29,14 @@
     																								<td class="bl-block-content-item-td-wrapper" style="height: 28px;" height="28">
     																									<div class="bl-block-content-item bl-block-content-item-text bl-block-content-item-title" style="direction: rtl; text-align: right;">                                	
 																											<div style="text-align: center;">
-																												<span id="dues_title_edit" style="font-size:24px;"><b><a name="dues_title">
+																												<span id="dues_title_edit" style="font-size:24px;"><a name="dues_title">
 																													<% if @edit %>
 																														<%= link_to @version.dues_title, "#", data: {:'editable-field' => 'true', mode: "inline", pk: "1", type: "text", name: "dues_title", url: modify_version_path(@version.id), title: "Update"} %>
 																													<% else %>
 																														<%= @version.dues_title %>
 																													<% end %>
 
-																												</a></b></span>
+																												</a></span>
 																											</div>
 																										</div>
 																									</td>
@@ -46,13 +46,17 @@
 																					</td>
 																				</tr>
 <tr align="center">
-	<span class="badge" style="background-color: #E05B49  !important; color: #ffffff !important;"><%= @newsletter.dues.count %></span>																									
+	<td align="center">
+		<span class="badge" style="background-color: #E05B49  !important; color: #ffffff !important;text-shadow: 0 -1px 0 #000000 !important;"><%= @newsletter.dues.count %></span>																									
+	</td>
 </tr>																				
 																				<tr>
-																					<td  class="bl-block-content-item-td bl-block-content-item-td-imageContent" height="137" style="height: 137px;"><table border="0" cellpadding="0" cellspacing="0" width="100%">
-																						<tbody>
-																							<tr>
-																								<td class="class="highlight_img bl-block-content-item-td-wrapper" style="height: 128px;" height="128"><div class="bl-block-content-item bl-block-content-item-image" style="text-align: center;">
+																					<td class="bl-block-content-item-td bl-block-content-item-td-imageContent" height="137" style="height: 137px;">
+																						<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																							<tbody>
+																								<tr>
+																									<td class="highlight_img bl-block-content-item-td-wrapper" style="height: 128px;" height="128">
+																										<div class="bl-block-content-item bl-block-content-item-image" style="text-align: center;">
 <%= link_to (image_tag "card-128.png"), "#dues" %>																									
 																									</div>
 																								</td>
@@ -99,13 +103,13 @@
 																									<td class="bl-block-content-item-td-wrapper" style="height: 28px;" height="28">
 																										<div class="bl-block-content-item bl-block-content-item-text bl-block-content-item-title" style="direction: rtl; text-align: right;">
 	
-																											<div style="text-align: center;"><span id="notifications_title_edit" style="font-size:24px;"><b><a name="notifications_title">
+																											<div style="text-align: center;"><span id="notifications_title_edit" style="font-size:24px;"><a name="notifications_title">
 																													<% if @edit %>
 																														<%= link_to @version.notifications_title, "#", data: {:'editable-field' => 'true', mode: "inline", pk: "1", type: "text", name: "notifications_title", url: modify_version_path(@version.id), title: "Update"} %>
 																													<% else %>
 																														<%= @version.notifications_title %>
 																													<% end %>
-																												</a></b></span></div>
+																												</a></span></div>
 	
 																										</div>
 																									</td>
@@ -115,7 +119,9 @@
 																					</td>
 																				</tr>
 <tr align="center">
-	<span class="badge" style="background-color: #E05B49  !important; color: #ffffff !important;"><%= @newsletter.notifications.count %></span>																																																				
+	<td align="center">
+		<span class="badge" style="background-color: #45B39C  !important; color: #ffffff !important;"><%= @newsletter.notifications.count %></span>																																																				
+	</td>
 </tr>
 																				<tr>
 																					<td class="bl-block-content-item-td bl-block-content-item-td-imageContent" height="137" style="height: 137px;">
@@ -142,17 +148,19 @@
 																						</div>
 </div></td></tr></tbody></table></td></tr></tbody></table>                                    </td>                    </tr>                </tbody>            </table>        </td>        <td class="bl-block-content-column bl-3-columns bl-column-last bl-block-content-new-column" align="left"  width="33%">            <table border="0" cellpadding="0" cellspacing="0" width="100%">                <tbody>                    <tr>                        <td class="bl-padding-3-columns bl-content-wrapper"><table border="0" cellpadding="9" cellspacing="0" width="100%" class="bl-product-container bl-auto-align-container"><tbody><tr><td  class="bl-block-content-item-td-titleContent" height="45" style="height: 45px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="bl-block-content-item-td-wrapper" style="height: 28px;"  height="28"><div class="bl-block-content-item bl-block-content-item-text bl-block-content-item-title" style="direction: rtl; text-align: right;">
 	
-<div style="text-align: center;"><span id="reminders_title_edit" style="font-size:24px;"><b><a name="reminders_title">
+<div style="text-align: center;"><span id="reminders_title_edit" style="font-size:24px;"><a name="reminders_title">
 	<% if @edit %>
 		<%= link_to @version.reminders_title, "#", class: 'titles', data: {:'editable-field' => 'true', mode: "inline", pk: "1", type: "text", name: "reminders_title", url: modify_version_path(@version.id), title: "Update"} %>
 	<% else %>
 		<%= @version.reminders_title %>
 	<% end %>
-	</a></b></span></div>
+	</a></span></div>
 
 </div></td></tr></tbody></table></td></tr>
 <tr align="center">
-	<span class="badge" style="background-color: #E05B49  !important; color: #ffffff !important;"><%= @newsletter.reminders.count %></span>																									
+	<td align="center">
+		<span class="badge" style="background-color: #F39C12  !important; color: #ffffff !important;"><%= @newsletter.reminders.count %></span>																									
+	</td>
 </tr>
 <tr><td  class="bl-block-content-item-td bl-block-content-item-td-imageContent" height="137" style="height: 137px;"><table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td class="highlight_img bl-block-content-item-td-wrapper" style="height: 128px;"  height="128"><div class="bl-block-content-item bl-block-content-item-image" style="text-align: center;">
 	

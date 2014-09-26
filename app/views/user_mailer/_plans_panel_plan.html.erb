@@ -3,7 +3,7 @@
 	<td>
     	<% if plan.curr_supplier %>
 	    	<% if logo = plan.curr_supplier.logo %>
-	    		<%= image_tag logo, class: 'sup_logo' %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important"  %>
 	    	<% else %>	
 	    		<%= plan.curr_supplier.name %>
 			<% end %>		
@@ -12,7 +12,7 @@
 	<td>
     	<% if plan.recc_supplier %>
 	    	<% if logo = plan.recc_supplier.logo %>
-	    		<%= image_tag logo, class: 'sup_logo' %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important"  %>
 	    	<% else %>	
 	    		<%= plan.recc_supplier.name %>
 			<% end %>		
