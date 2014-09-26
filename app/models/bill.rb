@@ -13,7 +13,7 @@ class Bill < ActiveRecord::Base
   def payment_url
     db_payment_url = read_attribute(:payment_url)
     return db_payment_url if db_payment_url
-    self.supplier.payment_url
+    self.supplier.payment_url if self.supplier
   end
 
   def view_url=(url)

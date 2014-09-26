@@ -171,7 +171,7 @@ textarea#reminder_text {
 
 #backoffice #campaign_button, #supplier_button, #backoffice #customer_button, #backoffice .btn-success {
     margin-top: 8px;
-    background-color: #BDCD40 !important;
+/*    background-color: #BDCD40 !important; */
     background-image: none;
     font-weight: bold;
 }

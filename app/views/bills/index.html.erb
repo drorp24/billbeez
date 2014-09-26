@@ -1,5 +1,51 @@
+<% unless params[:section] %>
+
+	<%- model_class = Bill -%>
+	<div class="page-header">
+	  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+	</div>
+	<table id="bills_table" class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th><%= model_class.human_attribute_name(:id) %></th>
+	      <th><%= model_class.human_attribute_name(:supplier_id) %></th>
+	      <th><%= model_class.human_attribute_name(:issue_date) %></th>
+	      <th><%= model_class.human_attribute_name(:due_date) %></th>
+	      <th><%= model_class.human_attribute_name(:amount) %></th>
+	      <th><%= model_class.human_attribute_name(:payent_url) %></th>
+	      <th><%= model_class.human_attribute_name(:paid_url) %></th>
+	      <th><%= model_class.human_attribute_name(:view_url) %></th>
+	      <th><%= model_class.human_attribute_name(:paid) %></th>
+	      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<% @customer.bills.order(created_at: :desc).each do |bill| %>
+	      <tr>
+	        <td><%= bill.id %></td>
+	        <td><%= image_tag bill.supplier.logo, id: "suppliers_logo" if bill.supplier and bill.supplier.logo %></td>
+	        <td dir="rtl"><%=l bill.issue_date, format: :short %></td>
+	        <td dir="rtl"><%=l bill.due_date, format: :short %></td>
+	        <td dir="rtl"><%= number_to_currency bill.amount %></td>
+	        <td><%= bill.payment_url %></td>
+	        <td><%= bill.paid_url %></td>
+	        <td><%= bill.view_url %></td>
+	        <td><%= bill.paid %></td>
+	        <td>
+	          <%= link_to t('.show', :default => t("helpers.links.show")),
+	                      customer_bill_path(@customer, bill), :class => 'btn btn-mini' %>
+	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+	                      edit_customer_bill_path(@customer, bill), :class => 'btn btn-mini' %>
+	        </td>
+	      </tr>
+    	<% end %>
+	  </tbody>
+	</table>
+
+<% end %>
 <script>
 	
+<% if params[:section] %>
 $(document).ready(function() {
 		$.ajax({
 	  		url: "<%= user_mailer_weekly_url %>",
@@ -8,6 +54,10 @@ $(document).ready(function() {
 	  			$('#sample').html(result);
 	  	}});		
 
-})	
+})
+<% else %>
+		$('#backoffice div#menu #bills_table').parent().attr('class', 'span9')
+		$('#backoffice #menu .alert.alert-success').css('width', '100%')
+<% end %>	
 	
 </script>

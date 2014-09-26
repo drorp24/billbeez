@@ -77,7 +77,7 @@ class BillsController < ApplicationController
       elsif params[:bill] and params[:bill][:section]
         @section = params[:bill][:section]
       else
-        redirect_to root_path, notice: "No section param"
+#        redirect_to root_path, notice: "No section param"
       end
     end
 

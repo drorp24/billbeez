@@ -42,7 +42,8 @@ before_filter :change_context #, :except => [:destroy]
     else
       @current_campaign = nil
     end
-    @newsletter_edit = true if ["bills", "dues", "reminders", "notifications", "plans", "charges", "features", "lines"].include? params[:controller]  
+    @newsletter_edit = true if ["dues", "reminders", "notifications", "plans", "charges", "features", "lines"].include? params[:controller]  
+    @newsletter_edit = true if params[:controller] == "bills" and params[:section]  
     @campaign_id = params[:campaign_id] 
     @campaign = Campaign.find(@campaign_id) if @campaign_id
     @version_id = params[:version_id] 
