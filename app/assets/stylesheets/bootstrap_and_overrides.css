@@ -18,6 +18,13 @@ table {
 
 */
 
+ul.nav .badge {
+    background-color: #bdcd3f;
+    padding-bottom: 4px;
+    position: relative;
+    top: 10px;
+}
+
 .page-header h1 {
     font-weight: 400;
 }
