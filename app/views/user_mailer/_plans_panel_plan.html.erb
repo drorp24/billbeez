@@ -1,4 +1,4 @@
-<tr height="42">
+<tr class="plan_first_line" height="42">
 	<td></td>
 	<td>
     	<% if plan.curr_supplier %>
@@ -18,6 +18,17 @@
 			<% end %>		
 		<% end %>
 	</td>
+	<% if plan.other? %>
+	<td>
+    	<% if plan.othr_supplier %>
+	    	<% if logo = plan.othr_supplier.logo %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important"  %>
+	    	<% else %>	
+	    		<%= plan.othr_supplier.name %>
+			<% end %>		
+		<% end %>
+	</td>
+	<% end %>	
 	<% if @control %>
 		<td class="control"></td>
 		<td class="control"></td>
@@ -28,6 +39,9 @@
 	<td></td>
 	<td class="plan"><%= plan.curr_plan %></td>
 	<td class="plan"><%= plan.recc_plan %></td>
+	<% if plan.other? %>
+	<td class="plan"><%= plan.othr_plan %></td>
+	<% end %>
 	  <% if @control %>	
 	  	<td class="control">
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

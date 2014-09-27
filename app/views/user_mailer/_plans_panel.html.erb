@@ -41,6 +41,9 @@
             <th></th>
             <th>תכנית נוכחית</th>
             <th>תכנית מומלצת</th>
+            <% if plan.other? %>
+            <th>תכנית נוספת</th>
+            <% end %>
             <% if @control %>
             	<th></th>
             	<th></th>

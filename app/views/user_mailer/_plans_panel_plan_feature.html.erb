@@ -2,6 +2,9 @@
 	<td><%= feature.name %></td>
 	<td class="curr_plan_background" id="curr_plan_background" bgcolor="#dddddd" style="background-color: #dddddd;"><%= feature.current %></td>
 	<td class="recc_plan_background" id="recc_plan_background" bgcolor="#F7B547" style="background-color: #F7B547; color: #FFFFFF !important;"><%= feature.recommended %></td>
+	<% if plan.other? %>
+	<td class="othr_plan_background" id="othr_plan_background" bgcolor="#dddddd" style="background-color: #dddddd; color: #000000 !important;"><%= feature.other %></td>
+	<% end %>
 	<% if @control %>
 	  	<td class="control">
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

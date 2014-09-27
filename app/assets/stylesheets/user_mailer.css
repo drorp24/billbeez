@@ -8,7 +8,7 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 */
 
 #feature_line td {
-    width: 40px;
+    width: 60px;
 }
 
 #feature_line:last-child td {
@@ -46,6 +46,13 @@ option {
     border: none;
 }
 
+#plans_panel tr.plan_first_line {
+    border-top: 2px solid #dddddd;
+}
+
+#plans_panel tr#feature_line:last-child {
+    border-bottom: 2px solid #dddddd;
+}
 
 
 body#billbeez, body#billbeez p, body#billbeez ul, body#billbeez ul, body#billbeez td, body#billbeez h1, body#billbeez input, body#billbeez select, body#billbeez option {
@@ -340,6 +347,12 @@ td.leftmost a {
     background-color: #F7B547 !important;
     color: #FFFFFF !important;
     font-weight: bold !important;
+}
+
+#billbeez #othr_plan_background.othr_plan_background {
+    background-color: #dddddd !important;
+    color: #000000 !important;
+    font-weight: bold;
 }
 
 #bills td {
