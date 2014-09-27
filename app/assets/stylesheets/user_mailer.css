@@ -7,9 +7,13 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
-#feature_line td{
-    border: none;
+#plans_panel td {
+    border-left: 2px solid #dddddd;
+    border-right: none;
+    border-bottom: none;
+    border-top: none;
 }
+
 
 body#billbeez, body#billbeez p, body#billbeez ul, body#billbeez ul, body#billbeez td, body#billbeez h1 {
     font-family: Segoe UI !important;
@@ -141,7 +145,7 @@ a[href="#dues"] img, a[href="#notifications"] img, a[href="#reminders"] img {
 }
 
 .margin {
-    margin: 0 40px; 
+    margin: 0 40px 40px 40px; 
     height: 50px;
 }
 h1#findings_title1 {
@@ -293,10 +297,16 @@ td.leftmost a {
 /*    background-color: #ECF6A8; */
 }
 
-#billbeez #plan_background.plan_background {
+#billbeez #curr_plan_background.curr_plan_background {
+    background-color: #dddddd !important;
+    color: #000000 !important;
+    font-weight: bold;
+}
+
+#billbeez #recc_plan_background.recc_plan_background {
     background-color: #F7B547 !important;
     color: #FFFFFF !important;
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
 #bills td {
