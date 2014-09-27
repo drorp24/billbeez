@@ -4,7 +4,7 @@ class Plan < ActiveRecord::Base
   belongs_to    :curr_supplier, class_name: "Supplier", foreign_key: :curr_supplier_id
   belongs_to    :recc_supplier, class_name: "Supplier", foreign_key: :recc_supplier_id
   belongs_to    :othr_supplier, class_name: "Supplier", foreign_key: :othr_supplier_id
-  has_many      :features
+  has_many      :features, dependent: :destroy
   
 
   def other?
