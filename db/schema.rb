@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921233951) do
+ActiveRecord::Schema.define(version: 20140927203126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20140921233951) do
     t.string   "recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "other"
   end
 
   create_table "lines", force: true do |t|
@@ -157,6 +158,8 @@ ActiveRecord::Schema.define(version: 20140921233951) do
     t.string   "findings"
     t.integer  "recc_supplier_id"
     t.integer  "curr_supplier_id"
+    t.string   "othr_plan"
+    t.integer  "othr_supplier_id"
   end
 
   create_table "reminders", force: true do |t|

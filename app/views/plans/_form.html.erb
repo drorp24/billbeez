@@ -1,13 +1,20 @@
-<%= simple_form_for @plan, url: customer_newsletter_plan_path(@customer.id, @newsletter.id, @plan.id), :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @plan, url: customer_newsletter_plan_path(@customer.id, @newsletter.id, @plan.id), :html => { :class => 'form-horizontal plan_form' } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.association :curr_supplier, label: "Curr plan supplier", input_html: {value: ""}, include_blank: "select an existing supplier", required: true %>
-	<%= f.association :recc_supplier, label: "Recc plan supplier", include_blank: "(could be the same supplier)" %>
-	<%= f.input :new_supplier, label: "A new supplier", placeholder: "Create a new supplier now"%>
-	<%= f.input :curr_plan, required: true, label: "Curr plan name", placeholder: "Current Plan", as: :string, required: true %>
-	<%= f.input :recc_plan, required: true, label: "Recc plan name", placeholder: "Recommended Plan", as: :string, required: true %>
-	<%= f.input :findings, required: true, label: "Text to show", placeholder: "(appears on top of newsletter)", as: :string, required: true %>
+  	<p class="plan_form_heading">Current</p>
+	<%= f.association :curr_supplier, label: "Supplier name (existing)", input_html: {value: ""}, include_blank: "Select an existing supplier", required: true %>
+	<%= f.input :curr_plan, required: true, label: "Plan name", placeholder: "Current Plan", as: :string, required: true %>
+	<p class="plan_form_heading">Recommended</p>
+	<%= f.association :recc_supplier, label: "Supplier name (existing)", include_blank: "Select an existing supplier" %>
+	<%= f.input :new_recc_supplier, label: "Supplier name (create)", placeholder: "Create one"%>
+	<%= f.input :recc_plan, required: true, label: "Plan name", placeholder: "Recommended Plan", as: :string, required: true %>
+	<p class="plan_form_heading">Other (Optional)</p>
+	<%= f.association :othr_supplier, label: "Supplier name (existing)", include_blank: "Select an existing supplier" %>
+	<%= f.input :new_othr_supplier, label: "Supplier name (create)", placeholder: "Create one"%>
+	<%= f.input :othr_plan, label: "Plan name", placeholder: "Other Plan", as: :string %>
+	<p class="plan_form_heading">Heading text</p>
+	<%= f.input :findings, label: "Text to show", placeholder: "(appears on top of newsletter)", as: :string, required: true %>
   </div>
 
   <div class="form-actions">

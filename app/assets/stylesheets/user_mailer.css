@@ -7,6 +7,26 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+option {
+    color: #555555;
+}
+
+.plan_form label, .plan_form p  {
+    direction: ltr;
+}
+
+.plan_form_heading {
+    font-weight: bold;
+    font-size: 20px;
+    margin: 30px 0;
+    text-align: right;
+}
+
+#billbeez .table > tbody > tr.reminder_background td {
+    text-align: right;
+    padding: 10px;
+}
+
 #plans_panel td {
     border-left: 2px solid #dddddd;
     border-right: none;
@@ -15,11 +35,11 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 
 
-body#billbeez, body#billbeez p, body#billbeez ul, body#billbeez ul, body#billbeez td, body#billbeez h1 {
+body#billbeez, body#billbeez p, body#billbeez ul, body#billbeez ul, body#billbeez td, body#billbeez h1, body#billbeez input, body#billbeez select, body#billbeez option {
     font-family: Segoe UI !important;
 }
 
-body#backoffice, body#backoffice p, body#backoffice ul, body#backoffice ul, body#backoffice td, body#backoffice h1 {
+body#backoffice, body#backoffice p, body#backoffice ul, body#backoffice ul, body#backoffice td, body#backoffice h1, body#backoffice input, body#backoffice select, body#backoffice option {
     font-family: Segoe UI !important;
 }
 #billbeez .back_link {
