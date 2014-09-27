@@ -3,17 +3,17 @@
 	<td class="curr_plan_background" id="curr_plan_background" bgcolor="#dddddd" style="background-color: #dddddd;"><%= feature.current %></td>
 	<td class="recc_plan_background" id="recc_plan_background" bgcolor="#F7B547" style="background-color: #F7B547; color: #FFFFFF !important;"><%= feature.recommended %></td>
 	<% if @control %>
-	  	<td>
+	  	<td class="control">
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
 		              customer_newsletter_plan_feature_path(@customer, @newsletter, plan, feature),
 		              :method => :delete,
 		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 		              :class => 'btn btn-mini btn-danger' %>
 	  	</td>
-	  	<td>
+	  	<td class="control">
 	  		<%= link_to "Edit", edit_customer_newsletter_plan_feature_path(@customer, @newsletter, plan, feature), class: 'btn btn-mini' %>
   		</td>
-  		<td>
+  		<td class="control">
 		</td>	
 	<% end %>
 </tr>

@@ -19,9 +19,9 @@
 		<% end %>
 	</td>
 	<% if @control %>
-		<td></td>
-		<td></td>
-		<td><%= link_to 'Edit Plan', edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %></td>
+		<td class="control"></td>
+		<td class="control"></td>
+		<td class="control"><%= link_to 'Edit Plan', edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %></td>
 	<% end %>
 </tr>
 <tr height="42">
@@ -29,17 +29,17 @@
 	<td class="plan"><%= plan.curr_plan %></td>
 	<td class="plan"><%= plan.recc_plan %></td>
 	  <% if @control %>	
-	  	<td>
+	  	<td class="control">
 		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
 		              customer_newsletter_plan_path(@customer, @newsletter, plan),
 		              :method => :delete,
 		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
 		              :class => 'btn btn-mini btn-danger' %>
 	  	</td>
-	  	<td>
+	  	<td class="control">
 	  		<%= link_to "Edit", edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
   		</td>
-  		<td class="leftmost">
+  		<td class="leftmost control">
   			<%= link_to "Add Feature", new_customer_newsletter_plan_feature_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
 		</td>
 	  <% end %>

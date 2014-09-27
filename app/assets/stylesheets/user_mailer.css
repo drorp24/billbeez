@@ -7,6 +7,14 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+#feature_line td {
+    width: 40px;
+}
+
+#feature_line:last-child td {
+    border-bottom: 1px solid #dddddd;
+}
+
 option {
     color: #555555;
 }
@@ -33,6 +41,11 @@ option {
     border-bottom: none;
     border-top: none;
 }
+
+#plans_panel td.control {
+    border: none;
+}
+
 
 
 body#billbeez, body#billbeez p, body#billbeez ul, body#billbeez ul, body#billbeez td, body#billbeez h1, body#billbeez input, body#billbeez select, body#billbeez option {
