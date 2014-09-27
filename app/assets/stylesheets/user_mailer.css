@@ -7,6 +7,10 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+#feature_line td{
+    border: none;
+}
+
 body#billbeez, body#billbeez p, body#billbeez ul, body#billbeez ul, body#billbeez td, body#billbeez h1 {
     font-family: Segoe UI !important;
 }
