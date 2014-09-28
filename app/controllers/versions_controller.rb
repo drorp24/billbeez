@@ -77,6 +77,7 @@ class VersionsController < ApplicationController
       @version = Version.where(locale_id: version_params[:locale_id]).last.dup
       @version.update(version_params)
       @version.campaign_id = @campaign.id
+      @version.update(user_id: nil, approved_at: nil)
     else
       @version = @campaign.versions.build(version_params)
     end

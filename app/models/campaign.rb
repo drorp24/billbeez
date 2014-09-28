@@ -1,5 +1,5 @@
 class Campaign < ActiveRecord::Base
-  has_many    :versions
+  has_many    :versions, dependent: :destroy
   has_many    :newsletters, through: :versions
   
   def version_of(customer_id)
