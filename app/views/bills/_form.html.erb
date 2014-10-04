@@ -6,7 +6,7 @@
 	<%= f.association :supplier, as: :hidden %>
 	<%= f.input :new_supplier, label: "New supplier", placeholder: "or define a new one now" %>
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
-	<%= f.input :due_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
+	<%= f.input :due_date, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
 	<%= f.input :amount, required: true, as: :decimal %>
 	<%= f.input :payment_url, as: :url unless params[:section] == 'notifications' %>
 	<%= f.input :paid_url, as: :url unless params[:section] == 'notifications' %>
@@ -20,7 +20,7 @@
 		<%= f.input :section, as: :hidden, input_html: {value: "notifications"} %>
 	  	<%= f.simple_fields_for :notifications do |notification_form| %>
 	  		<%= notification_form.input :newsletter_id, as: :hidden %>
-			<%= notification_form.input :prev_bill_amt, required: true, as: :string %>
+			<%= notification_form.input :prev_bill_amt, as: :string %>
 		<% end %>
 	<% end %>
   </div>
