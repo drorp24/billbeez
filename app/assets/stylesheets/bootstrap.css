@@ -260,8 +260,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('/assets/glyphicons-halflings-regular.eot');
-  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('http://billbeez.herokuapp.com/assets/fontawesome-webfont-658b64bfa55eff9dcd175bfd3ac3238a.eot');
+  src: url('http://billbeez.herokuapp.com/assets/fontawesome-webfont-658b64bfa55eff9dcd175bfd3ac3238a.eot#iefix') format('embedded-opentype'), url('http://billbeez.herokuapp.com/assets/fontawesome-webfont-98d61732d4d0af2312cfc7c1d005594b.woff') format('woff'), url('http://billbeez.herokuapp.com/assets/fontawesome-webfont-efc9e487a6c573ca65c0d1a10c09f63d.ttf') format('truetype'), url('http://billbeez.herokuapp.com/assets/fontawesome-webfont-8b61acf61f1d94a9a5dee063074e6b7a.svg#fontawesomeregular') format('svg');
 }
 .glyphicon {
   position: relative;
