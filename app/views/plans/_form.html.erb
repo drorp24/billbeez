@@ -1,30 +1,12 @@
-<%= simple_form_for @plan, url: customer_newsletter_plan_path(@customer.id, @newsletter.id, @plan.id), :html => { :class => 'form-horizontal plan_form' } do |f| %>
+<%= simple_form_for(@plan) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-  	<p class="plan_form_heading">Current</p>
-	<%= f.association :curr_supplier, label: "Supplier name (existing)", input_html: {value: ""}, include_blank: "Select an existing supplier", required: true %>
-	<%= f.input :curr_plan, required: true, label: "Plan name", placeholder: "Current Plan", as: :string, required: true %>
-	<p class="plan_form_heading">Recommended</p>
-	<%= f.association :recc_supplier, label: "Supplier name (existing)", include_blank: "Select an existing supplier" %>
-	<%= f.input :new_recc_supplier, label: "Supplier name (create)", placeholder: "Create one"%>
-	<%= f.input :recc_plan, required: true, label: "Plan name", placeholder: "Recommended Plan", as: :string, required: true %>
-	<p class="plan_form_heading">Other (Optional)</p>
-	<%= f.association :othr_supplier, label: "Supplier name (existing)", include_blank: "Select an existing supplier" %>
-	<%= f.input :new_othr_supplier, label: "Supplier name (create)", placeholder: "Create one"%>
-	<%= f.input :othr_plan, label: "Plan name", placeholder: "Other Plan", as: :string %>
-	<p class="plan_form_heading">Heading text</p>
-	<%= f.input :findings, label: "Text to show", placeholder: "(appears on top of newsletter)", as: :string, required: true %>
+    <%= f.input :supplier_id %>
+    <%= f.input :name %>
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
-	<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            :back, :class => 'btn' %>
   </div>
-<script>
-	$(document).ready(function() {	
-		align_val(<%= @newsletter.version.locale_id %>)
-	})
-</script>
 <% end %>

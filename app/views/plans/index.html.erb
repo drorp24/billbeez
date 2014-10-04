@@ -1,13 +1,29 @@
-<script>
-	
-$(document).ready(function() {
-		$.ajax({
-	  		url: "<%= user_mailer_weekly_url %>",
-	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=plans" + "&control=yes",
-	  		success: function(result) {
-	  			$('#sample').html(result);
-	  	}});		
+<h1>Listing plans</h1>
 
-})	
-	
-</script>
+<table>
+  <thead>
+    <tr>
+      <th>Supplier</th>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.supplier_id %></td>
+        <td><%= plan.name %></td>
+        <td><%= link_to 'Show', plan %></td>
+        <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+        <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plan', new_plan_path %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927203126) do
+ActiveRecord::Schema.define(version: 20141004151755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,11 +103,9 @@ ActiveRecord::Schema.define(version: 20140927203126) do
   create_table "features", force: true do |t|
     t.integer  "plan_id"
     t.string   "name"
-    t.string   "current"
-    t.string   "recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "other"
+    t.string   "value"
   end
 
   create_table "lines", force: true do |t|
@@ -149,17 +147,21 @@ ActiveRecord::Schema.define(version: 20140927203126) do
     t.datetime "updated_at"
   end
 
-  create_table "plans", force: true do |t|
+  create_table "offers", force: true do |t|
     t.integer  "newsletter_id"
-    t.string   "curr_plan"
-    t.string   "recc_plan"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "findings"
-    t.integer  "recc_supplier_id"
-    t.integer  "curr_supplier_id"
-    t.string   "othr_plan"
-    t.integer  "othr_supplier_id"
+    t.integer  "curr_plan_id"
+    t.integer  "recc_plan_id"
+    t.integer  "othr_plan_id"
+  end
+
+  create_table "plans", force: true do |t|
+    t.integer  "supplier_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reminders", force: true do |t|
@@ -225,11 +227,11 @@ ActiveRecord::Schema.define(version: 20140927203126) do
     t.string   "dues_title"
     t.string   "notifications_title"
     t.string   "reminders_title"
-    t.string   "plans_title"
+    t.string   "offers_title"
     t.string   "dues_sentence"
     t.string   "notifications_sentence"
     t.string   "reminders_sentence"
-    t.string   "plans_sentence"
+    t.string   "offers_sentence"
   end
 
 end
