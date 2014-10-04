@@ -13,10 +13,15 @@
     <td><%= l notification.bill.issue_date if notification.bill.issue_date %></td>
     <td class="amount"><%= number_to_currency notification.bill.amount %></td>
 	<td><%= number_to_currency notification.prev_bill_amt %></td>
-	<td><%= number_to_currency notification.charges.sum(:amount) %></td>
 	<td>
 		<% if notification.bill.view_url.present? %>
 			<%= link_to "צפה", notification.bill.view_url, class: "activities highlights_link" %>
+		<% end %>
+	</td>
+	<td><%= number_to_currency charges = notification.charges.sum(:amount) %></td>
+	<td>
+		<% if charges > 0 %>
+			<%= image_tag "question-16.png", class: "status_icon" %>
 		<% end %>
 	</td>
 	  <% if @control %>	
@@ -30,11 +35,11 @@
 	  	<td class="control">
 	  		<%= link_to "Edit", edit_customer_newsletter_bill_path(@customer, @newsletter, notification.bill, section: params[:section]), class: 'btn btn-mini' %>
   		</td>
-  		<td class="control">
-  			<%= link_to "Add Line", new_customer_newsletter_notification_line_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
+  		<td dir="ltr" class="control">
+  			<%= link_to "+ Line", new_customer_newsletter_notification_line_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
 		</td>
-		<td class="leftmost">
-  			<%= link_to "Add Charge", new_customer_newsletter_notification_charge_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
+		<td dir="ltr" class="leftmost">
+  			<%= link_to "+ Charge", new_customer_newsletter_notification_charge_path(@customer, @newsletter, notification, section: params[:section]), class: 'btn btn-mini' %>
 		</td>
 	  <% end %>
   </tr>
@@ -51,7 +56,8 @@
 	  	<td><%= charge.service.name %></td>
 	  	<td><%= number_to_currency charge.amount if charge.amount %></td>
 	  	<td><%= charge.comment.name %></td>
-	  	<td><%= number_to_currency charge.amount if charge.amount %></td>
+	  	<td></td>
+	  	<td></td>
 	  	<td></td>	  	
 	  	<% if @control %>
 	  		<td>
@@ -77,6 +83,7 @@
 	  	<td><%= line.part3 %></td>
 	  	<td><%= line.part4 %></td>
 	  	<td><%= line.part5 %></td>
+	  	<td></td>
 	  	<% if @control %>
 	  		<td>
 			  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

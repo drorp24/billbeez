@@ -7,6 +7,10 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+.status_icon {
+    margin: 0 10px !important;
+}
+
 #billbeez table {
     max-width: none !important;
 }
