@@ -7,6 +7,10 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 }
 */
 
+#billbeez table {
+    max-width: none !important;
+}
+
 #feature_line td {
     width: 60px;
 }
@@ -267,7 +271,7 @@ td.leftmost a {
 }
 
 .section_title {
-    width: 100%;
+/*    width: 100%; */
     height: 60px;
 }
 

@@ -45,8 +45,10 @@
 <% end %>
 <script>
 	
-<% if params[:section] %>
 $(document).ready(function() {
+
+<% if params[:section] %>
+
 		$.ajax({
 	  		url: "<%= user_mailer_weekly_url %>",
 	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=<%= params[:section] %>" + "&control=yes",
@@ -54,10 +56,13 @@ $(document).ready(function() {
 	  			$('#sample').html(result);
 	  	}});		
 
-})
+
 <% else %>
+
 		$('#backoffice div#menu #bills_table').parent().attr('class', 'span9')
 		$('#backoffice #menu .alert.alert-success').css('width', '100%')
+
 <% end %>	
-	
+
+})	
 </script>
