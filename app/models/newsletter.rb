@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Newsletter < ActiveRecord::Base
   belongs_to    :version
   belongs_to    :customer
@@ -8,18 +9,35 @@ class Newsletter < ActiveRecord::Base
   has_many      :reminders
   has_many      :plans
   
-=begin
-  def matching_version(campaign_id)
-    return nil unless campaign_id
-    campaign = Campaign.find(campaign_id)
-    campaign.versions.approved.where("local_id = ?", self.customer.local_id).first
+  def dues_sentence
+    if dues.any?
+      version.dues_sentence
+    else
+      "לא נמצאו השבוע חשבוניות לתשלום"
+    end  
+  end
+  def notifications_sentence
+    if notifications.any?
+      version.notifications_sentence
+    else
+      "לא נמצאו השבוע מסמכים חדשים"
+    end  
+  end
+  def reminders_sentence
+    if reminders.any?
+      version.reminders_sentence
+    else
+      "אין תזכורות חדשות"
+    end  
+  end
+  def plans_sentence
+    if plans.any?
+      version.plans_sentence
+    else
+      "אין המלצות חדשות השבוע"
+    end  
   end
   
-  def matching_version=(version)
-    
-  end
-=end
-
   def deliver
     Billbeez::Application.config.use_delayed_job ? UserMailer.delay.weekly(self) : UserMailer.weekly(self).deliver
     customer.update(last_newsletter: Time.now)
