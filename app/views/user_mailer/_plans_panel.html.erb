@@ -34,7 +34,7 @@
   </div>
 
   <!-- Table -->
-<% @newsletter.plans.includes(:curr_supplier, :recc_supplier).order(created_at: :asc).each do |plan| %>
+<% @newsletter.plans.includes(:curr_supplier, :recc_supplier, :othr_supplier).order(created_at: :asc).each do |plan| %>
   <table class=" data table" cellspacing="0">	
         <thead>
           <tr>
