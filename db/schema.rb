@@ -103,11 +103,11 @@ ActiveRecord::Schema.define(version: 20140927203126) do
   create_table "features", force: true do |t|
     t.integer  "plan_id"
     t.string   "name"
-    t.string   "current"
-    t.string   "recommended"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "other"
+    t.string   "recommended"
+    t.string   "current"
   end
 
   create_table "lines", force: true do |t|
@@ -151,15 +151,15 @@ ActiveRecord::Schema.define(version: 20140927203126) do
 
   create_table "plans", force: true do |t|
     t.integer  "newsletter_id"
-    t.string   "curr_plan"
-    t.string   "recc_plan"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "findings"
+    t.integer  "othr_supplier_id"
     t.integer  "recc_supplier_id"
     t.integer  "curr_supplier_id"
     t.string   "othr_plan"
-    t.integer  "othr_supplier_id"
+    t.string   "recc_plan"
+    t.string   "curr_plan"
   end
 
   create_table "reminders", force: true do |t|
