@@ -1,0 +1,64 @@
+<tr class="plan_first_line" height="42">
+	<td></td>
+	<td>
+    	<% if plan.curr_supplier %>
+	    	<% if logo = plan.curr_supplier.logo %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important"  %>
+	    	<% else %>	
+	    		<%= plan.curr_supplier.name %>
+			<% end %>		
+		<% end %>
+	</td>
+	<td>
+    	<% if plan.recc_supplier %>
+	    	<% if logo = plan.recc_supplier.logo %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important"  %>
+	    	<% else %>	
+	    		<%= plan.recc_supplier.name %>
+			<% end %>		
+		<% end %>
+	</td>
+	<% if plan.other? %>
+	<td>
+    	<% if plan.othr_supplier %>
+	    	<% if logo = plan.othr_supplier.logo %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important"  %>
+	    	<% else %>	
+	    		<%= plan.othr_supplier.name %>
+			<% end %>		
+		<% end %>
+	</td>
+	<% end %>	
+	<% if @control %>
+		<td class="control"></td>
+		<td class="control"></td>
+		<td class="control"><%= link_to 'Edit Plan', edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %></td>
+	<% end %>
+</tr>
+<tr height="42">
+	<td></td>
+	<td class="plan"><%= plan.curr_plan %></td>
+	<td class="plan"><%= plan.recc_plan %></td>
+	<% if plan.other? %>
+	<td class="plan"><%= plan.othr_plan %></td>
+	<% end %>
+	  <% if @control %>	
+	  	<td class="control">
+		  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+		              customer_newsletter_plan_path(@customer, @newsletter, plan),
+		              :method => :delete,
+		              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+		              :class => 'btn btn-mini btn-danger' %>
+	  	</td>
+	  	<td class="control">
+	  		<%= link_to "Edit", edit_customer_newsletter_plan_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
+  		</td>
+  		<td class="leftmost control">
+  			<%= link_to "Add Feature", new_customer_newsletter_plan_feature_path(@customer, @newsletter, plan), class: 'btn btn-mini' %>
+		</td>
+	  <% end %>
+
+</tr>
+<% plan.features.order(created_at: :asc).each do |feature| %>
+	<%= render 'plans_panel_plan_feature', plan: plan, feature: feature %>
+<% end %>

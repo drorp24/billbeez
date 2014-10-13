@@ -17,7 +17,6 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
 
 #feature_line td {
     width: 60px;
-    border: none !important;
 }
 
 #feature_line:last-child td {
@@ -28,11 +27,11 @@ option {
     color: #555555;
 }
 
-.offer_form label, .offer_form p  {
+.plan_form label, .plan_form p  {
     direction: ltr;
 }
 
-.offer_form_heading {
+.plan_form_heading {
     font-weight: bold;
     font-size: 20px;
     margin: 30px 0;
@@ -44,23 +43,22 @@ option {
     padding: 10px;
 }
 
-#billbeez tr.offer_first_line td.border {
-    border-left: 2px solid #dddddd !important;
+#plans_panel td {
+    border-left: 2px solid #dddddd;
     border-right: none;
-    border-bottom: none !important;
-    border-bottom-color: #ffffff !important;
+    border-bottom: none;
     border-top: none;
 }
 
-#offers_panel td.control {
+#plans_panel td.control {
     border: none;
 }
 
-#offers_panel tr.offer_first_line {
+#plans_panel tr.plan_first_line {
     border-top: 2px solid #dddddd;
 }
 
-#offers_panel tr#feature_line:last-child {
+#plans_panel tr#feature_line:last-child {
     border-bottom: 2px solid #dddddd;
 }
 
@@ -196,6 +194,7 @@ a[href="#dues"] img, a[href="#notifications"] img, a[href="#reminders"] img {
 
 .margin {
     margin: 0 40px 0 40px; 
+    height: 50px;
 }
 h1#findings_title1 {
     margin: 50px 0 !important;
@@ -308,8 +307,8 @@ td.leftmost a {
    text-align: right;
    width: 500px;
 }
-#billbeez td.offer {
-    font-size: 13px;
+#billbeez td.plan {
+    font-size: 18px;
 }
 
 #billbeez .notice {
@@ -346,19 +345,19 @@ td.leftmost a {
 /*    background-color: #ECF6A8; */
 }
 
-#billbeez #curr_offer_background.curr_offer_background {
+#billbeez #curr_plan_background.curr_plan_background {
     background-color: #dddddd !important;
     color: #000000 !important;
     font-weight: bold;
 }
 
-#billbeez #recc_offer_background.recc_offer_background {
+#billbeez #recc_plan_background.recc_plan_background {
     background-color: #F7B547 !important;
     color: #FFFFFF !important;
     font-weight: bold !important;
 }
 
-#billbeez #othr_offer_background.othr_offer_background {
+#billbeez #othr_plan_background.othr_plan_background {
     background-color: #dddddd !important;
     color: #000000 !important;
     font-weight: bold;

@@ -96,7 +96,7 @@
 	          		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
 	          		<li id="notifications_nav"><%= link_to "Bill Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
 				  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
-				  	<li id="offers_nav"><%= link_to "offers", customer_newsletter_offers_path(@customer, @newsletter) %></li>
+				  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
 				  	<li id="newsletter_nav"><%= link_to "View Newsletter", customer_newsletter_path(@customer, @newsletter) %></li>
 				</ul>
 			</div>			
@@ -149,8 +149,8 @@ $(document).ready(function() {
 				$('#notifications_nav').addClass("active")
 			<% when "reminders" %>				
 				$('#reminders_nav').addClass("active")
-			<% when "offers" %>				
-				$('#offers_nav').addClass("active")
+			<% when "plans" %>				
+				$('#plans_nav').addClass("active")
 			<% end %>
 	<% end %>
 	

@@ -42,7 +42,7 @@ before_filter :change_context #, :except => [:destroy]
     else
       @current_campaign = nil
     end
-    @newsletter_edit = true if ["dues", "reminders", "notifications", "offers", "charges", "features", "lines"].include? params[:controller]  
+    @newsletter_edit = true if ["dues", "reminders", "notifications", "plans", "charges", "features", "lines"].include? params[:controller]  
     @newsletter_edit = true if params[:controller] == "bills" and params[:section]  
     @campaign_id = params[:campaign_id] 
     @campaign = Campaign.find(@campaign_id) if @campaign_id
@@ -65,9 +65,9 @@ before_filter :change_context #, :except => [:destroy]
       @line_id = params[:line_id] 
       @line = Line.find(@line_id)
     end
-    if params[:offer_id]
-      @offer_id = params[:offer_id] 
-      @offer = offer.find(@offer_id)
+    if params[:plan_id]
+      @plan_id = params[:plan_id] 
+      @plan = Plan.find(@plan_id)
     end
   end
 

@@ -7,7 +7,7 @@ class Newsletter < ActiveRecord::Base
   has_many      :dues
   has_many      :notifications
   has_many      :reminders
-  has_many      :offers
+  has_many      :plans
   
   def dues_sentence
     if dues.any?
@@ -30,9 +30,9 @@ class Newsletter < ActiveRecord::Base
       "אין תזכורות חדשות"
     end  
   end
-  def offers_sentence
-    if offers.any?
-      version.offers_sentence
+  def plans_sentence
+    if plans.any?
+      version.plans_sentence
     else
       "אין המלצות חדשות השבוע"
     end  
