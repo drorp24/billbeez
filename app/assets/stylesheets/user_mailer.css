@@ -195,12 +195,15 @@ a[href="#dues"] img, a[href="#notifications"] img, a[href="#reminders"] img {
 }
 
 .margin {
-    margin: 0 40px; 
-    line-height: 40px;
+    margin: 0 40px 0 40px; 
 }
 h1#findings_title1 {
     margin: 50px 0 !important;
     font-size: 32px !important;
+}
+
+p#findings_sentence {
+    margin-bottom: 0;
 }
 
 #toolbar_bl_7 {
