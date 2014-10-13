@@ -1,4 +1,4 @@
-json.array!(@plans) do |plan|
-  json.extract! plan, :id
-  json.url plan_url(plan, format: :json)
+json.array!(@offers) do |offer|
+  json.extract! offer, :id
+  json.url offer_url(offer, format: :json)
 end
