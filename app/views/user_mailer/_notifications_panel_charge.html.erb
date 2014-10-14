@@ -15,7 +15,7 @@
 	<td><%= number_to_currency notification.prev_bill_amt %></td>
 	<td>
 		<% if notification.bill.view_url.present? %>
-			<%= link_to "צפה", notification.bill.view_url, class: "activities highlights_link" %>
+			<%= link_to "צפה", notification.bill.view_url, class: "activities highlights_link", target: "_blank" %>
 		<% end %>
 	</td>
 	<td><%= number_to_currency charges = notification.charges.sum(:amount) %></td>
