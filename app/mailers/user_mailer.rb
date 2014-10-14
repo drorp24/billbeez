@@ -13,6 +13,6 @@ class UserMailer < ActionMailer::Base
     @campaign =   @version.campaign
     @email =      @newsletter.customer.email
 
-    mail to: @email, subject: @campaign.subject 
+    mail from: @campaign.from_email, to: @email, subject: @campaign.subject 
   end
 end
