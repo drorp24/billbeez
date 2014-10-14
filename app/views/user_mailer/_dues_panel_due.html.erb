@@ -23,17 +23,17 @@
 	</td> 
 	<td>
 		<% if due.bill.view_url.present? %>
-			<%= link_to "צפה", due.bill.view_url, class: "activities highlights_link" %>
+			<%= link_to "צפה", due.bill.view_url, class: "activities highlights_link", target: "_blank" %>
 		<% end %>
 	</td>
 	<td>
 		<% if due.bill.payment_url.present? %>
-			<%= link_to "שלם", due.bill.payment_url, class: "activities highlights_link" %>
+			<%= link_to "שלם", due.bill.payment_url, class: "activities highlights_link", target: "_blank" %>
 		<% end %>
 	</td>
 	<td>
 		<% if due.bill.paid_url.present? %>
-			<%= link_to "סמן כמשולם", due.bill.paid_url, class: "activities highlights_link" %>
+			<%= link_to "סמן כמשולם", due.bill.paid_url, class: "activities highlights_link", target: "_blank" %>
 		<% end %>
 	</td>
 	  <% if @control %>	
