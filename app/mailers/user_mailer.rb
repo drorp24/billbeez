@@ -10,8 +10,9 @@ class UserMailer < ActionMailer::Base
 #    attachments.inline['yes.png'] = File.read("#{Rails.root}/public/images/yes.png")
     @newsletter = newsletter
     @version =    @newsletter.version
+    @campaign =   @version.campaign
     @email =      @newsletter.customer.email
 
-    mail to: @email, subject: Billbeez::Application.config.newsletter_subject 
+    mail to: @email, subject: @campaign.subject 
   end
 end
