@@ -27,14 +27,14 @@ class Newsletter < ActiveRecord::Base
     if reminders.any?
       version.reminders_sentence
     else
-      "אין תזכורות חדשות"
+      "לא קיימות תזכורות והודעות חדשות"
     end  
   end
   def plans_sentence
     if plans.any?
       version.plans_sentence
     else
-      "אין המלצות חדשות השבוע"
+      "לא קיימות המלצות חדשות"
     end  
   end
   
