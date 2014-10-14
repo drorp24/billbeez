@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927203126) do
+ActiveRecord::Schema.define(version: 20141014161833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20140927203126) do
     t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "payment_url"
-    t.string   "paid_url"
-    t.string   "view_url"
+    t.text     "payment_url"
+    t.text     "paid_url"
+    t.text     "view_url"
   end
 
   create_table "campaigns", force: true do |t|
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20140927203126) do
     t.string   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "payment_url"
+    t.text     "payment_url"
     t.string   "description"
   end
 
