@@ -34,9 +34,9 @@ Billbeez::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "mail.docme.co.il",
-    port: 110,
+    port: 25,
     domain: "docme.co.il",
-    authentication: "plain",
+    authentication: "login",
     enable_starttls_auto: true,
     user_name: 'support@billbeez.com',
     password: 'docme2013'
