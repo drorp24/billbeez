@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
    
   has_many :versions
+  
+  def active_for_authentication?
+    super and email == "drorp24@gmail.com"
+  end
 end

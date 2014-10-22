@@ -1,4 +1,8 @@
 he:
+  devise:
+    failure:
+      user:
+        inactive: "המערכת בבדיקה כרגע... אנא התאזרו בסבלנות"
   section:
     findings: 'מה מצאנו השבוע'
     bills: 'חשבוניות לתשלום'

@@ -35,11 +35,11 @@ Billbeez::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
     port: 587,
-    domain: "paykido.com",
+    domain: "gmail.com",
     authentication: "login",
     enable_starttls_auto: true,
-    user_name: 'welcome@paykido.com',
-    password: 'dror160395'
+    user_name: 'drorp24@gmail.com',
+    password: '29092012'
   }
   
   config.assets.raise_production_errors = true

@@ -85,13 +85,13 @@ Billbeez::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "mail.docme.co.il",
+    address: "smtp.gmail.com",
     port: 25,
-    domain: "docme.co.il",
+    domain: "gmail.com",
     authentication: "login",
     enable_starttls_auto: true,
-    user_name: 'support@billbeez.com',
-    password: 'docme2013'
+    user_name: 'drorp24@gmail.com',
+    password: '29092012'
   }
 
   config.use_delayed_job = true
