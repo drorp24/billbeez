@@ -14,7 +14,7 @@
 	</th>
 	<th style="padding-top: 70px;">
 		<span class="margin" >
-			<%= link_to "כניסה לאתר", "http://billbeez.com", target: "_blank", class: "highlights_link", style: "color: #0000ff;" %>
+			<%= link_to "כניסה לאתר", "http://billbeez.com", target: "_blank", class: "highlights_link", style: "color: #0000ff;", id: "billbeez_link" %>
 		</span>
 	</th>
 </tr>
@@ -24,4 +24,10 @@
                                 	
         	</td></tr></tbody></table></td></tr></tbody></table></div>
 </div>
-                                
+<script>
+$(document).ready(function() {
+	$('#billbeez_link').click(function() {
+		mixpanel.track("Billbeez link clicked");
+	})
+})                                
+</script>
