@@ -34,6 +34,11 @@
 <script>
 	$(document).ready(function() {	
 		
+/*
+		model_date = $('#bill_issue_date').val().split("-")
+		view_date = model_date[2] + "-" + model_date[1] + "-" + model_date[0]
+		$('#bill_issue_date').val(view_date)
+*/
 		align_val(<%= @newsletter.version.locale_id %>)
 
 		$('#bill_supplier_id').change(function() {

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('[data-behaviour~=datepicker]').datepicker({format: 'dd-mm-yyyy'}); 
+    $('[data-behaviour~=datepicker]').datepicker({format: 'yyyy-mm-dd'}); 
     $.fn.editable.defaults.mode = 'inline';
     $.fn.editable.defaults.ajaxOptions = {type: "PUT"};
     

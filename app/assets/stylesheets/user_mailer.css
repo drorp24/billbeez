@@ -176,12 +176,13 @@ a[href="#dues"] img, a[href="#notifications"] img, a[href="#reminders"] img {
     color: #888888;
 }
 
+/*
 #billbeez tbody tr.detail_line:last-child td{
     border-bottom: 0px solid #999;
     border-collapse: collapse;
     border-spacing: 0px 0px;
 }
-
+*/
 .behind {
     color: #E64F30;
     color: #ebaa4a;
@@ -364,7 +365,7 @@ td.leftmost a {
 }
 
 #bills td {
-    border: none;
+    border: 0 none;
 }
 
 #billbeez .table > tbody > tr > td  {
