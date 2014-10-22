@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
    
   has_many :versions
   
-  def active_for_authentication?
-    super and email == "drorp24@gmail.com"
-  end
+#  def active_for_authentication?
+#    super and email == "drorp24@gmail.com"
+#  end
 end
