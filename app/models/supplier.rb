@@ -10,7 +10,7 @@ class Supplier < ActiveRecord::Base
       super(url)
       return
     end
-    url = url.gsub("_", "-")
+#    url = url.gsub("_", "-")
     u = URI.parse(url)
     if(!u.scheme)
         payment_url = "http://" + url

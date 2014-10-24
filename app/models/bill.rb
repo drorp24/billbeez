@@ -21,7 +21,7 @@ class Bill < ActiveRecord::Base
       super(url)
       return
     end
-    url = url.gsub("_", "-")
+#    url = url.gsub("_", "-")
     u = URI.parse(url)
     if(!u.scheme)
         view_url = "http://" + url
@@ -36,7 +36,7 @@ class Bill < ActiveRecord::Base
       super(url)
       return
     end
-    url = url.gsub("_", "-")
+#    url = url.gsub("_", "-")
     u = URI.parse(url)
     if(!u.scheme)
         payment_url = "http://" + url
@@ -51,7 +51,7 @@ class Bill < ActiveRecord::Base
       super(url)
       return
     end
-    url = url.gsub("_", "-")
+#    url = url.gsub("_", "-")
     u = URI.parse(url)
     if(!u.scheme)
         paid_url = "http://" + url
