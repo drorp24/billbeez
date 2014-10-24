@@ -1,4 +1,4 @@
-<table id="findings" class="jumbo" style="background-color: #f9f9f9 !important;" bgcolor="#f9f9f9">
+<table id="findings" class="jumbo">
 	<tr>
 		<td>
 			<a name="findings">
@@ -25,10 +25,10 @@
 	</tr>
 	<tr>
 		<td>
-			<table class="findings jumbo" style="background-color: #f9f9f9 !important;" bgcolor="#f9f9f9">
+			<table class="findings jumbo">
 				<tbody class="jumbo">
 					<% @newsletter.plans.order(created_at: :asc).each do |plan| %>
-						<tr class="margin" bgcolor="#f9f9f9" style="background-color: #f9f9f9 !important;">
+						<tr class="margin">
 							<td style="text-align: right">
 								<span class="margin"><%= plan.findings %></span> 
 							</td>

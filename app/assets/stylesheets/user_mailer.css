@@ -211,17 +211,19 @@ p#findings_sentence {
 
 
 .jumbo {
+/*
     background-color: #eeeeee !important;
     background-color: #f9f9f9 !important;
     width: 600px !important;
+*/
 }
 
 .jumbo1 {
+/*
     background-color: #eeeeee !important;
     background-color: #f9f9f9 !important;
-/*    padding: 10px 40px !important; */
-/*    background-color: #E7EDB7 !important; */
     width: 600px !important;
+*/
 }
 #bl_5.jumbotron, #findings.jumbotron {
     margin-bottom: 0;
