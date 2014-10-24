@@ -80,6 +80,7 @@ body#backoffice, body#backoffice p, body#backoffice ul, body#backoffice ul, body
 
 #dues_title_edit, #notifications_title_edit, #reminders_title_edit {
     font-weight: 100 !important;
+    font-size: 16px !important;
 }
 
 a[href="#dues"] img, a[href="#notifications"] img, a[href="#reminders"] img {
