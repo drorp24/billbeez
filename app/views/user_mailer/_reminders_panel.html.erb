@@ -2,15 +2,15 @@
   <!-- Default panel contents -->
  	<table class="section_title">		<tbody>
 			<tr class="section_title panel-heading panel-primary dues-panel" style="padding: 10px 15px !important; background-color: #D2DE7D !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#D2DE7D">
-				<th width="<%= @control ? "187" : "150"%>" class="td_right" style="text-align: right">
+				<th width="<%= @control ? "187" : "150"%>" class="td_right" style="width: 150px !important; text-align: right">
 					<%= image_tag "bulb-128.png", class: "section_title_logo section_title_element", size: "48x48" %>
 				</th>
 				<th width="<%= @control ? "375" : "300"%>">
-  					<a data-anchor="reminders" name="reminders" class="section_title_name", style="text-decoration: none;">
+  					<a data-anchor="reminders" name="reminders" class="section_title_name", style="width: 300px !important; text-decoration: none;">
   						<%= @version.reminders_title %>	
   					</a>
 			  	</th>
-			  	<th width="<%= @control ? "187" : "150"%>" class="td_left" style="text-align: left">
+			  	<th width="<%= @control ? "187" : "150"%>" class="td_left" style="width: 150px !important; text-align: left">
 			  		<% if @control %>
 						<span class="section_title_element"><%= link_to 'Add Reminder', new_customer_newsletter_reminder_path(@customer, @newsletter), class: 'btn btn-mini' %></span>
 					<% else %>
