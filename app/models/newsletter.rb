@@ -9,28 +9,28 @@ class Newsletter < ActiveRecord::Base
   has_many      :reminders
   has_many      :plans
   
-  def dues_sentence
+  def dues_sentence_or_none
     if dues.any?
       version.dues_sentence
     else
       "לא נמצאו השבוע חשבוניות לתשלום"
     end  
   end
-  def notifications_sentence
+  def notifications_sentence_or_none
     if notifications.any?
       version.notifications_sentence
     else
       "לא נמצאו השבוע מסמכים חדשים"
     end  
   end
-  def reminders_sentence
+  def reminders_sentence_or_none
     if reminders.any?
       version.reminders_sentence
     else
       "לא קיימות תזכורות והודעות חדשות"
     end  
   end
-  def plans_sentence
+  def plans_sentence_or_none
     if plans.any?
       version.plans_sentence
     else

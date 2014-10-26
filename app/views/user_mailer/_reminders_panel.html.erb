@@ -22,9 +22,9 @@
   <div class="panel-body">
     <p>
 		<% if @edit %>
-			<%= link_to @newsletter.reminders_sentence, "#", data: {:'editable-field' => 'true', pk: "1", type: "text", name: "reminders_sentence", url: modify_version_path(@version.id), title: "Update"} %>
+			<%= link_to @version.reminders_sentence, "#", data: {:'editable-field' => 'true', pk: "1", type: "text", name: "reminders_sentence", url: modify_version_path(@version.id), title: "Update"} %>
 		<% else %>
-			<%= @newsletter.reminders_sentence %>
+			<%= @newsletter.reminders_sentence_or_none %>
 		<% end %>    	
     	
 	</p>
