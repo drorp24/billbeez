@@ -19,6 +19,8 @@
 			<% behind = days < 0 %>
 			<% days = days.abs %>
 	    	<span class=<%= behind ? "behind" : "" %>><%= days < 3 ? t(days.to_s, scope: scope) : t('other', scope: scope, count: days) %></span> 
+    	<% else %>
+    		<span>לא צוין</span>
     	<% end %>
 	</td> 
 	<td>

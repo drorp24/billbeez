@@ -53,7 +53,7 @@
   				<%= image_tag 'checked-16.png' %>
 			<% end %>
 	  	</td>
-	  	<td><%= charge.service.name %></td>
+	  	<td><%= charge.service.name if charge.service %></td>
 	  	<td><%= number_to_currency charge.amount if charge.amount %></td>
 	  	<td><%= charge.comment.name %></td>
 	  	<td></td>

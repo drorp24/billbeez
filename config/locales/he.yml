@@ -165,6 +165,7 @@ he:
       format:
         delimiter: ! ','
         format: ! '%n %u'
+        negative_format: ! '%n %u-'
         precision: 2
         separator: .
         significant: false

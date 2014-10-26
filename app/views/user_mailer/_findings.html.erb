@@ -14,6 +14,11 @@
 	</tr>
 	<tr>
 		<td>
+			<p>היי <%= @newsletter.customer.display_name %>,
+		</td>
+	</tr>
+	<tr>
+		<td>
 			<p class="margin">
 				<% if @edit %>
 					<%= link_to @version.findings_sentence, "#", data: {:'editable-field' => 'true', pk: "1", mode: "inline", type: "textarea", name: "findings_sentence", url: modify_version_path(@version.id), title: "Update"} %>
