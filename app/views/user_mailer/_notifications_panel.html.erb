@@ -3,7 +3,7 @@
  	<table>
 			<tr class="section_title panel-heading panel-primary dues-panel" style="padding: 10px 15px !important; background-color: #D2DE7D !important; background-image: linear-gradient(to bottom, #F4F7DF 0%, #D2DE7D 100%) !important;" bgcolor="#D2DE7D">
 				<th width="<%= @control ? "187" : "150"%>" class="td_right" style="width: 150px !important; text-align: right">
-					<%= image_tag "check_list-128.png", class: "section_title_logo section_title_element", size: "48x48" %>
+					<%= image_tag "check_list-128.png", class: "section_title_logo section_title_element", size: "48x48", style: "margin: 0 30px !important;" %>
 				</th>
 				<th  width="<%= @control ? "375" : "300"%>">
  					<a data-anchor="notifications" name="notifications" class="section_title_name", style="width: 300px !important; text-decoration: none;">
@@ -12,9 +12,9 @@
 			  	</th>
 			  	<th width="<%= @control ? "188" : "150"%>" class="td_left" style="width: 150px !important; text-align: left">
 			  		<% if @control %> 			
-						<span class="section_title_element"><%= link_to  'Add Bill Notification', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
+						<span class="section_title_element" style="margin: 0 30px !important;"><%= link_to  'Add Bill Notification', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]), class: 'btn btn-mini' %></span>
 			  		<% else %>
-			  			<span class="section_title_element"><%= link_to "חזור", "#notifications_title", class: 'back_link' %></span>
+			  			<span class="section_title_element" style="margin: 0 30px !important;"><%= link_to "חזור", "#notifications_title", class: 'back_link' %></span>
 					<% end %>
 		  		</th>
 	  		</tr>			  		

@@ -6,6 +6,9 @@ a[data-editable-field='true']:hover, a[data-editable-field='true']:active {
     color: #000000;
 }
 */
+table td { 
+    border-collapse: collapse !important;
+}
 
 .status_icon {
     margin: 0 10px !important;
@@ -101,7 +104,7 @@ a[href="#dues"] img, a[href="#notifications"] img, a[href="#reminders"] img {
 }
 
 .section_title th {
-    padding: 0 30px !important;
+/*    padding: 0 30px !important; */
 }
 
 #suppliers_logo {
