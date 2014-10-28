@@ -60,7 +60,7 @@ class SuppliersController < ApplicationController
     
     ddData = []
     
-    Supplier.all.each do |supplier| 
+    Supplier.order('name').each do |supplier| 
       ddData << 
         {
         text:         supplier.name,
