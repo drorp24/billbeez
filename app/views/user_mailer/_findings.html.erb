@@ -34,7 +34,7 @@
 				<tbody class="jumbo">
 					<% @newsletter.plans.order(created_at: :asc).each do |plan| %>
 						<tr class="margin">
-							<td style="text-align: right" width="390">
+							<td style="text-align: right; width=390px !important;" width="390">
 								<span class="margin"><%= plan.findings %></span> 
 							</td>
 							<td class="margin" style="text-align: left" width="200">
