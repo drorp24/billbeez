@@ -94,8 +94,8 @@ Billbeez::Application.configure do
     password: 'docme2013'
   }
 
-  config.use_delayed_job = true
+  config.use_delayed_job = false
   config.newsletter_subject = "Production newsletter"
-
+  a = b
 
 end
