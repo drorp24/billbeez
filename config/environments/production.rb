@@ -96,6 +96,6 @@ Billbeez::Application.configure do
 
   config.use_delayed_job = false
   config.newsletter_subject = "Production newsletter"
-  a = b
+  
 
 end
