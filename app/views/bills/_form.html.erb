@@ -4,7 +4,7 @@
   <div class="form-inputs">
 	<div id="supplierDropdown"></div>
 	<%= f.association :supplier, as: :hidden %>
-	<%= f.input :new_supplier, label: "New supplier", placeholder: "or define a new one now" %>
+	<%= f.input :new_supplier, label: "New supplier" %>
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
 	<%= f.input :due_date, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
 	<%= f.input :amount, required: true, as: :decimal %>
