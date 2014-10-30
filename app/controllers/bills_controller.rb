@@ -1,6 +1,7 @@
 class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
   before_action :set_section
+  autocomplete :supplier, :name
 
   # GET /bills
   # GET /bills.json
