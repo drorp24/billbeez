@@ -15,6 +15,4 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require billbeez
-//= require jquery-ui
-//= require autocomplete-rails
 //= require_tree .
