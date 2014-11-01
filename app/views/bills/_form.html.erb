@@ -2,9 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<div id="supplierDropdown"></div>
-	<%= f.association :supplier, as: :hidden %>
-	<%= f.input :new_supplier, label: "New supplier" %>
+	<%= f.input :new_supplier, as: :autocomplete, url: autocomplete_supplier_name_bills_path, label: "Supplier" %>	
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
 	<%= f.input :due_date, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
 	<%= f.input :amount, required: true, as: :decimal %>

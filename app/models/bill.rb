@@ -61,6 +61,15 @@ class Bill < ActiveRecord::Base
     super(paid_url)
   end
 
+  def existing_supplier
+                 
+  end
+  
+  def existing_supplier=(name)
+    return unless !name.blank?
+    update(supplier_id: supplier.id)
+  end
+
 
   def new_supplier
     
@@ -68,6 +77,7 @@ class Bill < ActiveRecord::Base
   
   def new_supplier=(name)
     return unless !name.blank?
+    return if Supplier.where(name: name).exists?
     supplier = Supplier.create!(name: name)
     update(supplier_id: supplier.id)
   end   
