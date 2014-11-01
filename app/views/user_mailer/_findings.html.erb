@@ -14,7 +14,11 @@
 	</tr>
 	<tr>
 		<td>
-			<p>היי <%= @newsletter.customer.display_name ?  @newsletter.customer.display_name : @newsletter.customer.first_name %>,</p>
+			<% if @newsletter.customer %>
+				<p>היי <%= @newsletter.customer.display_name ?  @newsletter.customer.display_name : @newsletter.customer.first_name %>,</p>
+			<% else %>
+				<p>היי</p>
+			<% end %>
 		</td>
 	</tr>
 	<tr>
