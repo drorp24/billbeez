@@ -4,6 +4,8 @@ class Charge < ActiveRecord::Base
   belongs_to    :service
   belongs_to    :comment
   
+  scope :exception, -> { where(status: "exception") }
+
   def self.statuses
     ['exception', 'ok']
   end
