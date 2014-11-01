@@ -8,6 +8,9 @@ Billbeez::Application.routes.draw do
   resources  :reminders
   resources :plans
   resources :suppliers
+  resources :bills do
+    get :autocomplete_supplier_name, :on => :collection
+  end
 
   resources :newsletters do
     member do

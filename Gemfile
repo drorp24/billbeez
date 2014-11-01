@@ -44,6 +44,8 @@ gem "twitter-bootstrap-rails"
 gem 'simple_form'
 gem 'delayed_job_active_record'
 gem 'bootstrap-datepicker-rails'
+gem 'jquery-ui-rails'
+gem 'rails4-autocomplete'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
