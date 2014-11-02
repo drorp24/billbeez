@@ -17,4 +17,6 @@
 //= require billbeez
 //= require jquery-ui
 //= require autocomplete-rails
+//= require jquery.hotkeys
+//= require bootstrap-wysiwyg
 //= require_tree .
