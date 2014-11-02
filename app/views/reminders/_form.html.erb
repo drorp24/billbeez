@@ -9,7 +9,7 @@
     <%= f.button :submit %>
   </div>
 <% end %>
-<script>
+<script type="text/javascript">
 	$(document).ready(function() {	
 		align_val(<%= @newsletter.version.locale_id %>)
 		$('#reminder_text').wysihtml5({
