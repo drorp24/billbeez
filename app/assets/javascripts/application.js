@@ -17,4 +17,6 @@
 //= require billbeez
 //= require jquery-ui
 //= require autocomplete-rails
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales/il-HE
 //= require_tree .

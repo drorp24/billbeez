@@ -46,6 +46,7 @@ gem 'delayed_job_active_record'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-ui-rails'
 gem 'rails4-autocomplete'
+gem 'bootstrap-wysihtml5-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

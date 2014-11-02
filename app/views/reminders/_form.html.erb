@@ -1,7 +1,7 @@
 <%= simple_form_for @reminder, url: customer_newsletter_reminder_path(@customer.id, @newsletter.id, @reminder.id), :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs" dir="rtl">
   	<%= f.input :text, required: true, label: false %>
   </div>
 
@@ -12,5 +12,18 @@
 <script>
 	$(document).ready(function() {	
 		align_val(<%= @newsletter.version.locale_id %>)
+		$('#reminder_text').wysihtml5({
+		  toolbar: {
+		    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+		    "emphasis": true, //Italics, bold, etc. Default true
+		    "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+		    "html": false, //Button which allows you to edit the generated HTML. Default false
+		    "link": true, //Button to insert a link. Default true
+		    "image": false, //Button to insert an image. Default true,
+		    "color": true, //Button to change color of font  
+		    "blockquote": false, //Blockquote  
+		    "size": 'sm' //default: none, other options are xs, sm, lg
+		  }			
+		});
 	})
 </script>

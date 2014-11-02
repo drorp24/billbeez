@@ -18,6 +18,9 @@ table {
 
 */
 
+.wysihtml5-editor {
+    direction: rtl;
+}
 
 ul.nav .badge {
     background-color: #bdcd3f;
