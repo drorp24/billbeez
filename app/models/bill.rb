@@ -43,7 +43,8 @@ class Bill < ActiveRecord::Base
       return
     end
 #    url = url.gsub("_", "-")
-    u = URI.parse(url)
+    encoded_url = URI.encode(url)
+    u = URI.parse(encoded_url)
     if(!u.scheme)
         payment_url = "http://" + url
     elsif(%w{http https}.include?(u.scheme))
@@ -58,7 +59,8 @@ class Bill < ActiveRecord::Base
       return
     end
 #    url = url.gsub("_", "-")
-    u = URI.parse(url)
+    encoded_url = URI.encode(url)
+    u = URI.parse(encoded_url)
     if(!u.scheme)
         paid_url = "http://" + url
     elsif(%w{http https}.include?(u.scheme))
