@@ -77,8 +77,8 @@ class Bill < ActiveRecord::Base
   
   def new_supplier=(name)
     return unless !name.blank?
-    supplier = Supplier.where(name: name)
-    Supplier.create!(name: name) unless supplier.exists?
+    supplier = Supplier.where(name: name).first
+    Supplier.create!(name: name) unless supplier
     update(supplier_id: supplier.id)
   end   
 end
