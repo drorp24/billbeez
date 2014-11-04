@@ -1,6 +1,6 @@
 Billbeez::Application.routes.draw do
 
-  get "/suppliers/:id/url", to: 'suppliers#url'
+  get "/suppliers/payment_url", to: 'suppliers#payment_url'
   get "/suppliers/list", to: 'suppliers#list'
   
   resources :dues

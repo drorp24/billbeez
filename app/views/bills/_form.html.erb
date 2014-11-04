@@ -2,13 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-	<%= f.input :new_supplier, as: :autocomplete, url: autocomplete_supplier_name_bills_path, label: "Supplier" %>	
+	<%= f.input :supplier_name,input_html: {value: @bill.supplier_name}, as: :autocomplete, url: autocomplete_supplier_name_bills_path, label: "Supplier", :id_element => '#some_element' %>	
 	<%= f.input :issue_date, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
 	<%= f.input :due_date, as: :string, input_html: {data: {behaviour: 'datepicker'}}  %>
 	<%= f.input :amount, required: true, as: :decimal %>
-	<%= f.input :payment_url, as: :url unless params[:section] == 'notifications' %>
-	<%= f.input :paid_url, as: :url unless params[:section] == 'notifications' %>
-	<%= f.input :view_url, as: :url %>
+	<%= f.input :payment_url, input_html: {value: @bill.payment_url}, as: :url unless params[:section] == 'notifications' %>
+	<%= f.input :paid_url, input_html: {value: @bill.paid_url}, as: :url unless params[:section] == 'notifications' %>
+	<%= f.input :view_url, input_html: {value: @bill.view_url}, as: :url %>
 	<% if params[:section] == 'dues' %> 
 		<%= f.input :section, as: :hidden, input_html: {value: "dues"} %>
 	  	<%= f.simple_fields_for :dues do |due_form| %>
@@ -38,14 +38,17 @@
 		$('#bill_issue_date').val(view_date)
 */
 		align_val(<%= @newsletter.version.locale_id %>)
-
-		$('#bill_supplier_id').change(function() {
-			$.getJSON("/suppliers/" + $(this).val() + "/url","<%= @bill.id ? "bill_id=#{@bill.id}" : "" %>", function(data) {
-				$('#bill_payment_url').val(data)
-				
-			})
-		})
 		
+
+		$('#bill_supplier_name').change(function() {
+			$.getJSON("/suppliers/payment_url",
+				"supplier_name=" + $(this).val() + "&" + "<%= @bill.id ? "bill_id=#{@bill.id}" : "" %>", 
+				function(data) {
+					$('#bill_payment_url').val(data)				
+				})
+		})
+
+
 		$.getJSON("/suppliers/list", "<%= @bill.id ? "bill_id=#{@bill.id}" : "" %>", function(data) {
 			$('#supplierDropdown').ddslick({
 				
@@ -55,11 +58,19 @@
 			    imagePosition:"right",
 			    onSelected: function(selectedData){
 			        $('#bill_payment_url').val(selectedData.selectedData.payment_url)
-			        $('#bill_supplier_id').val(selectedData.selectedData.value).trigger('change');
+			        $('#bill_supplier_name').val(selectedData.selectedData.value).trigger('change');
 			    }   
 			});
 		})
 
+		$('.dd-selected-value').change(function() {
+			alert('hi')
+			$.getJSON("/suppliers/" + $(this).val() + "/url","<%= @bill.id ? "bill_id=#{@bill.id}" : "" %>", function(data) {
+				$('#bill_payment_url').val(data)
+				
+			})
+		})
+		
 
 	})
 </script>

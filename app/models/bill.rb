@@ -10,9 +10,14 @@ class Bill < ActiveRecord::Base
   
   attr_accessor :section
 
+  def payment_url_db
+    db_payment_url = read_attribute(:payment_url)
+    return db_payment_url if !db_payment_url.blank?
+  end
+
   def payment_url
     db_payment_url = read_attribute(:payment_url)
-    return db_payment_url if db_payment_url
+    return db_payment_url if !db_payment_url.blank?
     self.supplier.payment_url if self.supplier
   end
 
@@ -22,7 +27,8 @@ class Bill < ActiveRecord::Base
       return
     end
 #    url = url.gsub("_", "-")
-    u = URI.parse(url)
+    encoded_url = URI.encode(url)
+    u = URI.parse(encoded_url)
     if(!u.scheme)
         view_url = "http://" + url
     elsif(%w{http https}.include?(u.scheme))
@@ -71,14 +77,15 @@ class Bill < ActiveRecord::Base
   end
 
 
-  def new_supplier
-    
+  def supplier_name
+    supplier_rec = Supplier.find_by_id(supplier_id) if supplier_id
+    supplier_rec.name if supplier_rec
   end
   
-  def new_supplier=(name)
+  def supplier_name=(name)
     return unless !name.blank?
     supplier = Supplier.where(name: name).first
-    Supplier.create!(name: name) unless supplier
+    supplier = Supplier.create!(name: name) unless supplier
     update(supplier_id: supplier.id)
   end   
 end

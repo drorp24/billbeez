@@ -31,20 +31,20 @@ class SuppliersController < ApplicationController
     redirect_to suppliers_path
   end
 
-  def url
+  def payment_url
 
-    return unless params[:id]
+    return unless params[:supplier_name]
 
     if params[:bill_id] and bill = Bill.find(params[:bill_id])
-      bill_payment_url = bill.payment_url
+      bill_payment_url = bill.payment_url_db
     end
 
     if bill_payment_url
       payment_url = bill_payment_url
-    elsif @supplier = Supplier.find(params[:id])
+    elsif @supplier = Supplier.find_by_name(params[:supplier_name])
       payment_url = @supplier.payment_url
     else
-      payment_url = nil
+      payment_url = ""
     end
 
     render json: payment_url.to_json if payment_url
@@ -79,7 +79,7 @@ class SuppliersController < ApplicationController
   private
   
   def set_supplier
-    @supplier = Supplier.find(params[:id])
+    @supplier = Supplier.find(params[:id]) if params[:id]
   end
 
   def supplier_params
