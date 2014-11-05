@@ -18,9 +18,9 @@
 			<%= link_to "צפה", notification.bill.view_url, class: "activities highlights_link", target: "_blank" %>
 		<% end %>
 	</td>
-	<td><%= number_to_currency charges = notification.charges.exception.sum(:amount) %></td>
+	<td><%= number_to_currency notification.charges.exception.sum(:amount) %></td>
 	<td>
-		<% if charges > 0 %>
+		<% if notification.charges.exception.count(:amount) > 0 %>
 			<%= image_tag "question-16.png", class: "status_icon" %>
 		<% else %>
 			<%= image_tag "checked-16.png", class: "status_icon" %>

@@ -31,8 +31,12 @@
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_customer_path(customer), :class => 'btn btn-mini' %>
-           <%= link_to 'view newsletters',
-                      customer_newsletters_path(customer, campaign_id: (@current_campaign.id if @current_campaign)), :class => 'btn btn-mini' %>		   
+           <% if @current_campaign %>
+	           <%= link_to 'campaign newsletters',
+	                      customer_newsletters_path(customer, campaign_id: @current_campaign.id), :class => 'btn btn-mini' %>		   
+           <% end %>
+           <%= link_to 'all newsletters',
+                      customer_newsletters_path(customer), :class => 'btn btn-mini' %>		   
 	   	   <% if last_delivery_date %>
 	   	   		<% confirm_message = "Are you sure? Newsletter already sent to that customer on current campaign" %>
    	   		<% elsif newsletters_for_current_campaign = customer.newsletters_for(@current_campaign) and newsletters_for_current_campaign.any? %>
