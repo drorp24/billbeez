@@ -29,10 +29,17 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
+   supplier_added = Supplier.no_existent?(bill_params[:supplier_name])
     @bill = @customer.bills.new(bill_params)
     respond_to do |format|
       if @bill.save 
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Bill was successfully created.' }
+        format.html { 
+          if supplier_added and new_supplier = Supplier.find_by_name(bill_params[:supplier_name])
+            redirect_to supplier_path(new_supplier.id), notice: 'You have defined a new supplier. Update it here' 
+          else
+            redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Bill was successfully created.' 
+          end
+        }
         format.json { render action: 'show', status: :created, location: @bill }
       else
         format.html { render action: 'new' }
@@ -45,9 +52,16 @@ class BillsController < ApplicationController
   # PATCH/PUT /bills/1.json
   def update
     
+    supplier_added = Supplier.no_existent?(bill_params[:supplier_name])
     respond_to do |format|
       if @bill.update(bill_params)
-        format.html { redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Bill was successfully updated.' }
+        format.html { 
+          if supplier_added and new_supplier = Supplier.find_by_name(bill_params[:supplier_name])
+            redirect_to supplier_path(new_supplier.id), notice: 'You have defined a new supplier. Update it here' 
+          else
+            redirect_to customer_newsletter_bills_path(@customer, @newsletter, section: @section), notice: 'Bill was successfully updated.' 
+          end
+        }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -18,6 +18,10 @@ table {
 
 */
 
+textarea {
+    width: 415px;
+}
+
 .wysihtml5-editor {
     direction: rtl;
 }
