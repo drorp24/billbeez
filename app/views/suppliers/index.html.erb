@@ -22,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @suppliers.order(updated_at: :desc).each do |supplier| %>
+    <% @suppliers.order(name: :asc).each do |supplier| %>
       <tr>
         <td><%= link_to supplier.id, supplier_path(supplier) %></td>
         <td dir="rtl"><%=l supplier.created_at, format: :short if supplier.created_at %></td>
