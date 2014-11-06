@@ -18,6 +18,10 @@ table {
 
 */
 
+#supplier_payment_url {
+    width: 415px;
+}
+
 // Font Awesome
 @fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
 @fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
