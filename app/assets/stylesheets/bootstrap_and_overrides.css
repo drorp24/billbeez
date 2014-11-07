@@ -3,7 +3,6 @@
 
   Use Font Awesome icons (default)
   To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
-  =require twitter-bootstrap-static/fontawesome
   */
 
 /* the !important directive works!
@@ -22,7 +21,10 @@ table {
     width: 415px;
 }
 
+
 // Font Awesome
+@import "twitter/bootstrap"
+
 @fontAwesomeEotPath: asset-url("fontawesome-webfont.eot");
 @fontAwesomeEotPath_iefix: asset-url("fontawesome-webfont.eot?#iefix");
 @fontAwesomeWoffPath: asset-url("fontawesome-webfont.woff");
