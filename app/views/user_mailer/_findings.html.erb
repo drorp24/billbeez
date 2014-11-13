@@ -15,7 +15,7 @@
 	<tr>
 		<td>
 			<% if @newsletter.customer %>
-				<p>היי <%= @newsletter.customer.display_name ?  @newsletter.customer.display_name : @newsletter.customer.first_name %>,</p>
+				<p>היי <%= !@newsletter.customer.display_name.blank? ?  @newsletter.customer.display_name : @newsletter.customer.first_name %>,</p>
 			<% else %>
 				<p>היי</p>
 			<% end %>
