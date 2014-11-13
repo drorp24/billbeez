@@ -3,8 +3,8 @@
   <tr height = "42" class="notification_background" id="notification_background" bgcolor="#FFFFFF">
     <td>
     	<% if notification.supplier %>
-	    	<% if logo = notification .supplier.logo %>
-	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important" %>
+	    	<% if !notification.supplier.logo.blank? %>
+	    		<%= image_tag notification.supplier.logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important" %>
 	    	<% else %>	
 	    		<%= notification.supplier.name %>
 			<% end %>
