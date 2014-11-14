@@ -44,7 +44,7 @@ Billbeez::Application.configure do
   
   config.assets.raise_production_errors = true
   
-  config.use_delayed_job = false
+  config.use_delayed_job = true
   config.newsletter_subject = "Test newsletter"
   
   # Do not fallback to assets pipeline if a precompiled asset is missed.
