@@ -49,6 +49,7 @@ Billbeez::Application.routes.draw do
   
   resources :campaigns do
     resources :versions
+    resources :newsletters
   end
   
   resources :versions do
