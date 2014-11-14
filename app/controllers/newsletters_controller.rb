@@ -19,9 +19,9 @@ class NewslettersController < ApplicationController
   # GET /newsletters.json
   def index
     if params[:customer_id]
-      @newsletters = Newsletter.where(customer_id: params[:customer_id]).includes(:customer, :campaign)
+        @newsletters = Newsletter.where(customer_id: params[:customer_id]).includes(:customer, :campaign)
       if params[:campaign_id]
-        @newsletters = @newsletters.includes(:version).where(versions: {campaign_id: params[:campaign_id]})
+        @newsletters = @newsletters.joins(:version).where(versions: {campaign_id: params[:campaign_id]}).includes(:customer, :campaign)
       end
     else
       @newsletters = Newsletter.includes(:customer, :campaign)
