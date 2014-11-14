@@ -21,7 +21,7 @@ class NewslettersController < ApplicationController
     if params[:customer_id]
       @newsletters = Newsletter.where(customer_id: params[:customer_id]).includes(:customer, :campaign)
       if params[:campaign_id]
-        @newsletters = @newsletters.includes(:campaign).where(campaigns: {id: params[:campaign_id]})
+        @newsletters = @newsletters.includes(:version).where(versions: {campaign_id: params[:campaign_id]})
       end
     else
       @newsletters = Newsletter.includes(:customer, :campaign)
