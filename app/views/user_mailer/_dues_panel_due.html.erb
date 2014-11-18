@@ -49,8 +49,8 @@
 	  	<td>
 	  		<%= link_to "Edit", edit_customer_newsletter_bill_path(@customer, @newsletter, due.bill, section: params[:section]), class: 'btn btn-mini' %>
   		</td>
-  		<td class="leftmost">
-  			<%= link_to "Add Line", new_customer_newsletter_due_line_path(@customer, @newsletter, due, section: params[:section]), class: 'btn btn-mini' %>
+  		<td class="leftmost" dir="ltr">
+  			<%= link_to " + Line", new_customer_newsletter_due_line_path(@customer, @newsletter, due, section: params[:section]), class: 'btn btn-mini' %>
 		</td>
 	  <% end %>
   </tr>

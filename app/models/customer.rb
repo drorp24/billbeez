@@ -3,6 +3,21 @@ class Customer < ActiveRecord::Base
   has_many    :newsletters
   has_many    :bills
   
+  def prev_campaign
+    prev_campaign_id = newsletters.includes(:version).order('versions.campaign_id DESC').uniq.pluck('versions.campaign_id')[1]
+    prev_campaign = Campaign.find(prev_campaign_id)
+  end
+
+  def prev_newsletter
+    prev_campaign.newsletters.where(customer_id: self.id).last
+  end
+  
+  def copy_prev_newsletter_dues_to_newsletter(newsletter_id)
+    prev_newsletter.dues.each do |prev_due| 
+      new_due = prev_due.dup.update(newsletter_id: newsletter_id)
+    end 
+  end
+
   def newsletters_for(campaign)
     return nil unless campaign and campaign.id
     self.newsletters.joins(:version).where(versions: {campaign_id: campaign.id})

@@ -29,6 +29,9 @@ Billbeez::Application.routes.draw do
       end
       resources :dues do
         resources :lines
+        collection do
+          get 'copy'
+        end
       end
       resources :notifications do
         resources :charges
@@ -40,6 +43,7 @@ Billbeez::Application.routes.draw do
       end
     end
   end
+
   
 #  patch customers/:customer_id/newsletters/:newsletter_id/dues/:due_id/lines
 

@@ -1,6 +1,14 @@
 class DuesController < ApplicationController
   before_action :set_due, only: [:show, :edit, :update, :destroy]
 
+  def copy
+    return unless params[:customer_id] and params[:newsletter_id] and params[:section]
+    customer = Customer.find(params[:customer_id])
+    newsletter_id = params[:newsletter_id]
+    customer.copy_prev_newsletter_dues_to_newsletter(newsletter_id)
+    redirect_to customer_newsletter_bills_path(customer.id, newsletter_id, section: params[:section]), notice: "Last newsletter's dues copied successfully!"
+  end
+
   # GET /dues
   # GET /dues.json
   def index
