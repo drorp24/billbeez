@@ -17,6 +17,7 @@
     <tr>
 		<th>id</th>
       	<th>Name</th>
+      	<th>Company</th>
 		<th><%= delivery_date_title %></th>
     	<th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -25,7 +26,8 @@
     <% @customers.order(:id).each do |customer| %>
       <tr>
         <td><%= link_to customer.id, customer_path(customer) %></td>
-        <td><%= customer.first_name + ' ' + customer.last_name %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.company_name %></td>
 		<% last_delivery_date = customer.last_delivery_date_for(@current_campaign) %>
 		<td dir="rtl"><%= l last_delivery_date, format: :short if last_delivery_date %></td>
         <td>
