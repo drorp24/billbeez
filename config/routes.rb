@@ -36,6 +36,9 @@ Billbeez::Application.routes.draw do
       resources :notifications do
         resources :charges
         resources :lines
+        collection do
+          get 'copy'
+        end
       end
       resources :reminders
       resources :plans do
