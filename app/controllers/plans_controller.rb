@@ -28,10 +28,12 @@ class PlansController < ApplicationController
   # POST /plans.json
   def create
     @plan = @newsletter.plans.build(plan_params)
+    plan = Plan.find_identical(plan_params)
+    identical_plan = plan ? plan.id : 'no'
 
     respond_to do |format|
       if @plan.save
-        format.html { redirect_to customer_newsletter_plans_path(@customer, @newsletter), notice: 'Plan was successfully created.' }
+        format.html { redirect_to customer_newsletter_plans_path(@customer, @newsletter, identical_plan: identical_plan), notice: 'Plan was successfully created.' }
         format.json { render action: 'show', status: :created, location: @plan }
       else
         format.html { render action: 'new' }

@@ -7,6 +7,17 @@ class Plan < ActiveRecord::Base
   has_many      :features, dependent: :destroy
   
 
+  def self.find_identical(params)
+    identical_plans = self.where(
+      curr_supplier_id: params[:curr_supplier_id], 
+      recc_supplier_id: params[:recc_supplier_id],
+      curr_plan:        params[:curr_plan],
+      recc_plan:        params[:recc_plan])
+    if identical_plans.any?
+      identical_plan = identical_plans.first
+    end
+  end
+
   def other?
     othr_plan && othr_supplier_id
   end
