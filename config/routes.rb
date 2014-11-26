@@ -6,7 +6,11 @@ Billbeez::Application.routes.draw do
   resources :dues
   resources :notifications
   resources  :reminders
-  resources :plans
+  resources :plans do
+    get :autocomplete_plan_curr_plan, :on => :collection
+    get :autocomplete_plan_recc_plan, :on => :collection
+    get :autocomplete_plan_othr_plan, :on => :collection
+ end
   resources :suppliers
   resources :bills do
     get :autocomplete_supplier_name, :on => :collection
@@ -42,6 +46,9 @@ Billbeez::Application.routes.draw do
       end
       resources :reminders
       resources :plans do
+        get :autocomplete_plan_curr_plan, :on => :collection
+        get :autocomplete_plan_recc_plan, :on => :collection
+        get :autocomplete_plan_othr_plan, :on => :collection
         resources :features
       end
     end

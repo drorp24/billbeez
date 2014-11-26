@@ -4,15 +4,15 @@
   <div class="form-inputs">
   	<p class="plan_form_heading">Current</p>
 	<%= f.association :curr_supplier, label: "Supplier name (existing)", input_html: {value: ""}, include_blank: "Select an existing supplier", required: true %>
-	<%= f.input :curr_plan, required: true, label: "Plan name", placeholder: "Current Plan", as: :string, required: true %>
+	<%= f.input :curr_plan, as: :autocomplete, url: autocomplete_plan_curr_plan_plans_path, required: true, label: "Plan name", placeholder: "Current Plan", as: :string, required: true %>
 	<p class="plan_form_heading">Recommended</p>
 	<%= f.association :recc_supplier, label: "Supplier name (existing)", include_blank: "Select an existing supplier" %>
 	<%= f.input :new_recc_supplier, label: "Supplier name (create)", placeholder: "Create one"%>
-	<%= f.input :recc_plan, required: true, label: "Plan name", placeholder: "Recommended Plan", as: :string, required: true %>
+	<%= f.input :recc_plan, as: :autocomplete, url: autocomplete_plan_recc_plan_plans_path, required: true, label: "Plan name", placeholder: "Recommended Plan", as: :string, required: true %>
 	<p class="plan_form_heading">Other (Optional)</p>
 	<%= f.association :othr_supplier, label: "Supplier name (existing)", include_blank: "Select an existing supplier" %>
 	<%= f.input :new_othr_supplier, label: "Supplier name (create)", placeholder: "Create one"%>
-	<%= f.input :othr_plan, label: "Plan name", placeholder: "Other Plan", as: :string %>
+	<%= f.input :othr_plan, as: :autocomplete, url: autocomplete_plan_othr_plan_plans_path, label: "Plan name", placeholder: "Other Plan", as: :string %>
 	<p class="plan_form_heading">Heading text</p>
 	<%= f.input :findings, label: "Text to show", placeholder: "(appears on top of newsletter)", as: :string, required: true %>
   </div>

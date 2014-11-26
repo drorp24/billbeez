@@ -1,5 +1,8 @@
 class PlansController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  autocomplete  :plan, :curr_plan, :full => true
+  autocomplete  :plan, :recc_plan, :full => true
+  autocomplete  :plan, :othr_plan, :full => true
 
   # GET /plans
   # GET /plans.json
