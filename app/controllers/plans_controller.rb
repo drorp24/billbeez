@@ -4,6 +4,11 @@ class PlansController < ApplicationController
   autocomplete  :plan, :recc_plan, :full => true
   autocomplete  :plan, :othr_plan, :full => true
 
+  def copy
+    Plan.find(params[:id]).copy(params[:identical_plan])
+    render nothing: true
+  end
+
   # GET /plans
   # GET /plans.json
   def index
@@ -33,7 +38,7 @@ class PlansController < ApplicationController
 
     respond_to do |format|
       if @plan.save
-        format.html { redirect_to customer_newsletter_plans_path(@customer, @newsletter, identical_plan: identical_plan), notice: 'Plan was successfully created.' }
+        format.html { redirect_to customer_newsletter_plans_path(@customer, @newsletter, plan_id: @plan.id, identical_plan: identical_plan), notice: 'Plan was successfully created.' }
         format.json { render action: 'show', status: :created, location: @plan }
       else
         format.html { render action: 'new' }

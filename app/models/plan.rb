@@ -7,6 +7,13 @@ class Plan < ActiveRecord::Base
   has_many      :features, dependent: :destroy
   
 
+  def copy(identical_plan_id)
+    identical_plan = Plan.find(identical_plan_id)
+    identical_plan.features.each do |feature| 
+      copied_feature = feature.dup.update(plan_id: self.id)
+    end
+  end
+
   def self.find_identical(params)
     identical_plans = self.where(
       curr_supplier_id: params[:curr_supplier_id], 

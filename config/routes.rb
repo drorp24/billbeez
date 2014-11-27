@@ -10,6 +10,9 @@ Billbeez::Application.routes.draw do
     get :autocomplete_plan_curr_plan, :on => :collection
     get :autocomplete_plan_recc_plan, :on => :collection
     get :autocomplete_plan_othr_plan, :on => :collection
+    member do
+      patch 'copy'
+    end
  end
   resources :suppliers
   resources :bills do

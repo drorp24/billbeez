@@ -1,12 +1,35 @@
 <script>
 	
 $(document).ready(function() {
+	
+		<% if params[:identical_plan] and params[:identical_plan] != 'no' %>
+			var r = confirm('You recommended this in another newsletter.\n\n Would you like all features to be copied?')
+			if (r == true) {
+				
+				plan = getParameterByName('plan');
+				identical_plan = getParameterByName('identical_plan');
+				
+				$.ajax({
+			  		url: "<%= copy_plan_path(params[:plan_id]) %>",
+			  		data: "identical_plan=" + identical_plan,
+			  		type: 'PATCH'
+			  		});			  	
+			}		
+		<% end %>
+	
 		$.ajax({
 	  		url: "<%= user_mailer_weekly_url %>",
 	  		data: "customer_id=" + <%= @customer.id %> + "&newsletter_id=" + "<%= @newsletter.id %>" + "&section=plans" + "&control=yes",
 	  		success: function(result) {
 	  			$('#sample').html(result);
-	  	}});		
+	  	}});
+	  	
+	  	function getParameterByName(name) {
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		        results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}		
 
 })	
 	
