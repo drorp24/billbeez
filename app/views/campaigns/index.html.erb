@@ -12,6 +12,8 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Include activity from</th>
+      <th>To</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -19,12 +21,16 @@
     <% @campaigns.order(created_at: :desc).each do |campaign| %>
       <tr>
         <td><%= link_to campaign.id, campaign_path(campaign) %></td>
-        <td dir="rtl"><%=l campaign.created_at, format: :long %></td>
+        <td dir="rtl"><%=l campaign.created_at, format: :short %></td>
+        <td dir="rtl"><%= l campaign.activity_from, format: :short if campaign.activity_from %></td>
+        <td dir="rtl"><%= l campaign.activity_to, format: :short if campaign.activity_from %></td>
         <td>
           <%= link_to "Versions",
                       campaign_versions_path(campaign), :class => 'btn btn-mini' %>
           <%= link_to "Newsletters",
                       campaign_newsletters_path(campaign), :class => 'btn btn-mini' %>
+          <%= link_to "Edit",
+                      edit_campaign_path(campaign), :class => 'btn btn-mini' %>
 <!--
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       campaign_path(campaign),

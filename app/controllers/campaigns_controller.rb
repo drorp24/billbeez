@@ -47,7 +47,7 @@ class CampaignsController < ApplicationController
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to @campaign, notice: 'Campaign was successfully updated.' }
+        format.html { redirect_to campaigns_path, notice: 'Campaign was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -79,6 +79,6 @@ class CampaignsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campaign_params
-      params.require(:campaign).permit(:name, :subject, :from_name, :from_email, :sent_at)
+      params.require(:campaign).permit!
     end
 end
