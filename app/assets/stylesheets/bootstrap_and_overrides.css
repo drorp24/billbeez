@@ -17,7 +17,11 @@ table {
 
 */
 
-
+.status_icon {
+    width: 16px;
+    position: relative;
+    bottom: 5px;
+}
 #backoffice #menu .alert {
     position: absolute;
     top: 110px;

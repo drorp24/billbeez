@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213173218) do
+ActiveRecord::Schema.define(version: 20141213230843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,13 +45,23 @@ ActiveRecord::Schema.define(version: 20141213173218) do
     t.integer  "supplier_id"
     t.date     "issue_date"
     t.date     "due_date"
-    t.decimal  "amount",      precision: 8, scale: 2
+    t.decimal  "amount",              precision: 8, scale: 2
     t.boolean  "paid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "payment_url"
     t.text     "paid_url"
     t.text     "view_url"
+    t.date     "upload_date"
+    t.string   "invoice_id"
+    t.date     "invoice_period_from"
+    t.date     "invoice_period_to"
+    t.date     "payment_date"
+    t.string   "payment_id"
+    t.string   "comment"
+    t.string   "reminder_id"
+    t.string   "alpha_id"
+    t.string   "provider_name"
   end
 
   create_table "campaigns", force: true do |t|

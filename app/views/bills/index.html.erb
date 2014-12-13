@@ -7,35 +7,59 @@
 	<table id="bills_table" class="table table-striped">
 	  <thead>
 	    <tr>
-	      <th><%= model_class.human_attribute_name(:id) %></th>
+	      <th>Bill#</th>
+	      <th>Alpha Id</th>
+	      <th>Issue Date</th>
+	      <th>Number</th>
 	      <th><%= model_class.human_attribute_name(:supplier_id) %></th>
-	      <th><%= model_class.human_attribute_name(:issue_date) %></th>
-	      <th><%= model_class.human_attribute_name(:due_date) %></th>
+	      <th></th>
 	      <th><%= model_class.human_attribute_name(:amount) %></th>
-	      <th><%= model_class.human_attribute_name(:payent_url) %></th>
-	      <th><%= model_class.human_attribute_name(:paid_url) %></th>
-	      <th><%= model_class.human_attribute_name(:view_url) %></th>
-	      <th><%= model_class.human_attribute_name(:paid) %></th>
-	      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+	      <th>From</th>
+	      <th>To</th>
+		  <th>Due Date</th>
+	      <th>Paid?</th>
+      	  <th>Pay</th>
+	      <th>Mark Paid</th>
+	      <th>View</th>
+	      <th></th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	  	<% @customer.bills.order(created_at: :desc).each do |bill| %>
 	      <tr>
 	        <td><%= bill.id %></td>
-	        <td><%= image_tag bill.supplier.logo, id: "suppliers_logo" if bill.supplier and bill.supplier.logo %></td>
-	        <td dir="rtl"><%=l bill.issue_date, format: :short %></td>
-	        <td dir="rtl"><%=l bill.due_date, format: :short %></td>
-	        <td dir="rtl"><%= number_to_currency bill.amount %></td>
-	        <td><%= bill.payment_url %></td>
-	        <td><%= bill.paid_url %></td>
-	        <td><%= bill.view_url %></td>
-	        <td><%= bill.paid %></td>
+	        <td><%= bill.alpha_id %></td>
+	        <td dir="rtl"><%= l bill.issue_date, format: :short if bill.issue_date %></td>
+	        <td><%= bill.invoice_id %></td>
 	        <td>
-	          <%= link_to t('.show', :default => t("helpers.links.show")),
-	                      customer_bill_path(@customer, bill), :class => 'btn btn-mini' %>
+	        	<% if bill.supplier.present? %>
+	        		<% supplier = bill.supplier %>
+        			<% if supplier.name %>
+        				<%= supplier.name %>
+    				<% else %>
+    					<%= supplier.id %>
+					<% end %>
+				<% else %>
+					<%= bill.provider_name %>
+					<% issue = true %>
+				<% end %>
+			</td>
+	        <td>
+	        	<% if issue %>
+	        		<%= image_tag "warning.png", class: "status_icon", title: "Click Edit and associate bill with supplier" %>
+	        	<% end %>
+	        </td>
+	        <td dir="rtl"><%= number_to_currency bill.amount %></td>
+	        <td dir="rtl"><%= l bill.invoice_period_from, format: :short if bill.invoice_period_from %></td>
+	        <td dir="rtl"><%= l bill.invoice_period_to, format: :short if bill.invoice_period_to %></td>
+	        <td dir="rtl"><%=l bill.due_date, format: :short if bill.due_date %></td>
+	        <td><%= bill.paid %></td>
+	        <td><%= link_to "Pay", bill.payment_url, target: "_blank" if bill.payment_url.present? %></td>
+	        <td><%= link_to "Mark", bill.paid_url, target: "_blank"  if bill.paid_url.present? %></td>
+	        <td><%= link_to "View", bill.view_url, target: "_blank"  if bill.view_url.present? %></td>
+	        <td>
 	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-	                      edit_customer_bill_path(@customer, bill), :class => 'btn btn-mini' %>
+	                      edit_customer_bill_path(@customer, bill) %>
 	        </td>
 	      </tr>
     	<% end %>
@@ -59,7 +83,7 @@ $(document).ready(function() {
 
 <% else %>
 
-		$('#backoffice div#menu #bills_table').parent().attr('class', 'span9')
+		$('#backoffice div#menu #bills_table').parent().attr('class', 'span12')
 		$('#backoffice #menu .alert.alert-success').css('width', '100%')
 
 <% end %>	

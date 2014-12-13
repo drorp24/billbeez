@@ -10,6 +10,30 @@ class Bill < ActiveRecord::Base
   
   attr_accessor :section
 
+  def self.create_from_alpha!(a_bill)
+    self.create!(
+      alpha_id:             a_bill["Id"],
+      customer_id:          a_bill["customer_id"],
+      supplier_id:          nil,                    # TBC
+      issue_date:           a_bill["InvoiceDate"],
+      due_date:             a_bill["PayDate"],
+      amount:               a_bill["Amount"],
+      paid:                 a_bill["isPaid"],
+      payment_url:          nil,                    # TBC
+      paid_url:             nil,                    # TBC
+      view_url:             a_bill["fileLocation1"],
+      upload_date:          a_bill["UploadDate"],
+      invoice_id:           a_bill["InvoiceNumber"],
+      invoice_period_from:  a_bill["InvoicePeriodFrom"],
+      invoice_period_to:    a_bill["InvoicePeriodTo"],
+      payment_date:         a_bill["PayDate"],
+      payment_id:           a_bill["PayNumber"],
+      comment:              a_bill["Remark"],
+      reminder_id:          a_bill["RemainderID"],
+      provider_name:        a_bill["providername"]
+    )    
+  end
+
   def payment_url_db
     db_payment_url = read_attribute(:payment_url)
     return db_payment_url if !db_payment_url.blank?

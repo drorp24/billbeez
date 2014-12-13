@@ -1,4 +1,4 @@
-<%= simple_form_for @bill, url: customer_newsletter_bill_path(@customer.id, @newsletter.id, @bill.id), :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for @bill, url: @newsletter ? customer_newsletter_bill_path(@customer.id, @newsletter.id, @bill.id) : customer_bill_path(@customer.id, @bill.id), :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -37,7 +37,9 @@
 		view_date = model_date[2] + "-" + model_date[1] + "-" + model_date[0]
 		$('#bill_issue_date').val(view_date)
 */
-		align_val(<%= @newsletter.version.locale_id %>)
+		<% if @newsletter %>
+			align_val(<%= @newsletter.version.locale_id %>)
+		<% end %>
 		
 
 		$('#bill_supplier_name').change(function() {
