@@ -17,6 +17,35 @@ table {
 
 */
 
+
+#dues_menu {
+
+    position: relative; 
+    left: 300px;
+    top: 5px;
+}
+
+#dues_menu p {
+    font-size: 16px;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+
+#dues_menu p a:link {
+    color: #666;
+}
+
+#dues_menu p a:hover {
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 1px 0 white;
+    background: #bdcd3f;   
+    font-weight: 100;
+}
+#dues_menu p a:active {
+    color: #bdcd3f;
+    text-decoration: none;
+}
 #alpha_table {
     width: 100%;
 }
