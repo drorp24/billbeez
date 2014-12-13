@@ -20,16 +20,43 @@ class Customer < ActiveRecord::Base
   end
   
   def import_alpha_bills_to_newsletter(newsletter_id, section)
+
     if self.alpha_id.blank?
       error = "Please populate this customer\'s alpha_id."
     end
     if error 
       self.errors.add(:base, error)
       return false
-    else
-      return true
     end
+      
+    if section == 'dues'
+      alpha_bills = API::Bill.where(status: "due")
+      alpha_bills.each do |a_bill|
+        a_bill.customer_id = self.id
+        a_bill.UploadDate = correct_date(a_bill.UploadDate)
+        a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
+        Alpha::Bill.create!(a_bill.attributes)
+      end     
+    elsif section == 'notifications'
+             
+    end
+    
+    return true
+
   end
+  
+  def correct_date(s)
+    split1 = s.split("/")
+    mm = split1[0].to_i
+    dd = split1[1].to_i
+    split2 = split1[2].split(" ")
+    yyyy = split2[0].to_i
+    split3 = split2[1].split(":")
+    hh = split3[0].to_i
+    mn = split3[1].to_i
+    ss = split3[2].to_i
+    DateTime.new(yyyy, mm, dd, hh, mn, ss)
+ end
 
   def newsletters_for(campaign)
     return nil unless campaign and campaign.id
