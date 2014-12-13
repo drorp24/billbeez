@@ -24,24 +24,35 @@ class Customer < ActiveRecord::Base
     if self.alpha_id.blank?
       error = "Please populate this customer\'s alpha_id."
     end
+    
+    unless error  
+      if section == 'dues'
+        alpha_bills = API::Bill.where(status: "due")
+        begin
+          alpha_bills.each do |a_bill|
+            if Alpha::Bill.exists?(Id: a_bill.Id)
+              error = "Some or all bills imported already"
+              break
+            end 
+            a_bill.customer_id = self.id
+            a_bill.UploadDate = correct_date(a_bill.UploadDate)
+            a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
+            Alpha::Bill.create!(a_bill.attributes)
+          end 
+        rescue => e
+          error = e  
+        end  
+      elsif section == 'notifications'
+               
+      end
+    end
+        
     if error 
       self.errors.add(:base, error)
       return false
+    else
+      return true
     end
-      
-    if section == 'dues'
-      alpha_bills = API::Bill.where(status: "due")
-      alpha_bills.each do |a_bill|
-        a_bill.customer_id = self.id
-        a_bill.UploadDate = correct_date(a_bill.UploadDate)
-        a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
-        Alpha::Bill.create!(a_bill.attributes)
-      end     
-    elsif section == 'notifications'
-             
-    end
-    
-    return true
 
   end
   

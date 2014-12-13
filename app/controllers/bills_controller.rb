@@ -15,7 +15,7 @@ class BillsController < ApplicationController
       notice = "Alpha bills successfully imported. Please verify the data!" 
       redirect_to customer_newsletter_bills_path(customer.id, newsletter_id, section: params[:section]), notice: notice
     else
-      flash[:error] = "Alpha bills import failed: " + customer.errors.full_messages.to_sentence
+      flash[:error] = "Import failed: " + customer.errors.full_messages.to_sentence
       redirect_to customer_newsletter_bills_path(customer.id, newsletter_id, section: params[:section])
     end
 
