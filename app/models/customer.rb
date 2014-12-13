@@ -2,6 +2,7 @@ class Customer < ActiveRecord::Base
   belongs_to  :locale
   has_many    :newsletters
   has_many    :bills
+  has_many    :alpha_bills
   
   def prev_campaign
     prev_campaign_id = newsletters.includes(:version).order('versions.campaign_id DESC').uniq.pluck('versions.campaign_id')[1]

@@ -4,7 +4,12 @@ class Alpha::BillsController < ApplicationController
   # GET /alpha/bills
   # GET /alpha/bills.json
   def index
-    @alpha_bills = Alpha::Bill.all
+    if params[:customer_id]
+      @alpha_bills = Alpha::Bill.where(customer_id: params[:customer_id])
+    else
+      @alpha_bills = Alpha::Bill.all
+    end
+    flash[:notice] = "Click Edit if you want to see the full list of fields"
   end
 
   # GET /alpha/bills/1
@@ -69,6 +74,6 @@ class Alpha::BillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alpha_bill_params
-      params.require(:alpha_bill).permit(:Id, :providername, :fileLocation1, :IsShown, :UploadDate, :IsPaid, :InvoiceNumber, :InvoicePeriodFrom, :InvoicePeriodTo, :Amount, :PayDate, :fileLocation2, :Remark, :RemainderID, :PayNumber, :InvoiceDate, :fileLocation3, :fileLocation4)
+      params.require(:alpha_bill).permit!
     end
 end

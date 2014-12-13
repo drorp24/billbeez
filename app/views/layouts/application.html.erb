@@ -107,11 +107,13 @@
 							<p><%= link_to  'Create a new Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]) %></p>
 							<p><%= link_to  'Copy last newsletter\'s Dues', copy_customer_newsletter_dues_path(@customer, @newsletter, section: params[:section]), confirm: "This will copy every Bill Due from customer's last newsletter to this current newsletter. Are you sure you want to do this?" %></p>
 							<p><%= link_to  'Import Bills Due from Alpha', import_customer_newsletter_bills_path(@customer, @newsletter, section: params[:section]), confirm: "This will fetch all bills due from the Alpha system. Do you want to continue?" %></p>
+							<p><%= link_to  'View customer\'s imported bills', customer_alpha_bills_path(@customer) %></p>
 						</div>
 					<% elsif params[:section] == 'notifications'%>
 						<div id="dues_menu">
 							<p><%= link_to  'Create a new Bill Added', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]) %></p>
 							<p><%= link_to  'Import Bills Added from Alpha', import_customer_newsletter_bills_path(@customer, @newsletter, section: params[:section]), confirm: "This will fetch all recently added bills from the Alpha system. Do you want to continue?" %></p>
+							<p><%= link_to  'View customer\'s imported bills', customer_alpha_bills_path(@customer) %></p>
 						</div>
 					<% end %>
 				</div>

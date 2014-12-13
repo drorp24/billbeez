@@ -31,6 +31,9 @@ Billbeez::Application.routes.draw do
 
   resources :customers do
     resources :bills
+    namespace :alpha do
+      resources :bills
+    end
   end
 
   resources :customers do
