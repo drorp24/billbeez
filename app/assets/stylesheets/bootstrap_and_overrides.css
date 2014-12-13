@@ -17,6 +17,16 @@ table {
 
 */
 
+#alpha_table {
+    width: 100%;
+}
+
+#alpha_table th, #alpha_table td {
+    padding-left: 5px;
+    direction: rtl;
+    text-align: left;
+}
+
 #supplier_payment_url {
     width: 415px;
 }

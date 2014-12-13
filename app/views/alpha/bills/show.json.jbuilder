@@ -1,0 +1,1 @@
+json.extract! @alpha_bill, :id, :Id, :providername, :fileLocation1, :IsShown, :UploadDate, :IsPaid, :InvoiceNumber, :InvoicePeriodFrom, :InvoicePeriodTo, :Amount, :PayDate, :fileLocation2, :Remark, :RemainderID, :PayNumber, :InvoiceDate, :fileLocation3, :fileLocation4, :created_at, :updated_at

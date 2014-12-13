@@ -1,0 +1,55 @@
+<div class="page-header">
+	<h1>Alpha Bills</h1>
+</div>
+
+<table id="alpha_table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Provider</th>
+      <th>Location</th>
+      <th>Shown</th>
+      <th>Uploaded</th>
+      <th>Paid</th>
+      <th>Number</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Amount</th>
+      <th>Paydate</th>
+      <th>Remark</th>
+      <th>Remainder</th>
+      <th>PayNumber</th>
+      <th>InvoiceDate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alpha_bills.each do |alpha_bill| %>
+      <tr>
+        <td><%= alpha_bill.Id %></td>
+        <td><%= alpha_bill.providername %></td>
+        <td><%= link_to alpha_bill.fileLocation1, alpha_bill.fileLocation1, target: "_blank" %></td>
+        <td><%= alpha_bill.IsShown %></td>
+        <td><%= l alpha_bill.UploadDate, format: :short if alpha_bill.UploadDate %></td>
+        <td><%= alpha_bill.IsPaid %></td>
+        <td><%= alpha_bill.InvoiceNumber %></td>
+        <td><%= l alpha_bill.InvoicePeriodFrom, format: :short if alpha_bill.InvoicePeriodFrom %></td>
+        <td><%= l alpha_bill.InvoicePeriodTo, format: :short if alpha_bill.InvoicePeriodTo %></td>
+        <td><%= alpha_bill.Amount %></td>
+        <td><%= l alpha_bill.PayDate, format: :short if alpha_bill.PayDate %></td>
+        <td><%= alpha_bill.Remark %></td>
+        <td><%= alpha_bill.RemainderID %></td>
+        <td><%= alpha_bill.PayNumber %></td>
+        <td><%= l alpha_bill.InvoiceDate, format: :short if alpha_bill.InvoiceDate %></td>
+       <td><%= link_to 'Edit', edit_alpha_bill_path(alpha_bill), class: "pull-right" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bill', new_alpha_bill_path %>

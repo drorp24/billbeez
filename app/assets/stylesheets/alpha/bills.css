@@ -1,0 +1,12 @@
+// Place all the styles related to the Alpha::Bills controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#alpha_table th, #alpha_table td {
+    padding-left: 5px;
+    width: 20px; 
+    color: red;
+}
+h1#special {
+    color: red;
+}

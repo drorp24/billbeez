@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213105317) do
+ActiveRecord::Schema.define(version: 20141213111952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alpha_bills", force: true do |t|
+    t.integer  "Id"
+    t.string   "providername"
+    t.string   "fileLocation1"
+    t.string   "IsShown"
+    t.datetime "UploadDate"
+    t.boolean  "IsPaid"
+    t.string   "InvoiceNumber"
+    t.date     "InvoicePeriodFrom"
+    t.date     "InvoicePeriodTo"
+    t.decimal  "Amount"
+    t.date     "PayDate"
+    t.string   "fileLocation2"
+    t.string   "Remark"
+    t.integer  "RemainderID"
+    t.string   "PayNumber"
+    t.date     "InvoiceDate"
+    t.string   "fileLocation3"
+    t.string   "fileLocation4"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bills", force: true do |t|
     t.integer  "customer_id"

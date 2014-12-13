@@ -1,0 +1,28 @@
+<%= simple_form_for(@alpha_bill) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :Id %>
+    <%= f.input :providername %>
+    <%= f.input :fileLocation1 %>
+    <%= f.input :IsShown %>
+    <%= f.input :UploadDate, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.input :IsPaid %>
+    <%= f.input :InvoiceNumber %>
+    <%= f.input :InvoicePeriodFrom, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.input :InvoicePeriodTo, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.input :Amount %>
+    <%= f.input :PayDate, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.input :Remark %>
+    <%= f.input :RemainderID %>
+    <%= f.input :PayNumber %>
+    <%= f.input :InvoiceDate, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.input :fileLocation2 %>
+    <%= f.input :fileLocation3 %>
+    <%= f.input :fileLocation4 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, confirm: "This bill is supposed to be received from the alpha as is. Are you sure you want to do this?" %>
+  </div>
+<% end %>

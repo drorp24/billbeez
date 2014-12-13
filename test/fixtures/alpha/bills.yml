@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  Id: MyString
+  providername: MyString
+  fileLocation1: MyString
+  IsShown: MyString
+  UploadDate: 2014-12-13 13:19:52
+  IsPaid: false
+  InvoiceNumber: MyString
+  InvoicePeriodFrom: 2014-12-13
+  InvoicePeriodTo: 2014-12-13
+  Amount: 9.99
+  PayDate: 2014-12-13
+  fileLocation2: MyString
+  Remark: MyString
+  RemainderID: 1
+  PayNumber: MyString
+  InvoiceDate: 2014-12-13
+  fileLocation3: MyString
+  fileLocation4: MyString
+
+two:
+  Id: MyString
+  providername: MyString
+  fileLocation1: MyString
+  IsShown: MyString
+  UploadDate: 2014-12-13 13:19:52
+  IsPaid: false
+  InvoiceNumber: MyString
+  InvoicePeriodFrom: 2014-12-13
+  InvoicePeriodTo: 2014-12-13
+  Amount: 9.99
+  PayDate: 2014-12-13
+  fileLocation2: MyString
+  Remark: MyString
+  RemainderID: 1
+  PayNumber: MyString
+  InvoiceDate: 2014-12-13
+  fileLocation3: MyString
+  fileLocation4: MyString

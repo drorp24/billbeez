@@ -83,7 +83,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div id="menu" class="span6">
+        <div id="menu" class="<%= params[:controller].split('/')[0] == 'alpha' ? 'span12' : 'span6' %>">
           <%= bootstrap_flash unless @newsletter_edit %>
            <% if params[:controller] != "user_mailer" and (params[:newsletter_id] or (params[:controller] == 'newsletters' and params[:action] == 'edit' and params[:id])) %>
 			<div class="page-header">
