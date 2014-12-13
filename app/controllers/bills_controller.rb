@@ -3,6 +3,24 @@ class BillsController < ApplicationController
   before_action :set_section
   autocomplete  :supplier, :name, :full => true
 
+  def import
+
+    return unless 
+      customer_id =   params[:customer_id] and 
+      newsletter_id = params[:newsletter_id] and 
+      section =       params[:section]
+    customer = Customer.find(customer_id)
+
+    if customer.import_alpha_bills_to_newsletter(newsletter_id, section)
+      notice = "Alpha bills successfully imported. Please verify the data!" 
+      redirect_to customer_newsletter_bills_path(customer.id, newsletter_id, section: params[:section]), notice: notice
+    else
+      flash[:error] = "Alpha bills import failed: " + customer.errors.full_messages.to_sentence
+      redirect_to customer_newsletter_bills_path(customer.id, newsletter_id, section: params[:section])
+    end
+
+ end
+
   # GET /bills
   # GET /bills.json
   def index

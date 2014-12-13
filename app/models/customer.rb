@@ -17,6 +17,18 @@ class Customer < ActiveRecord::Base
       new_due = prev_due.dup.update(newsletter_id: newsletter_id)
     end 
   end
+  
+  def import_alpha_bills_to_newsletter(newsletter_id, section)
+    if self.alpha_id.blank?
+      error = "Please populate this customer\'s alpha_id."
+    end
+    if error 
+      self.errors.add(:base, error)
+      return false
+    else
+      return true
+    end
+  end
 
   def newsletters_for(campaign)
     return nil unless campaign and campaign.id

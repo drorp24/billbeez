@@ -18,11 +18,32 @@ table {
 */
 
 
+#backoffice #menu .alert {
+    position: absolute;
+    top: 110px;
+    width: 645px;
+}
+
+#menus_container {
+    height: 200px;
+    border: 0 solid red;
+}
+
+#backoffice #menu .newsletter_navs, #backoffice #menu #sidebar-wrapper {
+    position: static;
+    margin-left: 0;
+    display: inline-block;
+    float: left;
+}
+
 #dues_menu {
 
-    position: relative; 
-    left: 300px;
-    top: 5px;
+    float: right;
+/*    margin-right: 180px; */
+    position: absolute;
+    left: 320px;
+    margin-top: 15px;
+    border: 0 solid green;
 }
 
 #dues_menu p {
@@ -36,10 +57,10 @@ table {
 }
 
 #dues_menu p a:hover {
-    color: #fff;
+    color: #bdcd3f;   
     text-decoration: none;
     text-shadow: 0 1px 0 white;
-    background: #bdcd3f;   
+    background: none;   
     font-weight: 100;
 }
 #dues_menu p a:active {

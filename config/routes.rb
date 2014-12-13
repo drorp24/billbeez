@@ -37,6 +37,9 @@ Billbeez::Application.routes.draw do
     resources :newsletters do
       resources :bills do
         get :autocomplete_supplier_name
+        collection do
+          get :import
+        end
       end
       resources :dues do
         resources :lines

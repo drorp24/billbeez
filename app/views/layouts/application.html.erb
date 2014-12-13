@@ -91,28 +91,30 @@
 				<p><%= "Note: This newsletter was sent already on #{l @newsletter.sent_at, format: :long, locale: :en}" if @newsletter.sent_at %>
 					
 			</div>
-			<div id="sidebar-wrapper">
-	          	<ul class="sidebar-nav newsletter_navs">
-	          		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
-	          		<li id="notifications_nav"><%= link_to "Bill Notifications", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
-				  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
-				  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
-				  	<li id="newsletter_nav"><%= link_to "View Newsletter", customer_newsletter_path(@customer, @newsletter) %></li>
-				</ul>
-			</div>			
-			
-			<% if params[:section] == 'dues'%>
-				<div id="dues_menu">
-					<p><%= link_to  'Create a new Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]) %></p>
-					<p><%= link_to  'Copy last newsletter\'s Dues', copy_customer_newsletter_dues_path(@customer, @newsletter, section: params[:section]), confirm: "This will copy every Bill Due from customer's last newsletter to this current newsletter. Are you sure you want to do this?" %></p>
-					<p><%= link_to  'Import Bills Due from Alpha', "#", confirm: "This will fetch all bills due from the Alpha system. Do you want to continue?" %></p>
+			<div id="menus_container">
+				<div id="sidebar-wrapper">
+			          	<ul class="sidebar-nav newsletter_navs">
+			          		<li id="dues_nav"><%= link_to "Bills Due", customer_newsletter_bills_path(@customer, @newsletter, section: "dues") %></li>
+			          		<li id="notifications_nav"><%= link_to "Bills Added", customer_newsletter_bills_path(@customer, @newsletter, section: "notifications") %></li>
+						  	<li id="reminders_nav"><%= link_to "Reminders", customer_newsletter_reminders_path(@customer, @newsletter) %></li>
+						  	<li id="plans_nav"><%= link_to "Plans", customer_newsletter_plans_path(@customer, @newsletter) %></li>
+						  	<li id="newsletter_nav"><%= link_to "View Newsletter", customer_newsletter_path(@customer, @newsletter) %></li>
+						</ul>
+					</div>			
+					
+					<% if params[:section] == 'dues'%>
+						<div id="dues_menu">
+							<p><%= link_to  'Create a new Bill Due', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]) %></p>
+							<p><%= link_to  'Copy last newsletter\'s Dues', copy_customer_newsletter_dues_path(@customer, @newsletter, section: params[:section]), confirm: "This will copy every Bill Due from customer's last newsletter to this current newsletter. Are you sure you want to do this?" %></p>
+							<p><%= link_to  'Import Bills Due from Alpha', import_customer_newsletter_bills_path(@customer, @newsletter, section: params[:section]), confirm: "This will fetch all bills due from the Alpha system. Do you want to continue?" %></p>
+						</div>
+					<% elsif params[:section] == 'notifications'%>
+						<div id="dues_menu">
+							<p><%= link_to  'Create a new Bill Added', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]) %></p>
+							<p><%= link_to  'Import Bills Added from Alpha', import_customer_newsletter_bills_path(@customer, @newsletter, section: params[:section]), confirm: "This will fetch all recently added bills from the Alpha system. Do you want to continue?" %></p>
+						</div>
+					<% end %>
 				</div>
-			<% elsif params[:section] == 'notifications'%>
-				<div id="dues_menu">
-					<p><%= link_to  'Create a new Bill Notification', new_customer_newsletter_bill_path(@customer, @newsletter, section: params[:section]) %></p>
-					<p><%= link_to  'Import New Bills from Alpha', "#", confirm: "This will fetch all recently added bills from the Alpha system. Do you want to continue?" %></p>
-				</div>
-			<% end %>
 		  <% end %>	
           <%= yield unless @newsletter_edit or params[:controller] == "user_mailer" %>
         </div>
