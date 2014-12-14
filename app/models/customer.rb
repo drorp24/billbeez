@@ -24,6 +24,16 @@ class Customer < ActiveRecord::Base
     if self.alpha_id.blank?
       error = "Please populate this customer\'s alpha_id."
     end
+    newsletter = Newsletter.find(newsletter_id)
+    unless newsletter
+      error = "Newsletter Id is wrong"
+    else
+      campaign = newsletter.campaign
+      unless (campaign.activity_from and campaign.activity_to)
+        error = "Please populate campaign from and to dates"
+      end
+    end
+    
     
     unless error  
 
@@ -54,6 +64,10 @@ class Customer < ActiveRecord::Base
       self.errors.add(:base, error)
       return false
     else
+      due_bills = bills.where(paid: nil).where("due_date BETWEEN ? AND ? OR due_date IS NULL", campaign.activity_from, campaign.activity_to)
+      due_bills.each do |due_bill|
+        Due.create!(bill_id: due_bill.id, newsletter_id: newsletter_id)
+      end
       return true
     end
 
