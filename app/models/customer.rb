@@ -2,7 +2,7 @@ class Customer < ActiveRecord::Base
   belongs_to  :locale
   has_many    :newsletters
   has_many    :bills
-  has_many    :alpha_bills
+  has_many    :alpha_bills, class_name: 'Alpha::Bill'
   
   def prev_campaign
     prev_campaign_id = newsletters.includes(:version).order('versions.campaign_id DESC').uniq.pluck('versions.campaign_id')[1]
@@ -24,7 +24,7 @@ class Customer < ActiveRecord::Base
     if self.alpha_id.blank?
       error = "Please populate this customer\'s alpha_id."
     end
-    newsletter = Newsletter.find(newsletter_id)
+    newsletter = Newsletter.find_by_id(newsletter_id)
     unless newsletter
       error = "Newsletter Id is wrong"
     else
@@ -33,43 +33,47 @@ class Customer < ActiveRecord::Base
         error = "Please populate campaign from and to dates"
       end
     end
-    
-    
+        
     unless error  
 
-      if section == 'dues'
-        alpha_bills = API::Bill.where(status: "due")
-      elsif section == 'notifications'
-      end
+      customer = API::Customer.new(id: self.alpha_id)
+      a_bills = customer.bills.where(from: campaign.from, to: campaign.to)
       
-      begin
-        alpha_bills.each do |a_bill|
-          if Alpha::Bill.exists?(Id: a_bill.Id)
-            error = "Some or all bills imported already"
-            break
+      unless error
+        begin
+          a_bills.each do |a_bill|
+            next if Alpha::Bill.exists?(Id: a_bill.Id)
+            a_bill.attributes.except!(:customer)      # Hack: Her inserts the API::Customer instance into attributes hash
+            a_bill.customer_id = self.id
+            a_bill.UploadDate = correct_date(a_bill.UploadDate)
+            a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
+            Alpha::Bill.create!(a_bill.attributes)
+            Bill.create_from_alpha!(a_bill.attributes)
           end 
-          a_bill.customer_id = self.id
-          a_bill.UploadDate = correct_date(a_bill.UploadDate)
-          a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
-          Alpha::Bill.create!(a_bill.attributes)
-          Bill.create_from_alpha!(a_bill.attributes)
+        rescue => e
+          error = e  
         end 
-      rescue => e
-        error = e  
-      end  
-
+      end 
     end
         
     if error 
       self.errors.add(:base, error)
       return false
-    else
+    end
+    
+    if section == ('dues')
       due_bills = bills.where(paid: nil).where("due_date BETWEEN ? AND ? OR due_date IS NULL", campaign.activity_from, campaign.activity_to)
       due_bills.each do |due_bill|
-        Due.create!(bill_id: due_bill.id, newsletter_id: newsletter_id)
+        Due.find_or_create_by(bill_id: due_bill.id, newsletter_id: newsletter_id)
       end
-      return true
-    end
+    elsif section == 'notifications'
+      new_bills = bills.where("created_at BETWEEN ? AND ?", campaign.activity_from, campaign.activity_to)
+      new_bills.each do |new_bill|
+        Notification.find_or_create_by(bill_id: new_bill.id, newsletter_id: newsletter_id)
+      end
+    end        
+
+    return true
 
   end
   

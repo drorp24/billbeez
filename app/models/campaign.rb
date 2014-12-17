@@ -2,6 +2,14 @@ class Campaign < ActiveRecord::Base
   has_many    :versions, dependent: :destroy
   has_many    :newsletters, through: :versions
   
+  def from
+    self.activity_from.strftime("%d%m%Y")
+  end
+  
+  def to
+    self.activity_to.strftime("%d%m%Y")
+  end
+  
   def version_of(customer_id)
     return nil unless customer_id
     return nil unless customer = Customer.find(customer_id)
