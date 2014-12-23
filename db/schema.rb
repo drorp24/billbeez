@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220212847) do
+ActiveRecord::Schema.define(version: 20141223111952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20141220212847) do
     t.datetime "updated_at"
     t.integer  "customer_id"
     t.string   "UpdateIsPaid"
+  end
+
+  create_table "alpha_providers", force: true do |t|
+    t.integer  "Id"
+    t.string   "ProviderCategory"
+    t.string   "ProviderExtraName"
+    t.string   "ProviderName"
+    t.string   "ProviderNumber"
+    t.string   "ProviderPayType"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "bills", force: true do |t|

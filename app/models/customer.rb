@@ -47,6 +47,7 @@ class Customer < ActiveRecord::Base
             a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
             a_bill.UpdateIsPaid = "https://billbeez.com/" + a_bill.UpdateIsPaid
             a_bill.Amount = a_bill.Amount.delete(",").to_d
+            a_bill.IsPaid = a_bill.IsPaid.to_s.downcase == "true" ? true : false
             Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless Alpha::Bill.exists?(Id: a_bill.Id)
             Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id))
 

@@ -2,6 +2,7 @@ Billbeez::Application.routes.draw do
 
   namespace :alpha do
     resources :bills
+    resources :providers
   end
 
   get "/suppliers/payment_url", to: 'suppliers#payment_url'

@@ -1,0 +1,16 @@
+<%= simple_form_for(@alpha_bill) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :Id, label: "Provider ID in Alpha" %>
+    <%= f.input :ProviderCategory %>
+    <%= f.input :ProviderExtraName %>
+    <%= f.input :ProviderName %>
+    <%= f.input :ProviderNumber %>
+    <%= f.input :ProviderPayType %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, confirm: "Provider should normally be received from the alpha as is. Are you sure you want to do this?" %>
+  </div>
+<% end %>
