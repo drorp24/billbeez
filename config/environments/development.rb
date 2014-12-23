@@ -52,5 +52,5 @@ Billbeez::Application.configure do
 
   # Generate digests for assets URLs.
   config.assets.digest = false
-
+config.log_level = :debug
 end

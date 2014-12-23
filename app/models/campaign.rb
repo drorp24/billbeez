@@ -2,12 +2,20 @@ class Campaign < ActiveRecord::Base
   has_many    :versions, dependent: :destroy
   has_many    :newsletters, through: :versions
   
-  def from
-    self.activity_from.strftime("%d%m%Y")
+  def prev
+    @prev ||= Campaign.find_by_id(self.id - 1)
+  end
+
+  def activity_from
+    @activity_from ||= prev && prev.activity_to ? prev.activity_to : nil
+  end
+
+  def extract_from
+    activity_from ? activity_from.strftime("%d%m%Y") : "01012000"
   end
   
-  def to
-    self.activity_to.strftime("%d%m%Y")
+  def extract_to
+    self.activity_to.strftime("%d%m%Y") if self.activity_to.present?
   end
   
   def version_of(customer_id)

@@ -10,17 +10,18 @@ class Bill < ActiveRecord::Base
   
   attr_accessor :section
 
-  def self.create_from_alpha!(a_bill)
+  def self.find_by_or_create_from_alpha(a_bill)
+    return if Bill.exists?(alpha_id: a_bill["Id"])
     self.create!(
       alpha_id:             a_bill["Id"],
       customer_id:          a_bill["customer_id"],
       supplier_id:          nil,                    # TBC
       issue_date:           a_bill["InvoiceDate"],
       due_date:             a_bill["PayDate"],
-      amount:               a_bill["Amount"],
-      paid:                 a_bill["isPaid"],
+      amount:               a_bill["Amount"].to_f,
+      paid:                 a_bill["IsPaid"].downcase == "true" ? true : false,
       payment_url:          nil,                    # TBC
-      paid_url:             nil,                    # TBC
+      paid_url:             a_bill["UpdateIsPaid"],                    
       view_url:             a_bill["fileLocation1"],
       upload_date:          a_bill["UploadDate"],
       invoice_id:           a_bill["InvoiceNumber"],

@@ -12,8 +12,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th>Include activity from</th>
-      <th>To</th>
+      <th>Activities up to</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -22,7 +21,6 @@
       <tr>
         <td><%= link_to campaign.id, campaign_path(campaign) %></td>
         <td dir="rtl"><%=l campaign.created_at, format: :short %></td>
-        <td dir="rtl"><%= l campaign.activity_from, format: :short if campaign.activity_from %></td>
         <td dir="rtl"><%= l campaign.activity_to, format: :short if campaign.activity_from %></td>
         <td>
           <%= link_to "Versions",

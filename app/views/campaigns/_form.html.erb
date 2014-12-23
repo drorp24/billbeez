@@ -3,8 +3,7 @@
   <%= f.input :subject, required: true %>
   <%= f.input :from_name, required: true %>
   <%= f.input :from_email, required: true %>
-  <%= f.input :activity_from, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
-  <%= f.input :activity_to, required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+  <%= f.input :activity_to, label: "Activities up to", required: true, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
  <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

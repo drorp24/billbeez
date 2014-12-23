@@ -29,31 +29,32 @@ class Customer < ActiveRecord::Base
       error = "Newsletter Id is wrong"
     else
       campaign = newsletter.campaign
-      unless (campaign.activity_from and campaign.activity_to)
-        error = "Please populate campaign from and to dates"
+      unless campaign.activity_to
+        error = "Please populate \'Activities up to\' date in Campaign"
       end
     end
         
     unless error  
 
       customer = API::Customer.new(id: self.alpha_id)
-      a_bills = customer.bills.where(from: campaign.from, to: campaign.to)
-      
-      unless error
+      a_bills = customer.bills.where(from: campaign.extract_from, to: campaign.extract_to)
+
+      a_bills.each do |a_bill|
         begin
-          a_bills.each do |a_bill|
-            next if Alpha::Bill.exists?(Id: a_bill.Id)
-            a_bill.attributes.except!(:customer)      # Hack: Her inserts the API::Customer instance into attributes hash
-            a_bill.customer_id = self.id
-            a_bill.UploadDate = correct_date(a_bill.UploadDate)
+
+            break if error
+            a_bill.UploadDate = DateTime.parse(a_bill.UploadDate)
             a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
-            Alpha::Bill.create!(a_bill.attributes)
-            Bill.create_from_alpha!(a_bill.attributes)
-          end 
+            a_bill.UpdateIsPaid = "https://billbeez.com/" + a_bill.UpdateIsPaid
+            a_bill.Amount = a_bill.Amount.delete(",").to_d
+            Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless Alpha::Bill.exists?(Id: a_bill.Id)
+            Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id))
+
         rescue => e
           error = e  
         end 
       end 
+
     end
         
     if error 
@@ -62,12 +63,13 @@ class Customer < ActiveRecord::Base
     end
     
     if section == ('dues')
-      due_bills = bills.where(paid: nil).where("due_date BETWEEN ? AND ? OR due_date IS NULL", campaign.activity_from, campaign.activity_to)
+      due_bills = bills.where(paid: false)
       due_bills.each do |due_bill|
         Due.find_or_create_by(bill_id: due_bill.id, newsletter_id: newsletter_id)
       end
     elsif section == 'notifications'
-      new_bills = bills.where("created_at BETWEEN ? AND ?", campaign.activity_from, campaign.activity_to)
+      new_bills = bills.where("upload_date BETWEEN ? AND ?", 
+          campaign.activity_from, campaign.activity_to)
       new_bills.each do |new_bill|
         Notification.find_or_create_by(bill_id: new_bill.id, newsletter_id: newsletter_id)
       end
@@ -77,19 +79,6 @@ class Customer < ActiveRecord::Base
 
   end
   
-  def correct_date(s)
-    split1 = s.split("/")
-    mm = split1[0].to_i
-    dd = split1[1].to_i
-    split2 = split1[2].split(" ")
-    yyyy = split2[0].to_i
-    split3 = split2[1].split(":")
-    hh = split3[0].to_i
-    mn = split3[1].to_i
-    ss = split3[2].to_i
-    DateTime.new(yyyy, mm, dd, hh, mn, ss)
- end
-
   def newsletters_for(campaign)
     return nil unless campaign and campaign.id
     self.newsletters.joins(:version).where(versions: {campaign_id: campaign.id})
