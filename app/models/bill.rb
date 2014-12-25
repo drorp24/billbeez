@@ -15,11 +15,11 @@ class Bill < ActiveRecord::Base
     self.create!(
       alpha_id:             a_bill["Id"],
       customer_id:          a_bill["customer_id"],
-      supplier_id:          nil,                    # TBC
+      supplier_id:          a_bill["supplier_id"],
       issue_date:           a_bill["InvoiceDate"],
       due_date:             a_bill["PayDate"],
       amount:               a_bill["Amount"].to_f,
-      paid:                 a_bill["IsPaid"].downcase == "true" ? true : false,
+      paid:                 a_bill["IsPaid"],
       payment_url:          nil,                    # TBC
       paid_url:             a_bill["UpdateIsPaid"],                    
       view_url:             a_bill["fileLocation1"],

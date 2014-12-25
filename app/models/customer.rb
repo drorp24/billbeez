@@ -40,20 +40,40 @@ class Customer < ActiveRecord::Base
       a_bills = customer.bills.where(from: campaign.extract_from, to: campaign.extract_to)
 
       a_bills.each do |a_bill|
-        begin
+#        begin
 
             break if error
+
             a_bill.UploadDate = DateTime.parse(a_bill.UploadDate)
             a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
             a_bill.UpdateIsPaid = "https://billbeez.com/" + a_bill.UpdateIsPaid
             a_bill.Amount = a_bill.Amount.delete(",").to_d
             a_bill.IsPaid = a_bill.IsPaid.to_s.downcase == "true" ? true : false
-            Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless Alpha::Bill.exists?(Id: a_bill.Id)
-            Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id))
 
-        rescue => e
-          error = e  
-        end 
+            provider_attributes = API::Provider.get_attributes(a_bill.providername)
+            error = "Could not import provider #{a_bill.providername}" unless provider_attributes
+            break if error
+
+            alpha_provider = Alpha::Provider.create(provider_attributes) unless alpha_provider_exists = Alpha::Provider.exists?(Id: provider_attributes[:Id])
+            error = "Could not create alpha_provider record for #{a_bill.providername}" unless alpha_provider or alpha_provider_exists
+            break if error
+
+            supplier = Supplier.update_or_create_from_alpha(provider_attributes)
+            error = "Could not create supplier for #{provider_attributes[:ProviderName]}" unless supplier
+            break if error  
+
+            alpha_bill = Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless alpha_bill_exists = Alpha::Bill.exists?(Id: a_bill.Id)
+            error = "Could not create alpha_bill whose Id is #{a_bill.Id}" unless alpha_bill or alpha_bill_exists
+            break if error
+            
+            bill = Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id, supplier_id: supplier.id)) unless bill_exists = Bill.exists?(alpha_id: a_bill.Id)
+            error = "Could not create bill whose Id is #{a_bill.Id}" unless bill or bill_exists
+            break if error
+
+#        rescue => e
+#          error = e  
+#        end 
+
       end 
 
     end
