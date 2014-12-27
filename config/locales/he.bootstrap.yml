@@ -11,6 +11,8 @@ he:
       destroy: "Delete"
       new: "New"
       edit: "Edit"
+      resend: "Resend"
+      show: "Show"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
