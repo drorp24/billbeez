@@ -3,6 +3,7 @@ class SuppliersController < ApplicationController
 
   def index
     @suppliers = Supplier.all
+#    flash[:notice] = "For the full details click Edit"
   end
   
   def edit

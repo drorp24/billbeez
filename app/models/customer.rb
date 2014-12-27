@@ -62,12 +62,12 @@ class Customer < ActiveRecord::Base
             error = "Could not create supplier for #{provider_attributes[:ProviderName]}" unless supplier
             break if error  
 
-            alpha_bill = Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless alpha_bill_exists = Alpha::Bill.exists?(Id: a_bill.Id)
+            alpha_bill = Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless alpha_bill_exists = Alpha::Bill.exists?(Id: a_bill.Id, customer_id: self.id)
             error = "Could not create alpha_bill whose Id is #{a_bill.Id}" unless alpha_bill or alpha_bill_exists
             break if error
             
-            bill = Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id, supplier_id: supplier.id)) unless bill_exists = Bill.exists?(alpha_id: a_bill.Id)
-            error = "Could not create bill whose Id is #{a_bill.Id}" unless bill or bill_exists
+            bill = Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id, supplier_id: supplier.id))
+            error = "Could not create bill whose Alpha Id is #{a_bill.Id}" unless bill
             break if error
 
 #        rescue => e

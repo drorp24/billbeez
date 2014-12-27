@@ -12,10 +12,10 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th>Alpha</th>
       <th>Created</th>
 	  <th>Updated</th>
       <th>Name</th>
-      <th>Description</th>
       <th>Logo</th>
       <th>Payment url</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -25,10 +25,10 @@
     <% @suppliers.order(name: :asc).each do |supplier| %>
       <tr>
         <td><%= link_to supplier.id, supplier_path(supplier) %></td>
+        <td><%= supplier.alpha_id %></td>
         <td dir="rtl"><%=l supplier.created_at, format: :short if supplier.created_at %></td>
         <td dir="rtl"><%=l supplier.updated_at, format: :short if supplier.updated_at %></td>
         <td><%= supplier.name %></td>
-        <td><%= supplier.description %></td>
         <td>
         	<% if !supplier.logo.blank? %>
         		<%= image_tag supplier.logo, id: "suppliers_logo" %>

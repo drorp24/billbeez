@@ -9,11 +9,10 @@ class Supplier < ActiveRecord::Base
 
     supplier = self.where(alpha_id: attributes[:Id]).first
     return supplier if supplier
-    url = self.url(attributes[:ProviderPayType])
-    supplier = self.find_or_initialize_by(name: name).update(
+    supplier = self.find_or_initialize_by(name: attributes[:ProviderName]).update(
       name:           attributes[:ProviderName],
-      payment_url:    url,
-      payment_text:   url.nil? ? attributes[:ProviderPayType] : nil,
+      payment_url:    attributes[:ProviderLink],
+      payment_text:   attributes[:ProviderPayText],
       category:       attributes[:ProviderCategory],
       extra_name:     attributes[:ProviderExtraName],
       number:         attributes[:ProviderNumber],
@@ -22,14 +21,18 @@ class Supplier < ActiveRecord::Base
     supplier
   end
   
+=begin
   def self.url(s)
 #    s =~ /^<.*>$/
-#s = "<a href='http://gdf.ds/fd' target='_blank'>some text</a>"
-     patern = /href=([^\s]*)/
-     match  = patern.match(s)
-     match[1].delete("\'") if match
+s = "<a href=\"http://9nl.eu/bon7\" target=\"_blank\">some text</a>"
+     patern1 = /href="([^\s"]*)/
+      s1  = patern1.match(s)[1].to_s.delete("\'")
+#      "http://9nl.eu/bon8"
+#      patern2 = /"([^"]*)/
+#     s2 = s1.delete("\"")
+#     s2.delete("\'") if s2
   end
-
+=end
   def self.no_existent?(name)
     name == "no existing match" or self.find_by_name(name).nil?
   end

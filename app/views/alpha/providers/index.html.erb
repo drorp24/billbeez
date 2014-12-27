@@ -10,7 +10,8 @@
       <th>ProviderExtraName</th>
       <th>ProviderName</th>
       <th>ProviderNumber</th>
-      <th>ProviderPayType</th>
+      <th>ProviderLink</th>
+      <th>ProviderPayText</th>
       <th></th>
     </tr>
   </thead>
@@ -23,7 +24,8 @@
         <td><%= alpha_provider.ProviderExtraName %></td>
         <td><%= alpha_provider.ProviderName %></td>
         <td><%= alpha_provider.ProviderNumber %></td>
-        <td><%= alpha_provider.ProviderPayType %></td>
+        <td><%= alpha_provider.ProviderLink %></td>
+        <td><%= alpha_provider.ProviderPayText %></td>
        <td><%= link_to 'Edit', edit_alpha_provider_path(alpha_provider), class: "pull-right" %></td>
       </tr>
     <% end %>

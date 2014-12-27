@@ -11,7 +11,8 @@ class Bill < ActiveRecord::Base
   attr_accessor :section
 
   def self.find_by_or_create_from_alpha(a_bill)
-    return if Bill.exists?(alpha_id: a_bill["Id"])
+    bill = Bill.where(alpha_id: a_bill["Id"], customer_id: a_bill[:customer_id]).first
+    return bill if bill
     self.create!(
       alpha_id:             a_bill["Id"],
       customer_id:          a_bill["customer_id"],
