@@ -3,10 +3,14 @@
   <tr id="bill_background" height="42" class="bill_background" bgcolor="#FFFFFF" style="background-color: #FFFFFF !important;">
     <td align=right> 
     	<% if due.supplier %>
-	    	<% if !due.supplier.logo.blank? %>
-	    		<%= image_tag due.supplier.logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important" %>
-	    	<% else %>	
-	    		<%= due.supplier.name %>
+	    	<% if logo = due.supplier.logo and logo.present? %>
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important" %>
+	    	<% elsif logo = due.supplier.alpha_logo and logo.present? %>	
+	    		<%= image_tag logo, class: 'sup_logo', size: "42x42", style: "width: 42px !important; height: 42px !important" %>
+			<% elsif name = due.supplier.name %>
+	    		<%= name %>
+    		<% else %>
+    			Missing
 			<% end %>
 		<% end %>
 	</td>

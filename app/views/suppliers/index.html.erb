@@ -13,11 +13,12 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th>Alpha</th>
-      <th>Created</th>
-	  <th>Updated</th>
       <th>Name</th>
       <th>Logo</th>
+      <th>Alpha Logo</th>
       <th>Payment url</th>
+      <th>Created</th>
+	  <th>Updated</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -26,17 +27,24 @@
       <tr>
         <td><%= link_to supplier.id, supplier_path(supplier) %></td>
         <td><%= supplier.alpha_id %></td>
-        <td dir="rtl"><%=l supplier.created_at, format: :short if supplier.created_at %></td>
-        <td dir="rtl"><%=l supplier.updated_at, format: :short if supplier.updated_at %></td>
         <td><%= supplier.name %></td>
         <td>
-        	<% if !supplier.logo.blank? %>
+        	<% if supplier.logo.present? %>
         		<%= image_tag supplier.logo, id: "suppliers_logo" %>
     		<% else %>
-				Logo missing
+				
+			<% end %>
+		</td>
+		<td>
+        	<% if supplier.alpha_logo.present? %>
+        		<%= image_tag supplier.alpha_logo, id: "suppliers_logo" %>
+    		<% else %>
+				
 			<% end %>
 		</td>
         <td><%= supplier.payment_url %></td>
+        <td dir="rtl"><%=l supplier.created_at, format: :short if supplier.created_at %></td>
+        <td dir="rtl"><%=l supplier.updated_at, format: :short if supplier.updated_at %></td>
         <td>
           <%= link_to "Edit",
                       supplier_path(supplier), :class => 'btn btn-mini' %>

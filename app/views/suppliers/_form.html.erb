@@ -8,7 +8,8 @@
   <%= f.input :number %>
   <%= f.input :payment_text %>
   <%= f.input :logo %>
-  <div class="form-actions">
+  <%= f.input :alpha_logo %>
+   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 :back, :class => 'btn' %>
