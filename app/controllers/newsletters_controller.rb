@@ -18,14 +18,17 @@ class NewslettersController < ApplicationController
   # GET /newsletters
   # GET /newsletters.json
   def index
+
+    @newsletters = Newsletter.includes(:customer, :campaign)
+
     if params[:customer_id]
-        @newsletters = Newsletter.where(customer_id: params[:customer_id]).includes(:customer, :campaign)
-    elsif params[:campaign_id]
-        @newsletters = Newsletter.joins(:version).where(versions: {campaign_id: params[:campaign_id]}).includes(:customer, :campaign)
-    else
-      @newsletters = Newsletter.includes(:customer, :campaign)
+      @newsletters = @newsletters.where(customer_id: params[:customer_id])
     end
-   end
+    if params[:campaign_id]
+      @newsletters = @newsletters.joins(:version).where(versions: {campaign_id: params[:campaign_id]})
+    end
+
+ end
 
   # GET /newsletters/1
   # GET /newsletters/1.json

@@ -30,6 +30,8 @@
   </div>
 
   <!-- Table -->
+  <% if @newsletter.notifications.any? %>
+
   <table id="bills" class="data table" cellspacing="0">	
         <thead>
           <tr>
@@ -53,4 +55,5 @@
 				<%= render 'notifications_panel_charge', notification: notification %>
 			<% end %>
   </table>
+  <% end %>
 </div>
