@@ -19,87 +19,86 @@ class Customer < ActiveRecord::Base
     end 
   end
   
-  def import_alpha_bills_to_newsletter(newsletter_id, section)
+  def import_alpha_bills_to_newsletter(newsletter, section)
 
-    if self.alpha_id.blank?
-      error = "Please populate this customer\'s alpha_id."
-    end
-    newsletter = Newsletter.find_by_id(newsletter_id)
-    unless newsletter
-      error = "Newsletter Id is wrong"
-    else
-      campaign = newsletter.campaign
-      unless campaign.activity_to
-        error = "Please populate \'Activities up to\' date in Campaign"
-      end
-    end
-        
-    unless error  
-
-      customer = API::Customer.new(id: self.alpha_id)
-      a_bills = customer.bills.where(from: campaign.extract_from, to: campaign.extract_to)
-
-      a_bills.each do |a_bill|
-#        begin
-
-            break if error
-
-            a_bill.UploadDate = DateTime.parse(a_bill.UploadDate)
-            a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
-            a_bill.UpdateIsPaid = "https://billbeez.com/" + a_bill.UpdateIsPaid
-            a_bill.Amount = a_bill.Amount.delete(",").to_d
-            a_bill.IsPaid = a_bill.IsPaid.to_s.downcase == "true" ? true : false
-
-            provider_attributes = API::Provider.get_attributes(a_bill.providername)
-            error = "Could not import provider #{a_bill.providername}" unless provider_attributes
-            break if error
-
-            alpha_provider = Alpha::Provider.create(provider_attributes) unless alpha_provider_exists = Alpha::Provider.exists?(Id: provider_attributes[:Id])
-            error = "Could not create alpha_provider record for #{a_bill.providername}" unless alpha_provider or alpha_provider_exists
-            break if error
-
-            supplier = Supplier.update_or_create_from_alpha(provider_attributes)
-            error = "Could not create supplier for #{provider_attributes[:ProviderName]}" unless supplier
-            break if error  
-
-            alpha_bill = Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless alpha_bill_exists = Alpha::Bill.exists?(Id: a_bill.Id, customer_id: self.id)
-            error = "Could not create alpha_bill whose Id is #{a_bill.Id}" unless alpha_bill or alpha_bill_exists
-            break if error
-            
-            bill = Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id, supplier_id: supplier.id))
-            error = "Could not create bill whose Alpha Id is #{a_bill.Id}" unless bill
-            break if error
-
-#        rescue => e
-#          error = e  
-#        end 
-
-      end 
-
-    end
+    error = import_alpha_bills(newsletter) unless newsletter.alpha_bills_imported
         
     if error 
       self.errors.add(:base, error)
       return false
     end
     
-    if section == ('dues')
+    if section == ('dues') and !newsletter.dues_created
       due_bills = bills.where(paid: false)
       due_bills.each do |due_bill|
-        Due.find_or_create_by(bill_id: due_bill.id, newsletter_id: newsletter_id)
+        Due.find_or_create_by(bill_id: due_bill.id, newsletter_id: newsletter.id)
       end
-    elsif section == 'notifications'
+      newsletter.update(dues_created: true)
+    elsif section == 'notifications' and !newsletter.notifications_created
       new_bills = bills.where("upload_date BETWEEN ? AND ?", 
           campaign.activity_from, campaign.activity_to)
       new_bills.each do |new_bill|
-        Notification.find_or_create_by(bill_id: new_bill.id, newsletter_id: newsletter_id)
+        Notification.find_or_create_by(bill_id: new_bill.id, newsletter_id: newsletter.id)
       end
+      newsletter.update(notifications_created: true)
     end        
 
     return true
 
   end
+  handle_asynchronously :import_alpha_bills_to_newsletter
+
+  def import_alpha_bills(newsletter)
+    
+    error = nil
+    campaign = newsletter.campaign
+    
+    customer = API::Customer.new(id: self.alpha_id)
+    a_bills = customer.bills.where(from: campaign.extract_from, to: campaign.extract_to)
+
+    a_bills.each do |a_bill|
+#        begin
+
+          break if error
+
+          a_bill.UploadDate = DateTime.parse(a_bill.UploadDate)
+          a_bill.fileLocation1 = "https://billbeez.com/" + a_bill.fileLocation1 
+          a_bill.UpdateIsPaid = "https://billbeez.com/" + a_bill.UpdateIsPaid
+          a_bill.Amount = a_bill.Amount.delete(",").to_d
+          a_bill.IsPaid = a_bill.IsPaid.to_s.downcase == "true" ? true : false
+
+          provider_attributes = API::Provider.get_attributes(a_bill.providername)
+          error = "Could not import provider #{a_bill.providername}" unless provider_attributes
+          break if error
+
+          alpha_provider = Alpha::Provider.create(provider_attributes) unless alpha_provider_exists = Alpha::Provider.exists?(Id: provider_attributes[:Id])
+          error = "Could not create alpha_provider record for #{a_bill.providername}" unless alpha_provider or alpha_provider_exists
+          break if error
+
+          supplier = Supplier.update_or_create_from_alpha(provider_attributes)
+          error = "Could not create supplier for #{provider_attributes[:ProviderName]}" unless supplier
+          break if error  
+
+          alpha_bill = Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless alpha_bill_exists = Alpha::Bill.exists?(Id: a_bill.Id, customer_id: self.id)
+          error = "Could not create alpha_bill whose Id is #{a_bill.Id}" unless alpha_bill or alpha_bill_exists
+          break if error
+          
+          bill = Bill.find_by_or_create_from_alpha(a_bill.attributes.merge(customer_id: self.id, supplier_id: supplier.id))
+          error = "Could not create bill whose Alpha Id is #{a_bill.Id}" unless bill
+          break if error                   
+
+#        rescue => e
+#          error = e  
+#        end 
+
+    end 
+    
+    newsletter.update(alpha_bills_imported: true) unless error
+    return error
+      
+  end
   
+
   def newsletters_for(campaign)
     return nil unless campaign and campaign.id
     self.newsletters.joins(:version).where(versions: {campaign_id: campaign.id})

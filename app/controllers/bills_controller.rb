@@ -10,9 +10,10 @@ class BillsController < ApplicationController
       newsletter_id = params[:newsletter_id] and 
       section =       params[:section]
     customer = Customer.find(customer_id)
+    newsletter = Newsletter.find(newsletter_id)
 
-    if customer.import_alpha_bills_to_newsletter(newsletter_id, section)
-      notice = "Alpha bills successfully imported. Please validate the data!" 
+    if customer.import_alpha_bills_to_newsletter(newsletter, section)
+      notice = "Alpha bills are being imported. Please refresh and validate the data!" 
       redirect_to customer_newsletter_bills_path(customer.id, newsletter_id, section: params[:section]), notice: notice
     else
       flash[:error] = "Import did not complete: " + customer.errors.full_messages.to_sentence

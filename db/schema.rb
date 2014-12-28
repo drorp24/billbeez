@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141227140529) do
+ActiveRecord::Schema.define(version: 20141227234542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,9 @@ ActiveRecord::Schema.define(version: 20141227140529) do
     t.string   "finding_1"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "alpha_bills_imported"
+    t.boolean  "dues_created"
+    t.boolean  "notifications_created"
   end
 
   create_table "notifications", force: true do |t|
