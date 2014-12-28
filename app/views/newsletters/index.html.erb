@@ -30,8 +30,13 @@
 	                      customer_newsletter_path(customer, newsletter), :class => 'btn btn-mini' %>
 	          <%= link_to t('.edit', :default => t("helpers.links.edit")),
 	                      edit_customer_newsletter_path(customer, newsletter), :class => 'btn btn-mini' %>
+	          <% if newsletter.sent_at %>
 	          <%= link_to t('.resend', :default => t("helpers.links.resend")),
-	                      deliver_newsletter_path(newsletter, resend: 'yes', campaign_id: params[:campaign_id], customer_id: params[:customer_id]), :class => 'btn btn-mini' if newsletter.sent_at %>
+	                      deliver_newsletter_path(newsletter, resend: 'yes', campaign_id: params[:campaign_id], customer_id: params[:customer_id]), :class => 'btn btn-mini' %>
+	          <% else %>
+	          <%= link_to t('.send', :default => t("helpers.links.send")),
+	                      deliver_newsletter_path(newsletter, resend: 'no', campaign_id: params[:campaign_id], customer_id: params[:customer_id]), :class => 'btn btn-mini' %>          
+	          <% end %>
 	        </td>
 	      </tr>
     	<% end %>
