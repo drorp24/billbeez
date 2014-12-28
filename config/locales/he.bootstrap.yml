@@ -12,6 +12,7 @@ he:
       new: "New"
       edit: "Edit"
       resend: "Resend"
+      send: "Send"
       show: "Show"
     titles:
       edit: "Edit %{model}"
