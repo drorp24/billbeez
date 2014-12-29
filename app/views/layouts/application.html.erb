@@ -182,7 +182,9 @@ $(document).ready(function() {
 			alert('Not enough data to perform import:\nBoth campaign activity_to and customer alpha_id need to be populated')
 			return false
 		} else {
-			alert("This will fetch all bills due from the Alpha system. Do you want to do this?")
+			if (confirm("This will fetch all bills due from the Alpha system. Do you want to do this?") == false) {
+				return false
+			}
 		}
 	})
 })

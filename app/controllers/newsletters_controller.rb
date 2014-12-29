@@ -10,7 +10,7 @@ class NewslettersController < ApplicationController
         redirect_to campaign_newsletters_path(params[:campaign_id]), notice: "Newsletter resent to #{@newsletter.customer.name}"
       end
     else
-      redirect_to customer_newsletter_path(@newsletter.customer.id, @newsletter.id), notice: 'Newsletter sent to customer!'
+      redirect_to customer_newsletters_path(params[:customer_id]), notice: 'Newsletter sent to customer!'
     end
   end
 

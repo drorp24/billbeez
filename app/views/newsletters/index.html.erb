@@ -35,7 +35,7 @@
 	                      deliver_newsletter_path(newsletter, resend: 'yes', campaign_id: params[:campaign_id], customer_id: params[:customer_id]), :class => 'btn btn-mini' %>
 	          <% else %>
 	          <%= link_to t('.send', :default => t("helpers.links.send")),
-	                      deliver_newsletter_path(newsletter, resend: 'no', campaign_id: params[:campaign_id], customer_id: params[:customer_id]), :class => 'btn btn-mini' %>          
+	                      deliver_newsletter_path(newsletter, resend: 'no', campaign_id: params[:campaign_id], customer_id: params[:customer_id]), :class => 'btn btn-mini', confirm: "Have you viewed the newsletter? Sure you want to send it?" %>          
 	          <% end %>
 	        </td>
 	      </tr>
