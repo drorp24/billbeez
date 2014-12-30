@@ -2,16 +2,17 @@ class NewslettersController < ApplicationController
   before_action :set_newsletter, only: [:deliver, :show, :edit, :update, :destroy]
 
   def deliver
-    @newsletter.deliver
-    if params[:resend] and params[:resend] == 'yes'
-      if params[:customer_id]
-        redirect_to customer_newsletters_path(params[:customer_id]), notice: "Newsletter resent to #{@newsletter.customer.name}"
-      elsif params[:campaign_id]
-        redirect_to campaign_newsletters_path(params[:campaign_id]), notice: "Newsletter resent to #{@newsletter.customer.name}"
-      end
-    else
-      redirect_to customer_newsletters_path(params[:customer_id]), notice: 'Newsletter sent to customer!'
+
+#    @newsletter.deliver
+    action = (params[:resend] and params[:resend] == 'yes') ? 'resent' : 'sent'
+    notice = "Newsletter #{action} to #{@newsletter.customer.name}"
+    notice = "Restart Mail Queue to deliver newsletter" 
+    if params[:customer_id]
+      redirect_to customer_newsletters_path(params[:customer_id]), notice: notice
+    elsif params[:campaign_id]
+      redirect_to campaign_newsletters_path(params[:campaign_id]), notice: notice
     end
+
   end
 
 
