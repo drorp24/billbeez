@@ -3,10 +3,10 @@ class NewslettersController < ApplicationController
 
   def deliver
 
-#    @newsletter.deliver
+    @newsletter.deliver
     action = (params[:resend] and params[:resend] == 'yes') ? 'resent' : 'sent'
     notice = "Newsletter #{action} to #{@newsletter.customer.name}"
-    notice = "Restart Mail Queue to deliver newsletter" 
+#    notice = "Restart Mail Queue to deliver newsletter" 
     if params[:customer_id]
       redirect_to customer_newsletters_path(params[:customer_id]), notice: notice
     elsif params[:campaign_id]
