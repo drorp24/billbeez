@@ -36,7 +36,7 @@ class Customer < ActiveRecord::Base
       newsletter.update(dues_created: true)
     elsif section == 'notifications' and !newsletter.notifications_created
       new_bills = bills.where("upload_date BETWEEN ? AND ?", 
-          campaign.activity_from, campaign.activity_to)
+          newsletter.campaign.activity_from, newsletter.campaign.activity_to)
       new_bills.each do |new_bill|
         Notification.find_or_create_by(bill_id: new_bill.id, newsletter_id: newsletter.id)
       end
