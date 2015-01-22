@@ -6,7 +6,7 @@ class API::Provider
     url = URI.escape("https://billbeez.com/api/providers/#{name}/info")
     response = HTTParty.get(url, verify: Rails.env.production?)
     return false unless response.code == 200
-    response.parsed_response.any? ? response.parsed_response.first.symbolize_keys : false
+    response.parsed_response.any? ? response.parsed_response.first.symbolize_keys : nil
   end
 
 end

@@ -68,16 +68,20 @@ class Customer < ActiveRecord::Base
           a_bill.IsPaid = a_bill.IsPaid.to_s.downcase == "true" ? true : false
 
           provider_attributes = API::Provider.get_attributes(a_bill.providername)
-          error = "Could not import provider #{a_bill.providername}" unless provider_attributes
-          break if error
 
-          alpha_provider = Alpha::Provider.create(provider_attributes) unless alpha_provider_exists = Alpha::Provider.exists?(Id: provider_attributes[:Id])
-          error = "Could not create alpha_provider record for #{a_bill.providername}" unless alpha_provider or alpha_provider_exists
-          break if error
-
-          supplier = Supplier.update_or_create_from_alpha(provider_attributes)
-          error = "Could not create supplier for #{provider_attributes[:ProviderName]}" unless supplier
-          break if error  
+          if provider_attributes
+            alpha_provider = Alpha::Provider.create(provider_attributes) unless alpha_provider_exists = Alpha::Provider.exists?(Id: provider_attributes[:Id])
+            error = "Could not create alpha_provider record for #{a_bill.providername}" unless alpha_provider or alpha_provider_exists
+            break if error
+  
+            supplier = Supplier.update_or_create_from_alpha(provider_attributes)
+            error = "Could not create supplier for #{provider_attributes[:ProviderName]}" unless supplier
+            break if error
+          else
+            supplier = Supplier.create(name: a_bill.providername)  
+            error = "Could not create supplier whose name is #{a_bill.providername}" unless supplier
+            break if error
+          end
 
           alpha_bill = Alpha::Bill.create(a_bill.attributes.except(:customer).merge(customer_id: self.id)) unless alpha_bill_exists = Alpha::Bill.exists?(Id: a_bill.Id, customer_id: self.id)
           error = "Could not create alpha_bill whose Id is #{a_bill.Id}" unless alpha_bill or alpha_bill_exists
